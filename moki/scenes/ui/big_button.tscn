@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/big_button.gd" id="1_script"]
+
+[node name="BigButton" type="Button"]
+custom_minimum_size = Vector2(320, 120)
+theme_override_font_sizes/font_size = 48
+text = "Botón"
+script = ExtResource("1_script")

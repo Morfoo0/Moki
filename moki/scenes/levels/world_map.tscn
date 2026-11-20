@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/big_button.tscn" id="1_button"]
+
+[node name="WorldMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.72, 0.9, 1, 1)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.3, 0.5, 1)
+theme_override_font_sizes/font_size = 72
+text = "Mundos"
+horizontal_alignment = 1
+
+[node name="Worlds" type="GridContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 3
+
+[node name="Letters" parent="Content/Worlds" instance=ExtResource("1_button")]
+layout_mode = 2
+disabled = true
+text = "Letras"
+
+[node name="Numbers" parent="Content/Worlds" instance=ExtResource("1_button")]
+layout_mode = 2
+disabled = true
+text = "Números"
+
+[node name="Shapes" parent="Content/Worlds" instance=ExtResource("1_button")]
+layout_mode = 2
+disabled = true
+text = "Figuras"
+
+[node name="Combination" parent="Content/Worlds" instance=ExtResource("1_button")]
+layout_mode = 2
+disabled = true
+text = "Combinación"
+
+[node name="Review" parent="Content/Worlds" instance=ExtResource("1_button")]
+layout_mode = 2
+disabled = true
+text = "Repaso"
+
+[node name="BackButton" parent="Content" instance=ExtResource("1_button")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volver"
+target_scene = "res://scenes/home/home.tscn"
