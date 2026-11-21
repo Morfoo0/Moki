@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/number_symbol_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_match"
+title = "Busca el mismo número"
+instruction = "Mira este número. ¿Dónde hay otro igual?"
+hints = PackedStringArray("Busca un número que tenga la misma forma que el de arriba.", "{shape}", "Si fueran gemelos, ¿cuál sería el gemelo del número de arriba?", "Quité algunos números. Compara cada uno con el de arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

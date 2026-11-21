@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/numbers_9_10_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_match.tres" id="t_num_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_name.tres" id="t_num_name"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_grid.tres" id="t_num_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_odd.tres" id="t_num_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count.tres" id="t_num_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_find_group.tres" id="t_num_find_group"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count_tap.tres" id="t_num_count_tap"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_hidden.tres" id="t_num_hidden"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sequence.tres" id="t_num_sequence"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_compare.tres" id="t_num_compare"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_order.tres" id="t_num_order"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sort.tres" id="t_num_sort"]
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy conoceremos a los últimos números: el 9 y el 10."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_2"]
+script = ExtResource("2_line")
+text = "El 9 parece un globo con su hilo. El 10 son dos números juntitos: un 1 y un 0."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_3"]
+script = ExtResource("2_line")
+text = "Mira tus dos manos: ¡tienes 10 dedos! Cuéntalos conmigo: uno, dos, tres... ¡hasta diez!"
+kind = 2
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_4"]
+script = ExtResource("2_line")
+text = "Hoy repasaremos todos los números, del 1 al 10. Cuenta despacito, tocando cada cosa con tu dedo."
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_5"]
+script = ExtResource("2_line")
+text = "Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_6"]
+script = ExtResource("2_line")
+text = "¡Lo lograste! Ya conoces todos los números del 1 al 10. ¡Eres un gran contador!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_7"]
+script = ExtResource("2_line")
+text = "¡Qué orgulloso estoy de ti! Ya cuentas hasta 10, como los dedos de tus manos."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_9_10_8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Uno, dos, tres... ¡hasta diez! Puedes volver a jugar con los números cuando quieras."
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"numbers_9_10"
+title = "Los números 9 y 10"
+objective = "Reconocer los números 9 y 10, contar hasta diez, asociar números y cantidades, completar secuencias del 1 al 10, comparar cantidades y repasar todos los números."
+concept_ids = Array[StringName]([&"numbers_9_10"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_numbers_9_10_1"), SubResource("Resource_numbers_9_10_2"), SubResource("Resource_numbers_9_10_3"), SubResource("Resource_numbers_9_10_4"), SubResource("Resource_numbers_9_10_5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_numbers_9_10_6"), SubResource("Resource_numbers_9_10_7"), SubResource("Resource_numbers_9_10_8")])
+reinforce_lines = PackedStringArray("El 10 son diez cosas, como los dedos de tus manos.", "El 9 viene justo antes del 10.", "¡Contaste muy bien, uno por uno!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_num_match"), ExtResource("t_num_name"), ExtResource("t_num_grid"), ExtResource("t_num_odd"), ExtResource("t_num_count"), ExtResource("t_num_find_group"), ExtResource("t_num_count_tap"), ExtResource("t_num_hidden"), ExtResource("t_num_sequence"), ExtResource("t_num_compare"), ExtResource("t_num_order"), ExtResource("t_num_sort")])
+content = ExtResource("1_bank")

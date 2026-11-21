@@ -156,7 +156,8 @@ func _on_activity_finished(result: Dictionary, line: DialogueLine) -> void:
 			ActivityTemplate.ViewType.CHOICE:
 				_view.mark_correct(_last_pressed)
 			ActivityTemplate.ViewType.SEARCH:
-				for card_index: int in instance.correct:
+				# Las encontradas (en "toca 3 manzanas" no son todas las correctas).
+				for card_index: int in session.found_cards():
 					_view.mark_correct(card_index)
 			ActivityTemplate.ViewType.SORT:
 				# La última tarjeta colocada (sin feedback propio) va a su cesta.

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/number_symbol_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 6
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_order"
+title = "En orden"
+view_type = 1
+stage = 4
+instruction = "Toca los números en orden, del más pequeño al más grande."
+hints = PackedStringArray("Empieza por el número más pequeño. ¿Cuál es?", "Cuenta: uno, dos, tres… ¿Cuál de estos dices primero?", "Los números son como una escalera: se sube de uno en uno. ¿Qué escalón sigue?", "Di los números en voz alta, del más pequeño al más grande, y tócalos así.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

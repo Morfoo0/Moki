@@ -34,11 +34,13 @@ static func emoji_font() -> SystemFont:
 	return _emoji
 
 
-func setup(index: int, card: CardData, bank: ContentBank, side: float) -> void:
+## side = alto (y ancho si width <= 0). width > 0: tarjeta apaisada.
+func setup(index: int, card: CardData, bank: ContentBank, side: float, width: float = 0.0) -> void:
 	card_index = index
 	data = card
-	custom_minimum_size = Vector2(side, side)
-	pivot_offset = Vector2(side, side) / 2.0
+	var card_size := Vector2(width if width > 0.0 else side, side)
+	custom_minimum_size = card_size
+	pivot_offset = card_size / 2.0
 	resized.connect(func() -> void: pivot_offset = size / 2.0)
 	_style.bg_color = BG
 	_style.border_color = BORDER
@@ -50,7 +52,9 @@ func setup(index: int, card: CardData, bank: ContentBank, side: float) -> void:
 	_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_panel)
-	if card.kind == CardData.Kind.IMAGE and card.texture == null and not card.glyph.is_empty():
+	if card.kind == CardData.Kind.GROUP:
+		_build_group(card, card_size)
+	elif card.kind == CardData.Kind.IMAGE and card.texture == null and not card.glyph.is_empty():
 		# Dibujo provisional: emoji con la fuente de emoji del sistema.
 		_label.text = card.glyph
 		_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -81,11 +85,107 @@ func setup(index: int, card: CardData, bank: ContentBank, side: float) -> void:
 		var font: Font = bank.get_font(card.font_index) if bank != null else null
 		if font != null:
 			_label.add_theme_font_override("font", font)
-		var max_size: int = int(side * (0.78 if card.text.length() == 1 else 0.4))
+		var ratio: float = 0.78 if card.text.length() == 1 else 0.4
+		if card.kind == CardData.Kind.NUMBER and card.text.length() == 2:
+			ratio = 0.6  # el "10" sigue siendo grande
+		var max_size: int = int(side * ratio)
 		_label.add_theme_font_size_override("font_size", mini(card.font_size, max_size))
 		_label.add_theme_color_override("font_color", card.color)
 		add_child(_label)
 	tooltip_text = card.spoken
+
+
+# --- Grupos de objetos para contar --------------------------------------------
+
+## Posiciones de los puntos de un dado (celdas de 3×3) para 1-6.
+const DICE_CELLS: Dictionary = {
+	1: [Vector2i(1, 1)],
+	2: [Vector2i(0, 0), Vector2i(2, 2)],
+	3: [Vector2i(0, 0), Vector2i(1, 1), Vector2i(2, 2)],
+	4: [Vector2i(0, 0), Vector2i(2, 0), Vector2i(0, 2), Vector2i(2, 2)],
+	5: [Vector2i(0, 0), Vector2i(2, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(2, 2)],
+	6: [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2)],
+}
+
+
+## Coloca "count" objetos sin que se superpongan: cada uno ocupa su propia celda.
+func _build_group(card: CardData, card_size: Vector2) -> void:
+	var margin: float = minf(card_size.x, card_size.y) * 0.08
+	var area := Rect2(Vector2(margin, margin), card_size - Vector2(margin, margin) * 2.0)
+	for rect: Rect2 in group_rects(card, area):
+		var item: Control
+		if card.texture != null:
+			var picture := TextureRect.new()
+			picture.texture = card.texture
+			picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			item = picture
+		else:
+			var glyph := Label.new()
+			glyph.text = card.glyph
+			glyph.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			glyph.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			glyph.add_theme_font_override("font", emoji_font())
+			glyph.add_theme_font_size_override("font_size", int(rect.size.y * 0.8))
+			item = glyph
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		item.position = rect.position
+		item.size = rect.size
+		add_child(item)
+
+
+## Rectángulos (uno por objeto) dentro de "area". Deterministas: dependen solo
+## de la tarjeta (count, layout, layout_seed). Nunca se solapan.
+static func group_rects(card: CardData, area: Rect2) -> Array[Rect2]:
+	var rects: Array[Rect2] = []
+	var amount: int = maxi(card.count, 0)
+	if amount == 0:
+		return rects
+	if card.layout == CardData.Layout.DICE and DICE_CELLS.has(amount):
+		var side: float = minf(area.size.x, area.size.y)
+		var origin: Vector2 = area.position + (area.size - Vector2(side, side)) / 2.0
+		var cell: float = side / 3.0
+		for pos: Vector2i in DICE_CELLS[amount]:
+			rects.append(Rect2(origin + Vector2(pos) * cell + Vector2.ONE * cell * 0.08, Vector2.ONE * cell * 0.84))
+		return rects
+	var scatter: bool = card.layout == CardData.Layout.SCATTER
+	# Celdas: el reparto que deja los objetos más grandes. Desordenado = más
+	# celdas que objetos (huecos) y cada objeto desplazado dentro de su celda.
+	var cells: int = amount if not scatter else ceili(amount * 1.5)
+	var best_cols: int = 1
+	var best_size: float = 0.0
+	for cols in range(1, cells + 1):
+		var rows: int = ceili(float(cells) / cols)
+		var cell_size: float = minf(area.size.x / cols, area.size.y / rows)
+		if cell_size > best_size:
+			best_size = cell_size
+			best_cols = cols
+	var rows_total: int = ceili(float(cells) / best_cols)
+	var grid_size := Vector2(best_cols, rows_total) * best_size
+	var origin: Vector2 = area.position + (area.size - grid_size) / 2.0
+	var slots: Array[int] = []
+	for i in cells:
+		slots.append(i)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = card.layout_seed
+	if scatter:
+		slots.assign(ActivityGenerator.shuffled(slots, rng).slice(0, amount))
+		slots.sort()
+	var item: float = best_size * (0.72 if scatter else 0.84)
+	for slot: int in slots:
+		var col: int = slot % best_cols
+		var row: int = slot / best_cols
+		var cell_origin: Vector2 = origin + Vector2(col, row) * best_size
+		if not scatter:
+			# Última fila centrada.
+			var in_row: int = mini(best_cols, amount - row * best_cols)
+			cell_origin.x += (best_cols - in_row) * best_size / 2.0
+		var free: float = best_size - item
+		var offset := Vector2(free, free) / 2.0
+		if scatter:
+			offset = Vector2(rng.randf_range(0.0, free), rng.randf_range(0.0, free))
+		rects.append(Rect2(cell_origin + offset, Vector2(item, item)))
+	return rects
 
 
 func set_selected(selected: bool) -> void:

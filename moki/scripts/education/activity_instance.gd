@@ -21,6 +21,18 @@ var removable: Array[int] = []
 var signature: String = ""
 ## Valores para sustituir en textos ({word}, {article}...).
 var fill_values: Dictionary = {}
+## SEARCH: cuántas tarjetas correctas hay que tocar (0 = todas). Para "toca 3
+## manzanas" entre más manzanas: todas son correctas y bastan 3.
+var required: int = 0
+## SEARCH: hay que tocar las correctas en el orden de "correct" (ordenar números).
+var ordered: bool = false
+## SEARCH: Moki cuenta en voz alta cada acierto ("¡Uno!", "¡Dos!"...).
+var count_feedback: bool = false
+
+
+## Cuántas tarjetas hay que encontrar para completar un SEARCH.
+func needed() -> int:
+	return required if required > 0 else correct.size()
 
 
 func fill(text: String) -> String:

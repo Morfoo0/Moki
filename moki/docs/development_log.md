@@ -63,7 +63,8 @@
 - [x] Actividades (prototipo: Mundo Letras · Nivel 1, letra A).
 - [x] Progresión por niveles y progreso persistente.
 - [x] Mundo Letras completo: vocales A, E, I, O, U.
-- [ ] Mundos Números, Figuras, Combinación y Repaso.
+- [x] Mundo Números completo: del 1 al 10 en cinco lecciones.
+- [ ] Mundos Figuras, Combinación y Repaso.
 
 ### Notas — Sistema educativo (2026-11-20)
 - Nivel = objetivo permanente; lección = sesión generada de 5–8 actividades, distinta cada vez (historial, firmas de contenido, puntuación ponderada, sin repetir plantilla ni vista seguidas).
@@ -92,6 +93,28 @@
 - **Arte pendiente (prioridad)**: PNG para sustituir los emoji, sobre todo U (solo uvas y unicornio: faltan uña, uniforme, uno) e iguana (se parece a una lagartija). El resto: elefante, escoba, erizo, espejo, isla, imán, iglesia, oveja, ojo, oruga, ola, oreja.
 - **Limitación conocida del constructor de lecciones** (afecta también a la A; no se cambió para no alterar la A): en ~55 % de las lecciones una plantilla aparece dos veces (con contenido distinto), porque los huecos extra solo eligen entre las 2 etapas más débiles y la regla de no repetir vista. Propuesta: en `LessonBuilder._ordered_candidates`, descartar plantillas ya usadas en la lección cuando haya alternativas válidas.
 - Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada): motor (755.380 comprobaciones, 34.200 actividades generadas en las 5 vocales: respuestas válidas, pistas rellenas, la pista visual nunca retira la respuesta, dibujos "con/sin" vocal correctos, sin "l" junto a "I", 25 lecciones por vocal sin plantilla ni vista seguidas y sin lecciones consecutivas idénticas, sesiones de niño que acierta y con dificultades); progreso (37: cadena de desbloqueo, rejugar, migración de partida antigua, persistencia entre dos procesos); interfaz (112: mapa con 5 lecciones y estados, lecciones completas de A, E, I, O, U alternando ratón y toque, ayuda, cesta, final); arranque de la escena principal sin errores en consola.
+
+### Notas — Mundo Números (2026-11-21)
+- Cinco lecciones (1-2, 3-4, 5-6, 7-8, 9-10) sobre el mismo motor. Lo nuevo es: un banco (`NumberBank`), dos generadores, dos tipos de tarjeta (numeral y grupo de objetos) y tres opciones de `ActivityInstance` (tocar N, tocar en orden, Moki cuenta).
+- **Números se abre al terminar Letras** (decisión del usuario): mecanismo nuevo `WorldDefinition.unlocked_after_level`, también retroactivo para partidas con la U ya completada.
+- 12 dinámicas compartidas: reconocer, distinguir, contar, número ↔ cantidad, tocar contando, comparar, número escondido, secuencias, ordenar y clasificar. Repaso acumulativo de los números anteriores en cada lección.
+- Ajustes tras medir 200 lecciones por nivel:
+  - "¿Qué número falta?" nunca salía (la posición de contexto siempre exigía una vista SEARCH). Se movió "toca y cuenta" a la etapa ASSOCIATE.
+  - "¿Dónde hay más?" salía en ~10 % de las lecciones; en ASSOCIATE sale en ~50 %.
+  - Las lecciones 4 y 5 no tenían una segunda actividad de refuerzo con otra vista: la cesta repasa allí números de 6 o menos.
+- Corregido: el hueco de la secuencia (`_`) se veía poco; ahora es `?`.
+- **Pendiente / limitaciones**:
+  - Emoji provisionales para los objetos (verificados en color en Windows).
+  - En la lección 1 la variedad de contenido es la menor posible (solo 1 y 2: "ordena 1 y 2" es siempre igual).
+  - Igual que en Letras, el `LessonBuilder` compartido repite a veces una plantilla dentro de la lección (con contenido distinto). "El número escondido" sale en casi todas las lecciones por la alternancia de vistas.
+  - Voz desactivada: "Moki cuenta" se ve en el bocadillo ("¡Uno!", "¡Dos!"…).
+- Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada):
+  - Motor: 665.245 comprobaciones. Grupos con la cantidad exacta y dentro del máximo, comparaciones sin empates, secuencias consecutivas, orden creciente, respuestas únicas, pistas rellenas, la pista visual nunca retira la respuesta, repaso presente, 200 lecciones por nivel sin plantilla ni vista seguidas ni lecciones idénticas consecutivas, y sesiones de niño que acierta y con dificultades.
+  - Disposiciones: 18.000 colocaciones sin solaparse.
+  - Progreso: 44 comprobaciones (bloqueo hasta la U, cadena 1→5, rejugar, desempeño/pistas/historial, migración, persistencia entre dos procesos).
+  - Interfaz: 193 comprobaciones (mapa de mundos bloqueado/abierto, mapa de Números, las 5 lecciones con ratón y toque, rejugar, y una lección forzada con tocar-y-contar, secuencia, orden, comparar y cesta).
+  - Regresión de Letras: motor 755.380, interfaz 112 y progreso 37, sin cambios.
+  - Arranque sin errores en consola.
 
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.

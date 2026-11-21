@@ -59,3 +59,31 @@ Objetivo del mundo: reconocer las cinco vocales del español (forma, nombre, son
   - **Contexto**: la vocal disfrazada · las vocales de la palabra · la vocal escondida entre juguetes · grande y pequeñita (mayúscula ↔ minúscula).
   - **Reforzar**: cesta de la vocal (clasificar dibujos) · todas, grandes y pequeñitas.
 - La A conserva sus 9 dinámicas tal como estaban.
+
+## Mundo Números: del 1 al 10
+Objetivo del mundo: reconocer los números del 1 al 10 y empezar a comprenderlos. Se trabaja contar objetos, relacionar el número con su cantidad, comparar cantidades sencillas (más / menos) y reconocer secuencias. No hay operaciones (sumar, restar).
+
+- **Se abre al terminar Letras** (completar la U). En el mapa de mundos aparece como "(al terminar Letras)" hasta entonces.
+- Cinco lecciones, en orden. Completar una abre la siguiente y las completadas se pueden rejugar:
+
+| Lección | Números nuevos | Repaso | Cuenta hasta |
+|---|---|---|---|
+| 1 | 1 y 2 | — | 2 |
+| 2 | 3 y 4 | 1–2 | 4 |
+| 3 | 5 y 6 | 1–4 | 6 |
+| 4 | 7 y 8 | 1–6 | 8 |
+| 5 | 9 y 10 | 1–8 (más repaso) | 10 |
+
+- **Progresión acumulativa**: la mayoría de las actividades usan los números nuevos (≈ 75 %; en la lección 5, ≈ 60 %) y el resto repasa los anteriores. Con dificultad baja se prefieren las cantidades más pequeñas.
+- Actividades (12 dinámicas compartidas por las cinco lecciones):
+  - **Reconocer**: busca el mismo número · toca el número *tres* (nombre ↔ símbolo).
+  - **Distinguir**: busca todos los 3 entre números parecidos (1/7, 2/5, 3/8, 6/9) · ¿cuál es diferente?
+  - **Asociar**: ¿cuántos hay? (contar → número) · ¿dónde hay 3? (número → grupo) · toca 3 manzanas mientras Moki cuenta en voz alta · ¿dónde hay más? (o menos, con dificultad alta).
+  - **Contexto**: el número escondido entre dibujos · ¿qué número falta? (desde la lección 2: "1 ? 3 4").
+  - **Reforzar**: toca los números en orden, del más pequeño al más grande · cesta de los números (clasificar grupos). En las lecciones 4 y 5 la cesta repasa números de 6 o menos, para que los grupos se cuenten bien en tarjetas pequeñas.
+- **Cantidades claras**: cada grupo usa un solo tipo de objeto y los objetos nunca se superponen. Hay tres disposiciones: en filas, como un dado y desordenada (cada objeto en su propia celda). Pasa a dado y a desordenada al subir la dificultad. Para contar hasta 10 se usa una tarjeta apaisada en dos filas.
+- **La dificultad** sube el número de opciones (2→4), acerca las cantidades a comparar (1 contra 4 → 3 contra 4), desordena los grupos, alarga las secuencias y el orden, y pasa de "¿dónde hay más?" a "¿dónde hay menos?".
+- **Moki**:
+  - Introducción por lección: los números nuevos, su forma ("el 8 parece un muñeco de nieve") y ejemplos cotidianos (2 ojos, 4 patas de un perrito, 5 dedos en una mano, 10 dedos en las dos manos).
+  - Pistas progresivas sin dar la respuesta: contar con el dedo, levantar un dedo por cada objeto y adivinanzas de cantidad ("soy tantas como las patas de un perrito").
+  - Refuerzo tras cada acierto y cierre que invita a la siguiente lección (la 5 celebra del 1 al 10).

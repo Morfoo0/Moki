@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/numbers_7_8_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_match.tres" id="t_num_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_name.tres" id="t_num_name"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_grid.tres" id="t_num_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_odd.tres" id="t_num_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count.tres" id="t_num_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_find_group.tres" id="t_num_find_group"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count_tap.tres" id="t_num_count_tap"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_hidden.tres" id="t_num_hidden"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sequence.tres" id="t_num_sequence"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_compare.tres" id="t_num_compare"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_order.tres" id="t_num_order"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sort.tres" id="t_num_sort"]
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy conoceremos al 7 y al 8."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_2"]
+script = ExtResource("2_line")
+text = "El 7 tiene un techo y una pata larga, como un bastón. El 8 parece un muñeco de nieve."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_3"]
+script = ExtResource("2_line")
+text = "El arcoíris tiene 7 colores y una araña tiene 8 patas. ¡Son muchas!"
+kind = 2
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_4"]
+script = ExtResource("2_line")
+text = "Si las cosas están desordenadas, toca cada una con tu dedo para no contarla dos veces."
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_5"]
+script = ExtResource("2_line")
+text = "También repasaremos los números que ya conoces. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_6"]
+script = ExtResource("2_line")
+text = "¡Genial! Ya cuentas hasta 8. Cuando quieras, te esperan el 9 y el 10."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_7"]
+script = ExtResource("2_line")
+text = "¡Qué bien! El 7 y el 8 ya son tus amigos. ¡Solo faltan el 9 y el 10!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_numbers_7_8_8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Contaste un montón: ¡hasta ocho! ¿Vamos después con el 9 y el 10?"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"numbers_7_8"
+title = "Los números 7 y 8"
+objective = "Reconocer los números 7 y 8, contar hasta ocho objetos (también desordenados), relacionar símbolo y cantidad, comparar conjuntos, ordenar y repasar del 1 al 6."
+concept_ids = Array[StringName]([&"numbers_7_8"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_numbers_7_8_1"), SubResource("Resource_numbers_7_8_2"), SubResource("Resource_numbers_7_8_3"), SubResource("Resource_numbers_7_8_4"), SubResource("Resource_numbers_7_8_5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_numbers_7_8_6"), SubResource("Resource_numbers_7_8_7"), SubResource("Resource_numbers_7_8_8")])
+reinforce_lines = PackedStringArray("El 7 viene después del 6.", "El 8 son ocho cosas, como las patas de una araña.", "¡Contaste sin saltarte ninguno!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_num_match"), ExtResource("t_num_name"), ExtResource("t_num_grid"), ExtResource("t_num_odd"), ExtResource("t_num_count"), ExtResource("t_num_find_group"), ExtResource("t_num_count_tap"), ExtResource("t_num_hidden"), ExtResource("t_num_sequence"), ExtResource("t_num_compare"), ExtResource("t_num_order"), ExtResource("t_num_sort")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"numbers_9_10"])

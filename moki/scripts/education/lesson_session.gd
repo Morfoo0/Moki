@@ -25,6 +25,10 @@ const PRAISE_EFFORT: PackedStringArray = [
 ]
 const PARTIAL: PackedStringArray = ["¡Muy bien, encontraste una! ¿Hay más?", "¡Eso es! Sigue buscando."]
 const SORT_OK: PackedStringArray = ["¡Ahí va!", "¡Muy bien!", "¡Eso es!"]
+## Moki cuenta en voz alta (ActivityInstance.count_feedback). Índice = cuántas van.
+const COUNT_WORDS: PackedStringArray = [
+	"", "¡Uno!", "¡Dos!", "¡Tres!", "¡Cuatro!", "¡Cinco!", "¡Seis!", "¡Siete!", "¡Ocho!", "¡Nueve!", "¡Diez!",
+]
 const SKIP_LINE: String = "¡Vamos a practicarlo de otra forma!"
 const WRONG_FALLBACK: String = "Casi. ¡Vuelve a intentarlo!"
 
@@ -81,6 +85,11 @@ func next_activity() -> void:
 	activity_started.emit(instance, index, plan.size())
 
 
+## Tarjetas encontradas (SEARCH) o colocadas (SORT), en el orden en que se tocaron.
+func found_cards() -> Array[int]:
+	return _found.duplicate()
+
+
 ## Tarjetas ya encontradas (SEARCH/SORT) o retiradas por la pista visual.
 func is_card_settled(card_index: int) -> bool:
 	return _found.has(card_index) or _removed.has(card_index)
@@ -90,11 +99,20 @@ func is_card_settled(card_index: int) -> bool:
 func answer(card_index: int) -> void:
 	if _activity_done or is_card_settled(card_index):
 		return
-	if instance.is_correct(card_index):
+	# Ordenar: solo vale la siguiente de la lista (las demás aún no tocan).
+	var in_order: bool = not instance.ordered or (
+		_found.size() < instance.correct.size() and instance.correct[_found.size()] == card_index)
+	if instance.is_correct(card_index) and in_order:
 		if instance.view_type() == ActivityTemplate.ViewType.SEARCH:
 			_found.append(card_index)
-			if _found.size() < instance.correct.size():
-				feedback.emit(card_index, true, _line(PARTIAL, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY))
+			if _found.size() < instance.needed():
+				var line: DialogueLine
+				if instance.count_feedback:
+					line = DialogueLine.make(COUNT_WORDS[mini(_found.size(), COUNT_WORDS.size() - 1)],
+						DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY)
+				else:
+					line = _line(PARTIAL, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY)
+				feedback.emit(card_index, true, line)
 				return
 		_complete(false)
 		return

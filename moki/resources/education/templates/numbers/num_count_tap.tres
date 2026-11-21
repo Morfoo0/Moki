@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/quantity_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 2
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_count_tap"
+title = "Toca y cuenta"
+view_type = 1
+stage = 2
+instruction = "Toca {number} {object_n}. ¡Yo cuento contigo!"
+hints = PackedStringArray("Toca solo {name}: ni más, ni menos.", "Cada vez que tocas uno, yo cuento. Para cuando lleguemos a {name}.", "Levanta {fingers}. Toca un dibujo por cada dedo.", "Mira cuántos llevas y cuenta conmigo, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

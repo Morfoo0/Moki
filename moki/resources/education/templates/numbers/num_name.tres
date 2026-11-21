@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/number_symbol_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 1
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_name"
+title = "Toca el número"
+instruction = "Toca el número {name}."
+hints = PackedStringArray("Busca el número que se llama {name}.", "{shape}", "{riddle}", "Mira el número que te muestro aquí arriba. Quité algunos: busca uno igual.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

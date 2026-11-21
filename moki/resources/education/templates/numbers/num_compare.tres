@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/quantity_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 3
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_compare"
+title = "¿Dónde hay más?"
+stage = 2
+instruction = "¿Dónde hay {more_less} {object}?"
+hints = PackedStringArray("Mira los grupos. ¿Cuál tiene {more_less}?", "Cuenta cada grupo. El que tiene {more_less} dice un número {bigger_smaller}.", "Si fueran galletas para ti, ¿qué grupo te daría {more_less}?", "Cuenta cada grupo con tu dedo, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

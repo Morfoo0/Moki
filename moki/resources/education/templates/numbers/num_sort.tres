@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/quantity_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 4
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_sort"
+title = "Cesta de los números"
+view_type = 2
+stage = 4
+instruction = "Pon cada grupo en la cesta de su número: la del {a} o la del {b}."
+hints = PackedStringArray("Cuenta los objetos de cada grupo y búscale su cesta.", "Cuenta despacito cada grupo. ¿Son {name_a} o {name_b}?", "Levanta un dedo por cada objeto. ¿Cuántos dedos? Esa es su cesta.", "Mira el número de cada cesta y cuenta otra vez, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

@@ -53,6 +53,25 @@ static func styled_letter(value: String, difficulty: int, bank: ContentBank, rng
 	return CardData.letter(value, font, size, tint)
 
 
+## Numeral con el mismo estilo por dificultad que styled_letter().
+static func styled_number(value: int, difficulty: int, bank: ContentBank, rng: RandomNumberGenerator,
+		base_size: int = 110) -> CardData:
+	var card := styled_letter(str(value), difficulty, bank, rng, base_size)
+	card.kind = CardData.Kind.NUMBER
+	return card
+
+
+## Disposición de un grupo según la dificultad: ordenada al principio; luego
+## también como un dado (si caben) y desordenada.
+static func group_layout(amount: int, difficulty: int, rng: RandomNumberGenerator) -> CardData.Layout:
+	var options: Array = [CardData.Layout.GRID]
+	if difficulty >= 3 and amount <= 6:
+		options.append(CardData.Layout.DICE)
+	if difficulty >= 4:
+		options.append(CardData.Layout.SCATTER)
+	return pick(options, rng)
+
+
 ## Mezcla las tarjetas y recalcula los índices correctos.
 static func shuffle_cards(instance: ActivityInstance, correct_cards: Array[CardData], rng: RandomNumberGenerator) -> void:
 	var mixed: Array = shuffled(instance.cards, rng)

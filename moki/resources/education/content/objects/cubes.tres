@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WordEntry" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/word_entry.gd" id="1_word"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/cube_blue.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_word")
+word = "cubos"
+texture = ExtResource("2_tex")
+article = "unos"

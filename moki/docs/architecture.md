@@ -124,6 +124,26 @@ Independiente del cuidado de Moki: nada en `scripts/education/` usa `NeedsManage
   - Los modos nuevos van **al final** de cada enum: los `.tres` guardan el modo como número.
   - `LevelDefinition.reinforce_lines`: tras un acierto, `LessonSession` añade una de estas frases a la felicitación.
 
+### Mundo Números (1–10)
+- `worlds/numbers.tres`: niveles `numbers_1_2` … `numbers_9_10`, con `unlocked_after_level = &"letters_u"`.
+- **Desbloqueo de mundos**: `WorldDefinition.unlocked_after_level`. `EducationProgress._unlock_after(level)` (al completar un nivel, y de forma retroactiva al cargar) abre los `unlocks` del nivel y los mundos que esperan a ese nivel, junto con su primer nivel (`_unlock_world`). `WorldMap` muestra "(al terminar <mundo>)" en un mundo bloqueado que ya tiene niveles.
+- **`NumberBank extends ContentBank`** (`scripts/education/number_bank.gd`):
+  - Campos: `numbers` (nuevos), `review` (repaso), `review_chance`, `max_number` (techo de conteos, comparaciones, secuencias y orden) y `objects` (`WordEntry` en plural con artículo: "unas manzanas" → "¿cuántas?").
+  - Constantes del idioma: nombres, formas, adivinanzas, números parecidos y cómo distinguirlos.
+  - `pick_target()` (nuevos frente a repaso), `number_distractors()` (primero los conocidos; los parecidos solo con dificultad alta) y `fill_for()` (valores para los textos: `{number}`, `{name}`, `{shape}`, `{riddle}`, `{similar}`, `{fingers}`, `{object}`, `{object_n}` en singular si es 1, `{Cuantos}`).
+- **Generadores**:
+  - `NumberSymbolGenerator`: `MATCH`, `NAME`, `GRID`, `ODD_ONE_OUT`, `HIDDEN`, `SEQUENCE` (hueco `?`, nunca el primero) y `ORDER`.
+  - `QuantityGenerator`: `COUNT`, `FIND_GROUP`, `COUNT_TAP`, `COMPARE` (sin empates) y `SORT` (si los números de la lección pasan de `SORT_MAX_AMOUNT = 6`, usa una pareja de repaso).
+  - Utilidades nuevas en `ActivityGenerator`: `styled_number()` y `group_layout()`.
+- **Plantillas compartidas**: `resources/education/templates/numbers/*.tres` (una sola vez; cada nivel referencia las suyas). La lección 1 no tiene `num_sequence`.
+- **Objetos para contar**: `resources/education/content/objects/*.tres` (emoji provisionales; cubos y ositos con PNG de la habitación). Para cambiar uno por arte definitivo basta con asignar `texture`.
+- **Ampliaciones del motor** (aditivas; con los valores por defecto, Letras se comporta igual):
+  - `CardData`: tipos `NUMBER` y `GROUP` (`count`, `layout` GRID/DICE/SCATTER, `layout_seed`, `wide`) y `value()`.
+  - `ActivityInstance`: `required` (tocar N de varias iguales), `ordered` (tocar en orden) y `count_feedback` (Moki dice "¡Uno!", "¡Dos!"…, `LessonSession.COUNT_WORDS`).
+  - `LessonSession.found_cards()`: `LessonScreen` marca las encontradas (en Letras coincide con "todas las correctas").
+  - `ActivityCard`: `setup(..., width)` para tarjetas apaisadas. `group_rects()` es estática y determinista, y deja una celda por objeto, sin solaparse. `ChoiceView`/`SortView` agrandan las tarjetas de grupo.
+- **Etapas elegidas por cómo construye `LessonBuilder`** (no repite vista seguida: las posiciones alternan CHOICE/SEARCH). "Toca y cuenta" (SEARCH) y "¿dónde hay más?" (CHOICE) están en ASSOCIATE: así la secuencia (CHOICE, CONTEXT) y la comparación salen con frecuencia (~50 % y ~35 % de las lecciones).
+
 ### Añadir contenido
 - Nivel nuevo de letras: un `ContentBank` + un `LevelDefinition` con las mismas plantillas (o variantes) y añadirlo al `WorldDefinition`.
 - Otro tipo de conocimiento (números, figuras, cantidades, memoria…): nuevos generadores (y, si hace falta, nuevas vistas) reutilizando `LessonBuilder`, `LessonSession`, `HintLadder`, `MokiGuide` y `EducationProgress`.

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/number_symbol_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 5
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_sequence"
+title = "¿Qué número falta?"
+stage = 3
+instruction = "Los números van en fila: {sequence}. ¿Qué número falta?"
+hints = PackedStringArray("Di los números en voz alta, en orden. ¿Cuál falta en el hueco?", "Mira el número que está antes del hueco: después viene uno más.", "Cuenta con tus dedos desde el {first}. ¿Qué número dices en el hueco?", "Quité algunos números. Cuenta la fila otra vez, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

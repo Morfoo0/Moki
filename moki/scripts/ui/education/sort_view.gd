@@ -15,6 +15,8 @@ func _build() -> void:
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	column.add_child(row)
 	var side: float = 130.0 if instance.cards.size() <= 5 else 120.0
+	if not instance.cards.is_empty() and instance.cards[0].kind == CardData.Kind.GROUP:
+		side += 25.0  # grupos de objetos: un poco más grandes para contarlos
 	for i in instance.cards.size():
 		var card: ActivityCard = make_card(i, side)
 		card.draggable = true

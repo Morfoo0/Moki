@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="NumberBank" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/number_bank.gd" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/word_entry.gd" id="2_word"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/ducklings.tres" id="3_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/apples.tres" id="4_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/stars.tres" id="5_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/fish.tres" id="6_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/flowers.tres" id="7_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/balls.tres" id="8_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/balloons.tres" id="9_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/bananas.tres" id="10_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/butterflies.tres" id="11_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/strawberries.tres" id="12_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/cars.tres" id="13_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/cubes.tres" id="14_obj"]
+[ext_resource type="Resource" path="res://resources/education/content/objects/teddies.tres" id="15_obj"]
+
+[resource]
+script = ExtResource("1_bank")
+target = ""
+target_lower = ""
+sound = ""
+numbers = PackedInt32Array(9, 10)
+review = PackedInt32Array(1, 2, 3, 4, 5, 6, 7, 8)
+review_chance = 0.4
+max_number = 10
+objects = Array[ExtResource("2_word")]([ExtResource("3_obj"), ExtResource("4_obj"), ExtResource("5_obj"), ExtResource("6_obj"), ExtResource("7_obj"), ExtResource("8_obj"), ExtResource("9_obj"), ExtResource("10_obj"), ExtResource("11_obj"), ExtResource("12_obj"), ExtResource("13_obj"), ExtResource("14_obj"), ExtResource("15_obj")])

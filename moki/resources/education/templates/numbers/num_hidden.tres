@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/number_symbol_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 4
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"num_hidden"
+title = "El número escondido"
+view_type = 1
+stage = 3
+instruction = "¡El {number} se escondió entre los dibujos! Encuentra todos los {number}."
+hints = PackedStringArray("Busca entre los dibujos un número que sea el {number}.", "{shape}", "{riddle}", "Quité algunos dibujos. Compara con el {number} de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

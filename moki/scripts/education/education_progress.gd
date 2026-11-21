@@ -187,11 +187,30 @@ func record_lesson(level: LevelDefinition, summary: Dictionary) -> void:
 	_data["lessons"][key] = lessons.slice(-MAX_LESSONS)
 	_data["last_difficulty"][key] = int(summary.get("base_difficulty", 1))
 	_data["completed_levels"][key] = times_completed(level.id) + 1
+	_unlock_after(level)
+	progress_changed.emit()
+	SaveService.save_game()
+
+
+## Lo que abre completar un nivel: sus niveles siguientes y los mundos que
+## esperan a ese nivel (WorldDefinition.unlocked_after_level).
+func _unlock_after(level: LevelDefinition) -> void:
 	for unlocked: StringName in level.unlocks:
 		if not _data["unlocked_levels"].has(String(unlocked)):
 			_data["unlocked_levels"].append(String(unlocked))
-	progress_changed.emit()
-	SaveService.save_game()
+	if catalog == null:
+		return
+	for world: WorldDefinition in catalog.worlds:
+		if world.unlocked_after_level == level.id:
+			_unlock_world(world)
+
+
+## Desbloquea un mundo y su primer nivel.
+func _unlock_world(world: WorldDefinition) -> void:
+	if not _data["unlocked_worlds"].has(String(world.id)):
+		_data["unlocked_worlds"].append(String(world.id))
+	if not world.levels.is_empty() and not _data["unlocked_levels"].has(String(world.levels[0].id)):
+		_data["unlocked_levels"].append(String(world.levels[0].id))
 
 
 # --- Persistencia --------------------------------------------------------------
@@ -213,13 +232,11 @@ func _apply_saved(data: Dictionary, _saved_at: int) -> void:
 			_data["unlocked_worlds"].append(String(world.id))
 			if not world.levels.is_empty():
 				_data["unlocked_levels"].append(String(world.levels[0].id))
-	# Desbloqueo retroactivo: un nivel ya completado abre sus siguientes aunque
-	# la partida sea de antes de que existieran (p. ej. la E tras la A).
+	# Desbloqueo retroactivo: un nivel ya completado abre sus siguientes (y los
+	# mundos que lo esperan) aunque la partida sea de antes de que existieran
+	# (p. ej. la E tras la A, o Números tras la U).
 	for world: WorldDefinition in catalog.worlds:
 		for level: LevelDefinition in world.levels:
-			if level == null or times_completed(level.id) <= 0:
-				continue
-			for unlocked: StringName in level.unlocks:
-				if not _data["unlocked_levels"].has(String(unlocked)):
-					_data["unlocked_levels"].append(String(unlocked))
+			if level != null and times_completed(level.id) > 0:
+				_unlock_after(level)
 	progress_changed.emit()
