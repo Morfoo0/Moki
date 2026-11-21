@@ -63,8 +63,8 @@ func set_value(value: float) -> void:
 func set_state(state: NeedDefinition.State) -> void:
 	_state = state
 	_apply_state_color()
-	var urgent: bool = state == NeedDefinition.State.LOW or state == NeedDefinition.State.CRITICAL
-	_set_pulsing(urgent, 0.45 if state == NeedDefinition.State.CRITICAL else 0.8)
+	# Solo el estado crítico pulsa, y con calma: el color ya informa del resto.
+	_set_pulsing(state == NeedDefinition.State.CRITICAL, 0.9)
 
 
 ## Resalte breve (p. ej. cuando Chibbi pide atención sobre esta necesidad).

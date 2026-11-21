@@ -40,6 +40,22 @@
 [ext_resource type="Script" path="res://scripts/ui/big_button.gd" id="38_a66fi"]
 [ext_resource type="PackedScene" path="res://scenes/ui/needs_hud.tscn" id="39_hud"]
 [ext_resource type="Script" path="res://scripts/characters/chibbi_needs_link.gd" id="40_link"]
+[ext_resource type="Resource" path="res://resources/items/room/teddy_rest.tres" id="41_teddy"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inventory_bar.tscn" id="42_bar"]
+[ext_resource type="Script" path="res://scripts/ui/item_icon.gd" id="43_icon"]
+[ext_resource type="Script" path="res://scripts/gameplay/chibbi_care.gd" id="44_care"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_rest"]
+bg_color = Color(1, 0.98, 0.93, 0.95)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.96, 0.73, 0.45, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sssrl"]
 content_margin_left = 36.0
@@ -123,6 +139,7 @@ mouse_filter = 0
 texture = ExtResource("3_txj10")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"window"
 display_name = "Ventana"
 art_scale = 0.55
@@ -137,6 +154,7 @@ mouse_filter = 0
 texture = ExtResource("5_7c67g")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"bunting_left"
 display_name = "Banderines"
 art_scale = 0.55
@@ -152,6 +170,7 @@ texture = ExtResource("5_7c67g")
 expand_mode = 1
 flip_h = true
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"bunting_right"
 display_name = "Banderines"
 art_scale = 0.55
@@ -167,6 +186,7 @@ mouse_filter = 0
 texture = ExtResource("6_qsxcn")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"frame_flower"
 display_name = "Cuadro de flor"
 art_scale = 0.62
@@ -182,6 +202,7 @@ mouse_filter = 0
 texture = ExtResource("7_lofhu")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"frame_star"
 display_name = "Cuadro de estrella"
 art_scale = 0.62
@@ -197,6 +218,7 @@ mouse_filter = 0
 texture = ExtResource("8_3eoh4")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"frame_rainbow"
 display_name = "Cuadro de arcoíris"
 art_scale = 0.62
@@ -218,6 +240,7 @@ mouse_filter = 0
 texture = ExtResource("9_j7wvd")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"shelf_tall"
 display_name = "Estante"
 category = 1
@@ -234,6 +257,7 @@ mouse_filter = 0
 texture = ExtResource("10_ckl2c")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"cabinet_low"
 display_name = "Mueble"
 category = 1
@@ -250,6 +274,7 @@ mouse_filter = 0
 texture = ExtResource("11_526bn")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"rug"
 display_name = "Alfombra"
 category = 1
@@ -286,8 +311,8 @@ mouse_filter = 2
 texture = ExtResource("15_bv8v4")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
-item_id = &"table_shadow"
 interactive = false
+item_id = &"table_shadow"
 art_scale = 0.6
 
 [node name="ChairYellow" type="TextureRect" parent="Room/FurnitureFront" unique_id=338035]
@@ -301,6 +326,7 @@ mouse_filter = 0
 texture = ExtResource("16_4p862")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"chair_yellow"
 display_name = "Silla"
 category = 1
@@ -317,6 +343,7 @@ mouse_filter = 0
 texture = ExtResource("17_gcp60")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+interactive = false
 item_id = &"table_yellow"
 display_name = "Mesa"
 category = 1
@@ -597,6 +624,7 @@ mouse_filter = 0
 texture = ExtResource("33_0lh5n")
 expand_mode = 1
 script = ExtResource("4_kp3lr")
+item = ExtResource("41_teddy")
 item_id = &"teddy_bear"
 display_name = "Osito de peluche"
 category = 2
@@ -650,23 +678,102 @@ display_name = "Bloque verde"
 category = 2
 art_scale = 0.62
 
+[node name="RestOverlay" type="ColorRect" parent="Room"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -2000.0
+offset_top = -1000.0
+offset_right = 3280.0
+offset_bottom = 1720.0
+mouse_filter = 2
+color = Color(0.1, 0.12, 0.32, 0.38)
+
+[node name="RestZzz" type="Label" parent="Room"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 700.0
+offset_top = 190.0
+offset_right = 900.0
+offset_bottom = 280.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.35, 0.7, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+text = "Z z z"
+
 [node name="UI" type="Control" parent="." unique_id=282322442]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="BackButton" type="Button" parent="UI" unique_id=1572468728 instance=ExtResource("37_agdp3")]
-custom_minimum_size = Vector2(220, 96)
-layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 24.0
-offset_bottom = 24.0
+[node name="TopBar" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 152.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="BackButton" parent="UI/TopBar" unique_id=1572468728 instance=ExtResource("37_agdp3")]
+custom_minimum_size = Vector2(200, 96)
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Volver"
-script = ExtResource("38_a66fi")
 target_scene = "res://scenes/home/home.tscn"
+
+[node name="SpacerLeft" type="Control" parent="UI/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="RestButton" parent="UI/TopBar" instance=ExtResource("37_agdp3")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Descansar"
+theme_override_styles/normal = SubResource("StyleBox_rest")
+theme_override_styles/hover = SubResource("StyleBox_rest")
+theme_override_styles/pressed = SubResource("StyleBox_rest")
+theme_override_styles/focus = SubResource("StyleBox_rest")
+text = ""
+
+[node name="RestIcon" type="Control" parent="UI/TopBar/RestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = -14.0
+mouse_filter = 2
+script = ExtResource("43_icon")
+placeholder = 4
+
+[node name="InventoryBar" parent="UI/TopBar" instance=ExtResource("42_bar")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="SpacerRight" type="Control" parent="UI/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="NeedsHud" parent="UI/TopBar" instance=ExtResource("39_hud")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Caption" type="Label" parent="UI" unique_id=302263246]
 unique_name_in_owner = true
@@ -685,19 +792,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sssrl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NeedsHud" parent="UI" instance=ExtResource("39_hud")]
-unique_name_in_owner = true
+[node name="Effects" type="Control" parent="UI"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -540.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 150.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="ChibbiNeedsLink" type="Node" parent="." node_paths=PackedStringArray("chibbi")]
 unique_name_in_owner = true
 script = ExtResource("40_link")
 chibbi = NodePath("../Room/ChibbiStage/Chibbi")
+
+[node name="ChibbiCare" type="Node" parent="." node_paths=PackedStringArray("stage", "inventory_bar", "rest_button", "rest_icon", "rest_visuals", "effects_layer")]
+unique_name_in_owner = true
+script = ExtResource("44_care")
+stage = NodePath("../Room/ChibbiStage")
+inventory_bar = NodePath("../UI/TopBar/InventoryBar")
+rest_button = NodePath("../UI/TopBar/RestButton")
+rest_icon = NodePath("../UI/TopBar/RestButton/RestIcon")
+rest_visuals = [NodePath("../Room/RestOverlay"), NodePath("../Room/RestZzz")]
+effects_layer = NodePath("../UI/Effects")

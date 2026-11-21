@@ -19,6 +19,7 @@
 - [x] Interacciones con la mascota.
 - [x] Habitación de Chibbi.
 - [x] Sistema de necesidades (base: tiempo, estados, guardado e interfaz).
+- [x] Sistema de cuidado: hambre y energía, descanso, inventario y alimentación.
 
 ### Notas — Chibbi (2026-11-20)
 - Montaje cutout híbrido: modo "pose completa" activo y rig Skeleton2D/Bone2D preparado.
@@ -35,12 +36,24 @@
 - Probado en 1280×720, 1600×720, 1280×960, 1920×1080 y 1024×768.
 
 ### Notas — Necesidades (2026-11-20)
-- Hambre, Energía, Higiene y Diversión (0–100, 100 = satisfecha). Bajadas por minuto: 2 / 1,5 / 1 / 2,5 (configurable).
-- Estados bien/medio/bajo/crítico con histéresis; Chibbi pasa a cara neutral y pide atención en bajo/crítico. Sin castigos ni muerte.
-- Guardado en `user://moki_save.json` (cambio de escena, cada 30 s, al cerrar, segundo plano). La app cerrada no hace bajar las necesidades (opción desactivada).
+- Primera versión con cuatro necesidades; corregida en el sistema de cuidado (ver abajo).
+- Estados bien/medio/bajo/crítico con histéresis. Sin castigos ni muerte.
+- Guardado en `user://moki_save.json` (cambio de escena, cada 30 s, al cerrar, segundo plano).
 - HUD en la habitación con un medidor por necesidad, generado desde la configuración.
-- **Arte pendiente**: iconos de hambre, energía, higiene y diversión (ahora se muestran iniciales; Hambre e Higiene comparten "H").
-- Pendiente para la siguiente etapa: acciones que suben las necesidades (comer, dormir, bañarse, jugar) mediante `NeedsManager.change()`.
+
+### Notas — Sistema de cuidado, inventario y alimentación (2026-11-20)
+- **Solo dos necesidades: Hambre y Energía.** Higiene y Diversión eliminadas (eran solo datos en `chibbi_needs.tres`; sin restos en código, HUD ni guardado). Las partidas antiguas con cuatro necesidades se migran solas.
+- La diversión no es una barra: vendrá de las actividades educativas, que serán un sistema independiente.
+- Bajadas: hambre 2/min, energía 1,2/min. **Descanso**: energía +8/min, hambre −0,5/min; se despierta solo con la energía llena. Si se cierra la app con Chibbi descansando, al volver la energía se ha recuperado (máx. 8 h); el hambre nunca baja con la app cerrada.
+- Menos presión: Chibbi solo pide atención en estado crítico (cada 30 s) y nunca descansando; solo el estado crítico pulsa en el HUD.
+- Objetos como datos (`ItemDefinition`/`ItemCatalog`), autoload `Inventory`, barra de inventario y `ChibbiCare`.
+- Alimentos: Manzana (+20, ilimitada), Plátano (+25, ilimitado), Galleta (+10, 5 unidades). Los básicos son ilimitados para que Chibbi siempre pueda comer.
+- Alimentar: arrastrar hasta Chibbi o tocar alimento + tocar a Chibbi. Lleno: "¡Estoy lleno!" y no se gasta.
+- Descanso: botón luna/sol o tocar el osito. Habitación oscurecida y "Z z z".
+- La decoración de la habitación ya no responde (pared, cuadros, alfombra, muebles, mesa, silla).
+- **Iconos provisionales** dibujados por código (manzana, plátano, galleta, luna, sol) en `ItemIcon`: se sustituyen asignando `icon` en cada `.tres`.
+- **Arte pendiente**: iconos de alimentos, de descanso y de las necesidades (ahora iniciales H/E); cara de Chibbi comiendo y durmiendo (ojos cerrados); opcional: cama o cojín.
+- Pruebas: 58 comprobaciones de integración en headless (necesidades, descanso, app cerrada, migración, inventario, alimentación, habitación, navegación). El gesto de arrastrar se verificó hasta el inicio del arrastre y el soltar con la API de soltar de Godot (en headless el motor no ejecuta esa fase con input simulado): **comprobar a mano con F5**.
 
 ### Nota sobre pruebas automáticas
 - Las pruebas con ventana se abren en el segundo monitor (Windows no permite colocarlas fuera de pantalla) y pueden recibir clics reales. Las pruebas lógicas se ejecutan en headless y los renders con `gui_disable_input`.

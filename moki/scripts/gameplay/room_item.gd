@@ -18,7 +18,10 @@ enum Category { DECOR, FURNITURE, TOY, BOOK, BIN, PROP }
 ## Nombre que se muestra al niño al tocar el objeto.
 @export var display_name: String = ""
 @export var category: Category = Category.DECOR
-## Si es false, el objeto es puramente visual y deja pasar los toques.
+## Acción opcional del objeto (datos). P. ej. el osito tiene un objeto de descanso.
+## Los objetos sin item son decoración o se seleccionan sin más.
+@export var item: ItemDefinition
+## Si es false, el objeto es decoración: no responde y deja pasar los toques.
 @export var interactive: bool = true:
 	set(value):
 		interactive = value

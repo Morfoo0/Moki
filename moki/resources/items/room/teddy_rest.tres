@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/items/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"teddy_rest"
+display_name = "Osito de peluche"
+type = 1
+placeholder = 4
+action = 2
+target = 1
+refuse_when_not_needed = false
+show_in_inventory = false
+consumable = false
+unlimited = true
+reaction = &""
+use_message = "Chibbi abraza al osito y descansa"

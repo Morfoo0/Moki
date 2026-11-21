@@ -9,6 +9,8 @@ signal need_changed(need_id: StringName, value: float)
 signal need_state_changed(need_id: StringName, state: NeedDefinition.State, previous: NeedDefinition.State)
 signal overall_state_changed(state: NeedDefinition.State)
 signal needs_loaded
+## Chibbi empieza o deja de descansar.
+signal resting_changed(resting: bool)
 
 const CONFIG_PATH: String = "res://resources/needs/chibbi_needs.tres"
 const SAVE_SECTION: String = "needs"
@@ -22,6 +24,7 @@ var _values: Dictionary[StringName, float] = {}
 var _states: Dictionary[StringName, NeedDefinition.State] = {}
 var _overall: NeedDefinition.State = NeedDefinition.State.GOOD
 var _paused: bool = false
+var _resting: bool = false
 var _elapsed: float = 0.0
 
 
@@ -44,7 +47,9 @@ func _process(delta: float) -> void:
 	var step: float = _elapsed
 	_elapsed = 0.0
 	for definition: NeedDefinition in config.needs:
-		_set_value(definition, _values[definition.id] - definition.decay_per_minute * step / 60.0)
+		_set_value(definition, _values[definition.id] + _rate_per_minute(definition) * step / 60.0)
+	if _resting and config.wake_when_rested and _is_fully_rested():
+		set_resting(false)
 
 
 # --- Consulta ------------------------------------------------------------------
@@ -83,6 +88,10 @@ func is_paused() -> bool:
 	return _paused
 
 
+func is_resting() -> bool:
+	return _resting
+
+
 # --- Modificación --------------------------------------------------------------
 
 ## Suma (o resta) puntos. Punto de entrada para futuras acciones (comer, bañarse...).
@@ -105,8 +114,18 @@ func set_paused(paused: bool) -> void:
 	_paused = paused
 
 
-## Vuelve todas las necesidades a su valor inicial.
+## Activa o desactiva el descanso. Mientras descansa, cada necesidad usa su
+## resting_rate_per_minute en lugar de su bajada normal. Nunca es obligatorio.
+func set_resting(resting: bool) -> void:
+	if resting == _resting:
+		return
+	_resting = resting
+	resting_changed.emit(resting)
+
+
+## Vuelve todas las necesidades a su valor inicial (y despierta a Chibbi).
 func reset() -> void:
+	set_resting(false)
 	_values.clear()
 	_states.clear()
 	for definition: NeedDefinition in config.needs:
@@ -121,32 +140,50 @@ func to_dict() -> Dictionary:
 	var values: Dictionary = {}
 	for need_id: StringName in _values:
 		values[String(need_id)] = snappedf(_values[need_id], 0.01)
-	return {"values": values}
+	return {"values": values, "resting": _resting}
 
 
 func _apply_saved(data: Dictionary, saved_at: int) -> void:
 	var saved_values: Variant = data.get("values")
 	if not saved_values is Dictionary:
 		return
-	var away_minutes: float = 0.0
-	if config.offline_decay and saved_at > 0:
-		var now: int = int(Time.get_unix_time_from_system())
-		away_minutes = clampf((now - saved_at) / 60.0, 0.0, config.offline_max_minutes)
+	var was_resting: bool = data.get("resting", false) == true
+	var elapsed_minutes: float = 0.0
+	if saved_at > 0:
+		elapsed_minutes = maxf((int(Time.get_unix_time_from_system()) - saved_at) / 60.0, 0.0)
+	var away_minutes: float = minf(elapsed_minutes, config.offline_max_minutes) if config.offline_decay else 0.0
+	var rest_minutes: float = minf(elapsed_minutes, config.offline_rest_max_minutes) if was_resting else 0.0
 	for definition: NeedDefinition in config.needs:
 		var key: String = String(definition.id)
 		var value: float = _values[definition.id]
 		var stored: Variant = (saved_values as Dictionary).get(key)
 		if stored is float or stored is int:
 			value = float(stored)
-		if away_minutes > 0.0 and value > config.offline_floor:
+		if rest_minutes > 0.0 and definition.resting_rate_per_minute > 0.0:
+			# Se dejó descansando: solo se aplican las recuperaciones, nunca bajadas.
+			value += definition.resting_rate_per_minute * rest_minutes
+		elif away_minutes > 0.0 and value > config.offline_floor:
 			value = maxf(value - definition.decay_per_minute * away_minutes, config.offline_floor)
 		_values[definition.id] = clampf(value, config.min_value, MAX_VALUE)
 		_states[definition.id] = definition.state_for(_values[definition.id])
 	_refresh_all()
+	set_resting(was_resting and not (config.wake_when_rested and _is_fully_rested()))
 	needs_loaded.emit()
 
 
 # --- Interno -------------------------------------------------------------------
+
+func _rate_per_minute(definition: NeedDefinition) -> float:
+	return definition.resting_rate_per_minute if _resting else -definition.decay_per_minute
+
+
+## True si todas las necesidades que se recuperan descansando están al máximo.
+func _is_fully_rested() -> bool:
+	for definition: NeedDefinition in config.needs:
+		if definition.resting_rate_per_minute > 0.0 and _values[definition.id] < MAX_VALUE:
+			return false
+	return true
+
 
 func _set_value(definition: NeedDefinition, value: float) -> void:
 	var clamped: float = clampf(value, config.min_value, MAX_VALUE)

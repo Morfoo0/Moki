@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://scripts/core/scene_manager.gd"
 SaveService="*res://scripts/core/save_service.gd"
 NeedsManager="*res://scripts/progression/needs_manager.gd"
+Inventory="*res://scripts/progression/inventory.gd"
 
 [display]
 

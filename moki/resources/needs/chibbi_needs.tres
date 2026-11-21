@@ -9,28 +9,16 @@ id = &"hunger"
 display_name = "Hambre"
 color = Color(1, 0.54, 0.24, 1)
 decay_per_minute = 2.0
+resting_rate_per_minute = -0.5
 
 [sub_resource type="Resource" id="Need_energy"]
 script = ExtResource("2_need")
 id = &"energy"
 display_name = "Energía"
-color = Color(1, 0.79, 0.24, 1)
-decay_per_minute = 1.5
-
-[sub_resource type="Resource" id="Need_hygiene"]
-script = ExtResource("2_need")
-id = &"hygiene"
-display_name = "Higiene"
-color = Color(0.29, 0.66, 0.94, 1)
-decay_per_minute = 1.0
-
-[sub_resource type="Resource" id="Need_fun"]
-script = ExtResource("2_need")
-id = &"fun"
-display_name = "Diversión"
-color = Color(0.48, 0.78, 0.3, 1)
-decay_per_minute = 2.5
+color = Color(0.49, 0.45, 0.85, 1)
+decay_per_minute = 1.2
+resting_rate_per_minute = 8.0
 
 [resource]
 script = ExtResource("1_config")
-needs = Array[ExtResource("2_need")]([SubResource("Need_hunger"), SubResource("Need_energy"), SubResource("Need_hygiene"), SubResource("Need_fun")])
+needs = Array[ExtResource("2_need")]([SubResource("Need_hunger"), SubResource("Need_energy")])

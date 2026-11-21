@@ -14,6 +14,18 @@ extends Control
 ## Zona táctil alrededor de Chibbi (ancho, alto) en px sin escalar, desde los pies hacia arriba.
 @export var touch_area: Vector2 = Vector2(320.0, 480.0)
 
+## Se emite al tocar a Chibbi.
+signal tapped
+## Se emite al soltar sobre Chibbi datos aceptados por drop_filter.
+signal data_dropped(data: Variant)
+
+## Opcional: func() -> bool. Si devuelve true, el toque ya se gestionó y Chibbi
+## no hace su reacción aleatoria.
+var tap_handler: Callable
+## Opcional: func(data) -> bool. Qué datos se pueden soltar sobre Chibbi.
+## Si no se asigna, Chibbi no acepta que le suelten nada.
+var drop_filter: Callable
+
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -36,8 +48,22 @@ func _gui_input(event: InputEvent) -> void:
 	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_LEFT:
 		return
 	if chibbi != null and _touch_rect().has_point(click.position):
-		chibbi.react_to_tap()
 		accept_event()
+		tapped.emit()
+		# Si otro sistema gestiona el toque (p. ej. dar de comer), no reacciona por defecto.
+		if tap_handler.is_valid() and tap_handler.call():
+			return
+		chibbi.react_to_tap()
+
+
+# --- Soltar objetos sobre Chibbi (arrastrar y soltar) --------------------------
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return drop_filter.is_valid() and _touch_rect().has_point(at_position) and drop_filter.call(data)
+
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	data_dropped.emit(data)
 
 
 ## Solo la zona táctil de Chibbi cuenta como parte del escenario, así los

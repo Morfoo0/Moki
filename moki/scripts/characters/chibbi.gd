@@ -105,6 +105,11 @@ func set_rest_expression(value: Mood) -> void:
 		set_expression(value)
 
 
+## Velocidad de todas las animaciones (1 = normal). P. ej. 0.4 al descansar.
+func set_animation_speed(speed: float) -> void:
+	_animation_player.speed_scale = speed
+
+
 func is_rig_mode() -> bool:
 	return _torso != null and _torso.library != null and _torso.library.has_variant(VIEW_KEYS[view])
 
