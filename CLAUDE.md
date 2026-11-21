@@ -4,7 +4,7 @@
 Moki es un videojuego educativo 2D dirigido a niños de edad preescolar.
 
 ## Personaje principal
-Chibbi es un pequeño mapache adorable.
+Moki es un pequeño mapache adorable.
 
 ## Tecnologías
 - Godot Engine 4

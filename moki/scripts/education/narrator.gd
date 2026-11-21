@@ -1,5 +1,5 @@
 extends Node
-## Autoload "Narrator": lee en voz alta las frases de Chibbi.
+## Autoload "Narrator": lee en voz alta las frases de Moki.
 ##
 ## Orden de preferencia por frase:
 ##   1. Audio grabado (DialogueLine.voice_key → res://resources/education/voice/<clave>.ogg/.wav)

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="PartLibrary" format=3 uid="uid://bwg7w0k28xwx1"]
+
+[ext_resource type="Script" uid="uid://dkkdvtgp41q6y" path="res://scripts/characters/part_library.gd" id="1_qk88g"]
+[ext_resource type="Script" uid="uid://b2qkgvbudelck" path="res://scripts/characters/part_variant.gd" id="2_0l3w0"]
+[ext_resource type="Texture2D" uid="uid://ccww68o6aalcu" path="res://assets/characters/moki/sprites/legs/leg_01.png" id="3_mqy22"]
+[ext_resource type="Texture2D" uid="uid://bfg4yx7l61m1w" path="res://assets/characters/moki/sprites/legs/leg_02.png" id="4_gol4u"]
+[ext_resource type="Texture2D" uid="uid://dcbsvg1qumr3r" path="res://assets/characters/moki/sprites/legs/leg_03.png" id="5_owo5b"]
+[ext_resource type="Texture2D" uid="uid://br2c5u2orwxne" path="res://assets/characters/moki/sprites/legs/leg_04.png" id="6_w3sup"]
+[ext_resource type="Texture2D" uid="uid://b3rfpu5ibpcpi" path="res://assets/characters/moki/sprites/legs/leg_05.png" id="7_bjxjj"]
+[ext_resource type="Texture2D" uid="uid://dbl2l2dd1i3wv" path="res://assets/characters/moki/sprites/legs/leg_06.png" id="8_vnqv3"]
+
+[sub_resource type="Resource" id="Resource_syuw5"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("3_mqy22")
+pivot = Vector2(25, 8)
+
+[sub_resource type="Resource" id="Resource_8r0m5"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("4_gol4u")
+pivot = Vector2(27, 8)
+
+[sub_resource type="Resource" id="Resource_6v2qm"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("5_owo5b")
+pivot = Vector2(25, 8)
+
+[sub_resource type="Resource" id="Resource_utv3e"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("6_w3sup")
+pivot = Vector2(24, 8)
+
+[sub_resource type="Resource" id="Resource_uq1tm"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("7_bjxjj")
+pivot = Vector2(18, 14)
+
+[sub_resource type="Resource" id="Resource_41yfb"]
+script = ExtResource("2_0l3w0")
+texture = ExtResource("8_vnqv3")
+pivot = Vector2(18, 14)
+
+[resource]
+script = ExtResource("1_qk88g")
+variants = Dictionary[StringName, ExtResource("2_0l3w0")]({
+&"01": SubResource("Resource_syuw5"),
+&"02": SubResource("Resource_8r0m5"),
+&"03": SubResource("Resource_6v2qm"),
+&"04": SubResource("Resource_utv3e"),
+&"05": SubResource("Resource_uq1tm"),
+&"06": SubResource("Resource_41yfb")
+})

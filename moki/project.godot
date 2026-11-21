@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+general/text_to_speech=true
+
 [autoload]
 
 SceneManager="*res://scripts/core/scene_manager.gd"
@@ -23,10 +27,6 @@ NeedsManager="*res://scripts/progression/needs_manager.gd"
 Inventory="*res://scripts/progression/inventory.gd"
 EducationProgress="*res://scripts/education/education_progress.gd"
 Narrator="*res://scripts/education/narrator.gd"
-
-[audio]
-
-general/text_to_speech=true
 
 [display]
 

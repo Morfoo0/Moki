@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://mytdvjeumm1e"]
 
 [ext_resource type="PackedScene" path="res://scenes/ui/big_button.tscn" id="1_button"]
-[ext_resource type="Script" path="res://scripts/characters/chibbi_stage.gd" id="2_stage"]
-[ext_resource type="PackedScene" path="res://scenes/characters/chibbi.tscn" id="3_chibbi"]
-[ext_resource type="Script" path="res://scripts/characters/chibbi_needs_link.gd" id="4_link"]
+[ext_resource type="Script" path="res://scripts/characters/moki_stage.gd" id="2_stage"]
+[ext_resource type="PackedScene" path="res://scenes/characters/moki.tscn" id="3_moki"]
+[ext_resource type="Script" path="res://scripts/characters/moki_needs_link.gd" id="4_link"]
 
 [node name="Home" type="Control" unique_id=1301630537]
 layout_mode = 3
@@ -33,13 +33,13 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="ChibbiStage" type="Control" parent="Layout" node_paths=PackedStringArray("chibbi")]
+[node name="MokiStage" type="Control" parent="Layout" node_paths=PackedStringArray("moki")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_stage")
-chibbi = NodePath("Chibbi")
+moki = NodePath("Moki")
 
-[node name="Chibbi" parent="Layout/ChibbiStage" instance=ExtResource("3_chibbi")]
+[node name="Moki" parent="Layout/MokiStage" instance=ExtResource("3_moki")]
 
 [node name="Content" type="VBoxContainer" parent="Layout" unique_id=1482937518]
 layout_mode = 2
@@ -73,8 +73,8 @@ target_scene = "res://scenes/levels/world_map.tscn"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Mi habitación"
-target_scene = "res://scenes/characters/chibbi_room.tscn"
+target_scene = "res://scenes/characters/moki_room.tscn"
 
-[node name="ChibbiNeedsLink" type="Node" parent="." node_paths=PackedStringArray("chibbi")]
+[node name="MokiNeedsLink" type="Node" parent="." node_paths=PackedStringArray("moki")]
 script = ExtResource("4_link")
-chibbi = NodePath("../Layout/ChibbiStage/Chibbi")
+moki = NodePath("../Layout/MokiStage/Moki")

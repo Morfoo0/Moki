@@ -94,7 +94,7 @@ func answer(card_index: int) -> void:
 		if instance.view_type() == ActivityTemplate.ViewType.SEARCH:
 			_found.append(card_index)
 			if _found.size() < instance.correct.size():
-				feedback.emit(card_index, true, _line(PARTIAL, DialogueLine.Kind.PRAISE, Chibbi.Mood.HAPPY))
+				feedback.emit(card_index, true, _line(PARTIAL, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY))
 				return
 		_complete(false)
 		return
@@ -108,7 +108,7 @@ func place(card_index: int, bin_index: int) -> void:
 	if instance.cards[card_index].category == bin_index:
 		_found.append(card_index)
 		if _found.size() < instance.cards.size():
-			feedback.emit(card_index, true, _line(SORT_OK, DialogueLine.Kind.PRAISE, Chibbi.Mood.HAPPY))
+			feedback.emit(card_index, true, _line(SORT_OK, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY))
 			return
 		_complete(false)
 		return
@@ -133,7 +133,7 @@ func _wrong(card_index: int) -> void:
 		_complete(true)
 		return
 	if step < 0:
-		feedback.emit(card_index, false, DialogueLine.make(WRONG_FALLBACK, DialogueLine.Kind.ENCOURAGE, Chibbi.Mood.NEUTRAL))
+		feedback.emit(card_index, false, DialogueLine.make(WRONG_FALLBACK, DialogueLine.Kind.ENCOURAGE, Moki.Mood.NEUTRAL))
 		return
 	feedback.emit(card_index, false, null)
 	_give_hint(step)
@@ -173,11 +173,11 @@ func _complete(skipped: bool) -> void:
 		_insert_reinforcement(template)
 	var line: DialogueLine
 	if skipped:
-		line = DialogueLine.make(SKIP_LINE, DialogueLine.Kind.ENCOURAGE, Chibbi.Mood.HAPPY)
+		line = DialogueLine.make(SKIP_LINE, DialogueLine.Kind.ENCOURAGE, Moki.Mood.HAPPY)
 	elif result["first_try"]:
-		line = _line(PRAISE_FIRST_TRY, DialogueLine.Kind.PRAISE, Chibbi.Mood.LAUGHING)
+		line = _line(PRAISE_FIRST_TRY, DialogueLine.Kind.PRAISE, Moki.Mood.LAUGHING)
 	else:
-		line = _line(PRAISE_EFFORT, DialogueLine.Kind.PRAISE, Chibbi.Mood.HAPPY)
+		line = _line(PRAISE_EFFORT, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY)
 	activity_finished.emit(result, line)
 
 
@@ -227,5 +227,5 @@ func _finish() -> void:
 	})
 
 
-func _line(options: PackedStringArray, kind: DialogueLine.Kind, mood: Chibbi.Mood) -> DialogueLine:
+func _line(options: PackedStringArray, kind: DialogueLine.Kind, mood: Moki.Mood) -> DialogueLine:
 	return DialogueLine.make(options[rng.randi_range(0, options.size() - 1)], kind, mood)

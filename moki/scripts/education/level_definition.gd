@@ -10,7 +10,7 @@ extends Resource
 @export_multiline var objective: String = ""
 ## Conceptos que trabaja (desempeño guardado por concepto).
 @export var concept_ids: Array[StringName] = []
-## Lo que Chibbi explica al empezar: qué aprenderá, qué hacer, cómo funciona y un ejemplo.
+## Lo que Moki explica al empezar: qué aprenderá, qué hacer, cómo funciona y un ejemplo.
 @export var intro: Array[DialogueLine] = []
 ## Frases de cierre (se elige una).
 @export var outro: Array[DialogueLine] = []

@@ -1,7 +1,7 @@
 @tool
 class_name DialogueLine
 extends Resource
-## Una frase de Chibbi. Preparada para narración: "spoken" permite un texto
+## Una frase de Moki. Preparada para narración: "spoken" permite un texto
 ## distinto para la voz (p. ej. "aaa" escrito como se pronuncia) y "voice_key"
 ## identificará un audio grabado en el futuro.
 
@@ -11,13 +11,13 @@ enum Kind { INSTRUCTION, EXPLANATION, TIP, HINT, RIDDLE, PRAISE, ENCOURAGE }
 ## Texto para la voz (vacío = se lee "text").
 @export var spoken: String = ""
 @export var kind: Kind = Kind.INSTRUCTION
-## Expresión de Chibbi mientras dice la frase (Chibbi.Mood). Nunca ANGRY.
-@export var mood: Chibbi.Mood = Chibbi.Mood.HAPPY
+## Expresión de Moki mientras dice la frase (Moki.Mood). Nunca ANGRY.
+@export var mood: Moki.Mood = Moki.Mood.HAPPY
 ## Clave de un audio grabado (futuro). Vacío = narración sintética.
 @export var voice_key: StringName = &""
 
 
-static func make(line_text: String, line_kind: Kind = Kind.INSTRUCTION, line_mood: Chibbi.Mood = Chibbi.Mood.HAPPY,
+static func make(line_text: String, line_kind: Kind = Kind.INSTRUCTION, line_mood: Moki.Mood = Moki.Mood.HAPPY,
 		line_spoken: String = "") -> DialogueLine:
 	var line := DialogueLine.new()
 	line.text = line_text

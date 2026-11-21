@@ -1,7 +1,7 @@
 class_name BubbleTail
 extends Control
 ## Cola del bocadillo: triángulo que sale del borde izquierdo del bocadillo
-## y apunta hacia el retrato de Chibbi.
+## y apunta hacia el retrato de Moki.
 
 var fill: Color = Color.WHITE
 var border: Color = Color(0.45, 0.3, 0.2)

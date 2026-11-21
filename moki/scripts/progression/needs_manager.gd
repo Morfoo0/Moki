@@ -1,18 +1,18 @@
 extends Node
 ## Autoload "NeedsManager": valores, paso del tiempo y estados de las necesidades.
 ##
-## No conoce a Chibbi ni a la interfaz: comunica todo con señales.
-## Las necesidades salen de NeedsConfig (res://resources/needs/chibbi_needs.tres).
+## No conoce a Moki ni a la interfaz: comunica todo con señales.
+## Las necesidades salen de NeedsConfig (res://resources/needs/moki_needs.tres).
 ## Convención: 100 = satisfecha, 0 = sin atender. No hay castigos ni muerte.
 
 signal need_changed(need_id: StringName, value: float)
 signal need_state_changed(need_id: StringName, state: NeedDefinition.State, previous: NeedDefinition.State)
 signal overall_state_changed(state: NeedDefinition.State)
 signal needs_loaded
-## Chibbi empieza o deja de descansar.
+## Moki empieza o deja de descansar.
 signal resting_changed(resting: bool)
 
-const CONFIG_PATH: String = "res://resources/needs/chibbi_needs.tres"
+const CONFIG_PATH: String = "res://resources/needs/moki_needs.tres"
 const SAVE_SECTION: String = "needs"
 const MAX_VALUE: float = 100.0
 ## Máximo de segundos que cuenta un fotograma (evita saltos tras pausas del sistema).
@@ -123,7 +123,7 @@ func set_resting(resting: bool) -> void:
 	resting_changed.emit(resting)
 
 
-## Vuelve todas las necesidades a su valor inicial (y despierta a Chibbi).
+## Vuelve todas las necesidades a su valor inicial (y despierta a Moki).
 func reset() -> void:
 	set_resting(false)
 	_values.clear()

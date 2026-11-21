@@ -1,7 +1,7 @@
 class_name InventorySlot
 extends Control
 ## Casilla de un objeto del inventario. Se toca para seleccionarla o se
-## arrastra hacia Chibbi. Muestra la cantidad si el objeto no es ilimitado.
+## arrastra hacia Moki. Muestra la cantidad si el objeto no es ilimitado.
 
 signal pressed(item_id: StringName)
 

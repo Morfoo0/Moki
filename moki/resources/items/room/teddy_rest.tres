@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="ItemDefinition" format=3]
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://bgr214h0n8ero"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/items/item_definition.gd" id="1_item"]
+[ext_resource type="Script" uid="uid://cwc0afy1v7lkm" path="res://scripts/gameplay/items/item_definition.gd" id="1_item"]
 
 [resource]
 script = ExtResource("1_item")
@@ -15,4 +15,4 @@ show_in_inventory = false
 consumable = false
 unlimited = true
 reaction = &""
-use_message = "Chibbi abraza al osito y descansa"
+use_message = "Moki abraza al osito y descansa"

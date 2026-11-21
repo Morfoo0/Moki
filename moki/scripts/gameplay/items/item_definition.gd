@@ -8,7 +8,7 @@ enum ItemType { FOOD, REST, TOY, OTHER }
 ## Qué hace el objeto al usarse.
 enum Action { NONE, FEED, REST }
 ## Sobre qué se usa.
-enum Target { CHIBBI, ROOM }
+enum Target { MOKI, ROOM }
 ## Icono provisional dibujado por código mientras no exista arte (ver PlaceholderIcon).
 enum Placeholder { NONE, APPLE, BANANA, COOKIE, MOON, SUN }
 
@@ -23,11 +23,11 @@ enum Placeholder { NONE, APPLE, BANANA, COOKIE, MOON, SUN }
 
 @export_group("Uso")
 @export var action: Action = Action.FEED
-@export var target: Target = Target.CHIBBI
+@export var target: Target = Target.MOKI
 ## Efecto sobre las necesidades: { id_necesidad: puntos }. Ej. { &"hunger": 20 }.
 @export var effects: Dictionary[StringName, float] = {}
 ## Si es true, no se usa cuando ninguna necesidad que mejora lo necesita
-## (p. ej. Chibbi ya está lleno). No se gasta y Chibbi lo dice con calma.
+## (p. ej. Moki ya está lleno). No se gasta y Moki lo dice con calma.
 @export var refuse_when_not_needed: bool = true
 
 @export_group("Inventario")
@@ -35,15 +35,15 @@ enum Placeholder { NONE, APPLE, BANANA, COOKIE, MOON, SUN }
 @export var show_in_inventory: bool = true
 ## Se gasta una unidad al usarlo.
 @export var consumable: bool = true
-## Cantidad ilimitada (alimentos básicos: Chibbi siempre puede comer).
+## Cantidad ilimitada (alimentos básicos: Moki siempre puede comer).
 @export var unlimited: bool = false
 @export_range(0, 99) var initial_quantity: int = 0
 @export_range(1, 99) var max_quantity: int = 99
 
-@export_group("Reacción de Chibbi")
-## Animación existente de Chibbi al usarlo (bounce, wave, surprised, tilt...).
+@export_group("Reacción de Moki")
+## Animación existente de Moki al usarlo (bounce, wave, surprised, tilt...).
 @export var reaction: StringName = &"bounce"
-@export var reaction_mood: Chibbi.Mood = Chibbi.Mood.LAUGHING
+@export var reaction_mood: Moki.Mood = Moki.Mood.LAUGHING
 ## Texto breve que se muestra al usarlo (vacío = ninguno).
 @export var use_message: String = ""
 

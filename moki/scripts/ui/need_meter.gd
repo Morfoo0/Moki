@@ -67,7 +67,7 @@ func set_state(state: NeedDefinition.State) -> void:
 	_set_pulsing(state == NeedDefinition.State.CRITICAL, 0.9)
 
 
-## Resalte breve (p. ej. cuando Chibbi pide atención sobre esta necesidad).
+## Resalte breve (p. ej. cuando Moki pide atención sobre esta necesidad).
 func highlight() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(_badge, "scale", Vector2.ONE * 1.3, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

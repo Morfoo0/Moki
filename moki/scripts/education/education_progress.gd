@@ -4,7 +4,7 @@ extends Node
 ## niveles completados, historial de lecciones, actividades recientes,
 ## desempeño por concepto y etapa, y pistas usadas.
 ##
-## Independiente del cuidado de Chibbi: no usa NeedsManager ni Inventory.
+## Independiente del cuidado de Moki: no usa NeedsManager ni Inventory.
 ## Nunca resta progreso: terminar una lección siempre cuenta.
 
 signal progress_changed

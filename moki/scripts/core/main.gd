@@ -1,6 +1,6 @@
 extends Node
 ## Punto de entrada del juego. Más adelante puede mostrar un splash
-## o cargar la partida guardada antes de ir a la habitación de Chibbi.
+## o cargar la partida guardada antes de ir a la habitación de Moki.
 
 
 func _ready() -> void:

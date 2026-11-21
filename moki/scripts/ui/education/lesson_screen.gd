@@ -1,11 +1,11 @@
 class_name LessonScreen
 extends Control
-## Pantalla de lección: une LessonSession (lógica), ChibbiGuide (guía con
+## Pantalla de lección: une LessonSession (lógica), MokiGuide (guía con
 ## bocadillo) y las vistas de actividad. Flujo:
-##   introducción de Chibbi → actividades (con ayuda progresiva) → celebración.
-## Registra el desempeño en EducationProgress. No toca el cuidado de Chibbi.
+##   introducción de Moki → actividades (con ayuda progresiva) → celebración.
+## Registra el desempeño en EducationProgress. No toca el cuidado de Moki.
 
-## Nada avanza solo: el niño pulsa "Seguir" cuando ha leído/escuchado a Chibbi.
+## Nada avanza solo: el niño pulsa "Seguir" cuando ha leído/escuchado a Moki.
 ## Retardo antes de mostrar "Seguir" (evita que un doble toque salte la frase).
 @export var continue_unlock_delay: float = 0.6
 
@@ -19,7 +19,7 @@ var _continue_requested: bool = false
 var _last_pressed: int = -1
 var _pulse: Tween
 
-@onready var _guide: ChibbiGuide = %ChibbiGuide
+@onready var _guide: MokiGuide = %MokiGuide
 @onready var _title: Label = %Title
 @onready var _progress: LessonProgressBar = %Progress
 @onready var _host: Control = %ActivityHost

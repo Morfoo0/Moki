@@ -42,7 +42,7 @@ func hint_line(step: HintStep, instance: ActivityInstance) -> DialogueLine:
 	var text: String = instance.fill(hints[index]) if index >= 0 else ""
 	var spoken: String = instance.fill(hints_spoken[index]) if index < hints_spoken.size() else ""
 	var kind: DialogueLine.Kind = DialogueLine.Kind.RIDDLE if step == HintStep.RIDDLE else DialogueLine.Kind.HINT
-	return DialogueLine.make(text, kind, Chibbi.Mood.NEUTRAL, spoken)
+	return DialogueLine.make(text, kind, Moki.Mood.NEUTRAL, spoken)
 
 
 ## Genera una instancia evitando, si es posible, firmas usadas recientemente.
@@ -57,5 +57,5 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank,
 	instance.template = self
 	instance.difficulty = level
 	instance.instruction = DialogueLine.make(instance.fill(instruction), DialogueLine.Kind.INSTRUCTION,
-		Chibbi.Mood.HAPPY, instance.fill(instruction_spoken))
+		Moki.Mood.HAPPY, instance.fill(instruction_spoken))
 	return instance

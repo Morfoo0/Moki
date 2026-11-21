@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_ga7nn"]
 script = ExtResource("2_lriqr")
-text = "¡Hola! Soy Chibbi. Hoy vamos a conocer a la letra A."
+text = "¡Hola! Soy Moki. Hoy vamos a conocer a la letra A."
 kind = 1
 
 [sub_resource type="Resource" id="Resource_06jbl"]

@@ -21,12 +21,12 @@ extends Resource
 @export_range(0.0, 1440.0, 1.0) var offline_max_minutes: float = 60.0
 ## La bajada por ausencia nunca deja una necesidad por debajo de este valor.
 @export_range(0.0, 100.0, 1.0) var offline_floor: float = 30.0
-## Si Chibbi se dejó descansando, minutos de ausencia que cuentan para recuperarse.
+## Si Moki se dejó descansando, minutos de ausencia que cuentan para recuperarse.
 ## (Solo se aplican las recuperaciones; nunca baja nada mientras la app está cerrada.)
 @export_range(0.0, 1440.0, 1.0) var offline_rest_max_minutes: float = 480.0
 
 @export_group("Descanso")
-## Chibbi se despierta solo cuando todas las necesidades que se recuperan al
+## Moki se despierta solo cuando todas las necesidades que se recuperan al
 ## descansar llegan a 100.
 @export var wake_when_rested: bool = true
 

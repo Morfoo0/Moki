@@ -7,7 +7,7 @@ extends TextureRect
 ## - Solo responde a toques sobre sus píxeles opacos, así los objetos que están
 ##   dentro o encima de un mueble se pueden tocar por separado.
 ## - Al tocarlo hace un pequeño rebote y emite "selected". La lógica de qué
-##   pasa después vive en quien escucha la señal (p. ej. ChibbiRoom).
+##   pasa después vive en quien escucha la señal (p. ej. MokiRoom).
 
 signal selected(item: RoomItem)
 

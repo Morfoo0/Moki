@@ -20,7 +20,7 @@ enum State { GOOD, MEDIUM, LOW, CRITICAL }
 @export_range(0.0, 100.0, 1.0) var initial_value: float = 100.0
 ## Puntos que pierde por minuto de juego.
 @export_range(0.0, 50.0, 0.1) var decay_per_minute: float = 1.0
-## Cambio por minuto mientras Chibbi descansa (sustituye a la bajada normal).
+## Cambio por minuto mientras Moki descansa (sustituye a la bajada normal).
 ## Positivo = se recupera (energía); negativo = baja más despacio (hambre).
 @export_range(-50.0, 50.0, 0.1) var resting_rate_per_minute: float = 0.0
 
