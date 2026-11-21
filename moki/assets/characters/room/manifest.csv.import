@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b382wgen3ul3j"
+
+[deps]
+
+files=["res://assets/characters/room/manifest.x.translation", "res://assets/characters/room/manifest.y.translation", "res://assets/characters/room/manifest.width.translation", "res://assets/characters/room/manifest.height.translation", "res://assets/characters/room/manifest.z.translation"]
+
+source_file="res://assets/characters/room/manifest.csv"
+dest_files=["res://assets/characters/room/manifest.x.translation", "res://assets/characters/room/manifest.y.translation", "res://assets/characters/room/manifest.width.translation", "res://assets/characters/room/manifest.height.translation", "res://assets/characters/room/manifest.z.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

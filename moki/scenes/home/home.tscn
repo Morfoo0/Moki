@@ -44,7 +44,7 @@ chibbi = NodePath("Chibbi")
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 24
 alignment = 1
 
 [node name="Title" type="Label" parent="Layout/Content" unique_id=889323534]
@@ -67,3 +67,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Jugar"
 target_scene = "res://scenes/levels/world_map.tscn"
+
+[node name="RoomButton" parent="Layout/Content" instance=ExtResource("1_button")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mi habitación"
+target_scene = "res://scenes/characters/chibbi_room.tscn"

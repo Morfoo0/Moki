@@ -40,6 +40,12 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 
+## Solo la zona táctil de Chibbi cuenta como parte del escenario, así los
+## objetos que queden detrás del resto del rectángulo siguen recibiendo toques.
+func _has_point(point: Vector2) -> bool:
+	return chibbi != null and _touch_rect().has_point(point)
+
+
 func _touch_rect() -> Rect2:
 	var area: Vector2 = touch_area * chibbi.scale
 	return Rect2(chibbi.position - Vector2(area.x / 2.0, area.y), area)
