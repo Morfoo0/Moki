@@ -1,0 +1,126 @@
+[gd_resource type="Resource" script_class="ContentBank" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/content_bank.gd" id="1_mlhp6"]
+[ext_resource type="Script" path="res://scripts/education/word_entry.gd" id="2_absh0"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/ring_stacker.png" id="3_jco6u"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/furniture/rug_round.png" id="4_j0jc2"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/abacus.png" id="5_2huuq"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_rainbow.png" id="6_68dja"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/teddy_bear.png" id="7_36wre"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/toy_house.png" id="8_tr3ye"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/block_castle.png" id="9_iclyo"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/books/books_shelf.png" id="10_8lyur"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/window.png" id="11_bf7la"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_star.png" id="12_feeit"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_flower.png" id="13_pflmw"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/furniture/chair_yellow.png" id="14_uffcs"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/furniture/table_small_yellow.png" id="15_4pno4"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/props/pencil_cup.png" id="16_4v0cp"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/cube_blue.png" id="17_6ebes"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/bins/bin_shelf_blue.png" id="18_ubfca"]
+
+[sub_resource type="Resource" id="Resource_x1oyo"]
+script = ExtResource("2_absh0")
+word = "aros"
+texture = ExtResource("3_jco6u")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_xs0fy"]
+script = ExtResource("2_absh0")
+word = "alfombra"
+texture = ExtResource("4_j0jc2")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_je86j"]
+script = ExtResource("2_absh0")
+word = "ábaco"
+texture = ExtResource("5_2huuq")
+min_difficulty = 3
+
+[sub_resource type="Resource" id="Resource_aolu3"]
+script = ExtResource("2_absh0")
+word = "arcoíris"
+texture = ExtResource("6_68dja")
+min_difficulty = 3
+
+[sub_resource type="Resource" id="Resource_cs3ek"]
+script = ExtResource("2_absh0")
+word = "oso"
+texture = ExtResource("7_36wre")
+
+[sub_resource type="Resource" id="Resource_jc4lh"]
+script = ExtResource("2_absh0")
+word = "casa"
+texture = ExtResource("8_tr3ye")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_xrm30"]
+script = ExtResource("2_absh0")
+word = "castillo"
+texture = ExtResource("9_iclyo")
+
+[sub_resource type="Resource" id="Resource_8vrko"]
+script = ExtResource("2_absh0")
+word = "libros"
+texture = ExtResource("10_8lyur")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_uu4vo"]
+script = ExtResource("2_absh0")
+word = "ventana"
+texture = ExtResource("11_bf7la")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_46fhs"]
+script = ExtResource("2_absh0")
+word = "estrella"
+texture = ExtResource("12_feeit")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_snjq2"]
+script = ExtResource("2_absh0")
+word = "flor"
+texture = ExtResource("13_pflmw")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ma536"]
+script = ExtResource("2_absh0")
+word = "silla"
+texture = ExtResource("14_uffcs")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_0j5ya"]
+script = ExtResource("2_absh0")
+word = "mesa"
+texture = ExtResource("15_4pno4")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_53623"]
+script = ExtResource("2_absh0")
+word = "lápices"
+texture = ExtResource("16_4v0cp")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_38g3e"]
+script = ExtResource("2_absh0")
+word = "cubo"
+texture = ExtResource("17_6ebes")
+
+[sub_resource type="Resource" id="Resource_2ntvd"]
+script = ExtResource("2_absh0")
+word = "caja"
+texture = ExtResource("18_ubfca")
+article = "una"
+
+[resource]
+script = ExtResource("1_mlhp6")
+easy_letters = PackedStringArray("O", "S", "C", "U")
+medium_letters = PackedStringArray("E", "F", "L", "T")
+similar_letters = PackedStringArray("H", "V", "M", "N", "K", "R")
+lower_distractors = PackedStringArray("e", "o", "c", "u", "n")
+words_with_target = Array[ExtResource("2_absh0")]([SubResource("Resource_x1oyo"), SubResource("Resource_xs0fy"), SubResource("Resource_je86j"), SubResource("Resource_aolu3")])
+words_without_target = Array[ExtResource("2_absh0")]([SubResource("Resource_cs3ek"), SubResource("Resource_jc4lh"), SubResource("Resource_xrm30"), SubResource("Resource_8vrko"), SubResource("Resource_uu4vo"), SubResource("Resource_46fhs"), SubResource("Resource_snjq2"), SubResource("Resource_ma536"), SubResource("Resource_0j5ya"), SubResource("Resource_53623"), SubResource("Resource_38g3e"), SubResource("Resource_2ntvd")])
+spelling_words_easy = PackedStringArray("CASA", "MESA", "MANO", "PATO", "GATO", "LUNA", "CAMA", "SAPO")
+spelling_words_hard = PackedStringArray("ALFOMBRA", "CAMPANA", "MANZANA", "PANTALLA", "PALOMA", "SANDALIA")
+font_names = PackedStringArray("Comic Sans MS", "Georgia", "Courier New", "Verdana", "Arial")
+colors = PackedColorArray(0.35686275, 0.22745098, 0.16078432, 1, 0.9098039, 0.3647059, 0.24705882, 1, 0.18431373, 0.49803922, 0.81960785, 1, 0.24313726, 0.60784316, 0.30980393, 1, 0.5568628, 0.35686275, 0.78431374, 1, 0.8784314, 0.5882353, 0.105882354, 1)

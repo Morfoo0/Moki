@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_j60iq"]
+[ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_7fala"]
+
+[resource]
+script = ExtResource("2_7fala")
+id = &"shapes"
+title = "Figuras"
+color = Color(0.24313726, 0.60784316, 0.30980393, 1)
+upcoming_levels = PackedStringArray()

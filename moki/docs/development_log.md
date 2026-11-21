@@ -59,9 +59,25 @@
 - Las pruebas con ventana se abren en el segundo monitor (Windows no permite colocarlas fuera de pantalla) y pueden recibir clics reales. Las pruebas lógicas se ejecutan en headless y los renders con `gui_disable_input`.
 
 ## Fase 3: Sistema educativo
-- [ ] Mundos educativos.
-- [ ] Actividades.
-- [ ] Progresión por niveles.
+- [x] Motor de niveles y lecciones dinámicas (base).
+- [x] Actividades (prototipo: Mundo Letras · Nivel 1, letra A).
+- [x] Progresión por niveles y progreso persistente.
+- [ ] Resto de niveles de Letras y mundos Números, Figuras, Combinación y Repaso.
+
+### Notas — Sistema educativo (2026-11-20)
+- Nivel = objetivo permanente; lección = sesión generada de 5–8 actividades, distinta cada vez (historial, firmas de contenido, puntuación ponderada, sin repetir plantilla ni vista seguidas).
+- Nivel 1 (letra A): 9 dinámicas con 3 vistas reutilizables: toca la A, busca todas las A, ¿cuál no es A?, la A disfrazada (minúscula "a" en dificultad alta), ¿qué dibujo empieza con A?, ¿con qué letra empieza?, las A de la palabra, cesta de la A (clasificar) y la A escondida.
+- Imágenes de palabras: recursos reales de la habitación (A: aros, alfombra, ábaco, arcoíris; sin A: oso, casa, castillo, libros, ventana, estrella, flor, silla, mesa, lápices, cubo, caja). Tipografías del sistema para variar la forma de las letras.
+- Chibbi guía: rostro + bocadillo con cola; introducción (qué, cómo, ejemplo cotidiano); ayuda progresiva en 4 pasos sin revelar la respuesta; salto suave tras agotar la ayuda; felicitaciones que reconocen el esfuerzo. Sin vidas, puntos, tiempo ni competencia.
+- Voz: voz del sistema (TTS) en español (en este equipo, Sabina es-MX); preparado para audios grabados por `voice_key`.
+- **Ritmo del niño:** nada avanza por tiempo. Cada frase de la introducción y cada felicitación esperan a que el niño pulse "Seguir ▶" (más grande y con un pulso suave; aparece tras 0,6 s para evitar saltos por doble toque y se oculta durante la actividad).
+- **Voz desactivada temporalmente** (`Narrator.enabled = false`): cada mensaje nuevo cortaba el audio del anterior. El botón "Oír" se oculta solo. Pendiente: que Chibbi termine cada frase antes de la siguiente (cola de frases) y reactivar la voz.
+- Adaptación: dificultad base por dominio (±1 entre lecciones), ±1 dentro de la lección, refuerzos al tener dificultades.
+- Progreso persistente en la sección `education` del guardado.
+- `SceneManager.change_scene(path, params)` acepta parámetros opcionales (compatible con todo lo anterior).
+- **Arte recomendado**: más imágenes de palabras con A (avión, abeja, árbol, araña, anillo); la "alfombra" actual (vista desde arriba) se reconoce con dificultad. Iconos para los botones de ayuda y escuchar.
+- **Limitación conocida**: con solo 3 vistas, los refuerzos para un niño con dificultades suelen ser la cesta de clasificar (es la única vista distinta disponible); mejorará al añadir más tipos de actividad.
+- Pruebas: motor (23 comprobaciones: 2.700 instancias generadas válidas, ayuda progresiva, 20 lecciones con niño que acierta y 12 con niño con dificultades, separación de sistemas), interfaz (34: navegación, guía, introducción, lección completa con ratón y dedo, pistas, salto suave, final, repetición distinta, registro), persistencia entre dos procesos, y regresión del cuidado (58).
 
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_e6tkp"]
+[ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_ch5cc"]
+
+[resource]
+script = ExtResource("2_ch5cc")
+id = &"combination"
+title = "Combinación"
+color = Color(0.5568628, 0.35686275, 0.78431374, 1)
+upcoming_levels = PackedStringArray()

@@ -8,6 +8,7 @@ const FADE_DURATION: float = 0.3
 
 var _fade_rect: ColorRect
 var _is_changing: bool = false
+var _params: Dictionary = {}
 
 
 func _ready() -> void:
@@ -22,7 +23,9 @@ func _ready() -> void:
 	add_child(_fade_rect)
 
 
-func change_scene(path: String) -> void:
+## params: datos opcionales para la escena nueva (p. ej. {"level_id": &"letters_a"}).
+## La escena los lee con SceneManager.get_params().
+func change_scene(path: String, params: Dictionary = {}) -> void:
 	if _is_changing:
 		return
 	if not ResourceLoader.exists(path):
@@ -30,6 +33,7 @@ func change_scene(path: String) -> void:
 		return
 
 	_is_changing = true
+	_params = params.duplicate()
 	# Bloquea toques durante la transición.
 	_fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
 
@@ -47,6 +51,11 @@ func change_scene(path: String) -> void:
 
 	_fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_is_changing = false
+
+
+## Parámetros pasados en el último change_scene() (vacío si no hubo).
+func get_params() -> Dictionary:
+	return _params
 
 
 func is_changing() -> bool:

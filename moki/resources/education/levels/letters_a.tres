@@ -1,0 +1,186 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/letters_a_bank.tres" id="1_7n272"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_lriqr"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_823a3"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_v3711"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_choice_generator.gd" id="5_3nws4"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_search_generator.gd" id="6_rltgj"]
+[ext_resource type="Script" path="res://scripts/education/generators/word_image_generator.gd" id="7_ggjgb"]
+
+[sub_resource type="Resource" id="Resource_ga7nn"]
+script = ExtResource("2_lriqr")
+text = "¡Hola! Soy Chibbi. Hoy vamos a conocer a la letra A."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_06jbl"]
+script = ExtResource("2_lriqr")
+text = "La A suena «aaa», como cuando abres grande la boca en el doctor."
+spoken = "La A suena aaaa, como cuando abres grande la boca en el doctor."
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_xj6bw"]
+script = ExtResource("2_lriqr")
+text = "Yo te digo qué hacer y tú tocas la respuesta. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_lxwci"]
+script = ExtResource("2_lriqr")
+text = "La A está en muchas cosas: en el agua que bebes, en los aros con los que juegas y en el arcoíris."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_f3577"]
+script = ExtResource("2_lriqr")
+text = "¡Lo hiciste genial! Ya conoces mejor a la letra A."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_sqw2d"]
+script = ExtResource("2_lriqr")
+text = "¡Qué bien aprendes! La A ya es tu amiga."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_e15ee"]
+script = ExtResource("2_lriqr")
+text = "¡Bravo! Hoy practicaste mucho con la letra A."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_8tlwb"]
+script = ExtResource("5_3nws4")
+
+[sub_resource type="Resource" id="Resource_nutcr"]
+script = ExtResource("4_v3711")
+id = &"a_pick"
+title = "Toca la A"
+instruction = "Toca la letra A."
+hints = PackedStringArray("Busca la letra que suena «aaa», como cuando abres grande la boca.", "La A tiene dos palitos que se juntan arriba, como un tejado, y una rayita en medio.", "Adivina, adivinanza: parezco una montaña con un puente en la mitad. ¿Quién soy?", "Mira la A grande que te muestro aquí arriba. Quité algunas letras: busca una igual.")
+hints_spoken = PackedStringArray("Busca la letra que suena aaaa, como cuando abres grande la boca.")
+generator = SubResource("Resource_8tlwb")
+
+[sub_resource type="Resource" id="Resource_xsijo"]
+script = ExtResource("6_rltgj")
+
+[sub_resource type="Resource" id="Resource_p3pn5"]
+script = ExtResource("4_v3711")
+id = &"a_grid"
+title = "Busca todas las A"
+view_type = 1
+stage = 1
+instruction = "Busca todas las A y tócalas una por una."
+hints = PackedStringArray("Toca cada letra A que veas. ¡Puede haber varias!", "Fíjate en las letras con forma de tejado y una rayita en medio.", "La H también tiene rayita, pero sus palitos no se juntan arriba. ¿Cuáles sí se juntan?", "Compara cada letra con la A de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_xsijo")
+
+[sub_resource type="Resource" id="Resource_l0j8s"]
+script = ExtResource("5_3nws4")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_3iu6t"]
+script = ExtResource("4_v3711")
+id = &"a_odd"
+title = "¿Cuál no es A?"
+stage = 1
+instruction = "Todas son A menos una. ¿Cuál NO es una A?"
+hints = PackedStringArray("Aquí hay muchas A vestidas de distinta forma. Una letra es diferente: ¡búscala!", "Mira la punta de arriba de cada letra: las A siempre tienen un pico.", "Si todas fueran montañitas, ¿cuál no tendría pico?", "Compara cada letra con la A de aquí arriba. Quité algunas A para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_l0j8s")
+
+[sub_resource type="Resource" id="Resource_aiicl"]
+script = ExtResource("5_3nws4")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_vmfmu"]
+script = ExtResource("4_v3711")
+id = &"a_disguised"
+title = "La A disfrazada"
+stage = 3
+difficulty_min = 2
+instruction = "Las letras se disfrazaron con otros colores y formas. ¿Puedes encontrar {letter_name}?"
+hints = PackedStringArray("Aunque cambie de color o de tamaño, la A sigue siendo la A. ¡Y la a pequeñita también es A!", "No te fijes en el color: fíjate en su forma.", "Si te pones un sombrero sigues siendo tú. ¿Qué letra sigue siendo la A aunque esté disfrazada?", "Mira la letra de aquí arriba y busca la que tiene su misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_aiicl")
+
+[sub_resource type="Resource" id="Resource_8i4cc"]
+script = ExtResource("7_ggjgb")
+
+[sub_resource type="Resource" id="Resource_a1c8m"]
+script = ExtResource("4_v3711")
+id = &"a_pick_image"
+title = "¿Qué dibujo empieza con A?"
+stage = 2
+instruction = "¿Qué dibujo empieza con A?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «aaa»?", "Escucha solo el primer sonido de cada palabra.", "«Avión» empieza con A. ¿Qué dibujo empieza igual que avión?", "Quité algunos dibujos. Mira la A de aquí arriba y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con aaaa?")
+generator = SubResource("Resource_8i4cc")
+
+[sub_resource type="Resource" id="Resource_rdubd"]
+script = ExtResource("7_ggjgb")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_mh18j"]
+script = ExtResource("4_v3711")
+id = &"a_initial"
+title = "¿Con qué letra empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué letra empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es el mismo que el de «agua».", "Abre grande la boca como en el doctor: ese es el sonido del principio. ¿Qué letra hace ese sonido?", "Quité algunas letras para que sea más fácil. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_rdubd")
+
+[sub_resource type="Resource" id="Resource_a2fr0"]
+script = ExtResource("6_rltgj")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_ufiuk"]
+script = ExtResource("4_v3711")
+id = &"a_word"
+title = "Las A de la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las A que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las A.", "Busca las letras con forma de tejado y una rayita en medio.", "Cuando dices la palabra, en cada A abres grande la boca. ¿Dónde se abre la boca?", "Compara cada letra de la palabra con la A de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_a2fr0")
+
+[sub_resource type="Resource" id="Resource_jruoe"]
+script = ExtResource("7_ggjgb")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_fiua5"]
+script = ExtResource("4_v3711")
+id = &"a_sort"
+title = "Cesta de la A"
+view_type = 2
+stage = 4
+instruction = "Pon en la cesta de la A los dibujos que empiezan con A. Los demás, en la otra cesta."
+hints = PackedStringArray("Di el nombre de cada dibujo. Si empieza con «aaa», va con la A.", "Escucha solo el primer sonido de cada palabra.", "«Abuela» empieza con A, «casa» no. ¿Qué dibujos suenan como abuela al principio?", "Mira la A de la cesta y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo. Si empieza con aaaa, va con la A.")
+generator = SubResource("Resource_jruoe")
+
+[sub_resource type="Resource" id="Resource_7q11y"]
+script = ExtResource("6_rltgj")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_r1h1g"]
+script = ExtResource("4_v3711")
+id = &"a_hidden"
+title = "La A escondida"
+view_type = 1
+stage = 3
+instruction = "¡La letra A se escondió entre los juguetes! Encuentra todas las A."
+hints = PackedStringArray("Busca entre los dibujos una letra que sea A.", "La A tiene forma de tejado con una rayita en medio.", "Soy una letra con forma de montañita y me escondí entre los juguetes. ¿Me ves?", "Quité algunas cosas para que sea más fácil. Compara con la A de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_7q11y")
+
+[resource]
+script = ExtResource("3_823a3")
+id = &"letters_a"
+title = "La letra A"
+objective = "Reconocer la letra A, distinguirla de otras letras, asociarla con palabras que empiezan con A y encontrarla en distintos contextos."
+concept_ids = Array[StringName]([&"letter_a"])
+intro = Array[ExtResource("2_lriqr")]([SubResource("Resource_ga7nn"), SubResource("Resource_06jbl"), SubResource("Resource_xj6bw"), SubResource("Resource_lxwci")])
+outro = Array[ExtResource("2_lriqr")]([SubResource("Resource_f3577"), SubResource("Resource_sqw2d"), SubResource("Resource_e15ee")])
+templates = Array[ExtResource("4_v3711")]([SubResource("Resource_nutcr"), SubResource("Resource_p3pn5"), SubResource("Resource_3iu6t"), SubResource("Resource_vmfmu"), SubResource("Resource_a1c8m"), SubResource("Resource_mh18j"), SubResource("Resource_ufiuk"), SubResource("Resource_fiua5"), SubResource("Resource_r1h1g")])
+content = ExtResource("1_7n272")

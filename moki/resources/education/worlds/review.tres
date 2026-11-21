@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_v1njf"]
+[ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_3fpxd"]
+
+[resource]
+script = ExtResource("2_3fpxd")
+id = &"review"
+title = "Repaso"
+color = Color(0.8784314, 0.5882353, 0.105882354, 1)
+upcoming_levels = PackedStringArray()

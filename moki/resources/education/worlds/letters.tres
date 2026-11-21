@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_wbe1l"]
+[ext_resource type="Resource" path="res://resources/education/levels/letters_a.tres" id="2_i02od"]
+[ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="3_2v77k"]
+
+[resource]
+script = ExtResource("3_2v77k")
+id = &"letters"
+title = "Letras"
+color = Color(0.9098039, 0.3647059, 0.24705882, 1)
+unlocked_by_default = true
+levels = Array[ExtResource("1_wbe1l")]([ExtResource("2_i02od")])
+upcoming_levels = PackedStringArray("La letra E", "La letra I", "La letra O", "La letra U")

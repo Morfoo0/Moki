@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EducationCatalog" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/education_catalog.gd" id="1_nxrf0"]
+[ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_2y1ov"]
+[ext_resource type="Resource" path="res://resources/education/worlds/letters.tres" id="3_us006"]
+[ext_resource type="Resource" path="res://resources/education/worlds/numbers.tres" id="4_ax0xb"]
+[ext_resource type="Resource" path="res://resources/education/worlds/shapes.tres" id="5_3mpcc"]
+[ext_resource type="Resource" path="res://resources/education/worlds/combination.tres" id="6_vrfts"]
+[ext_resource type="Resource" path="res://resources/education/worlds/review.tres" id="7_e7idc"]
+
+[resource]
+script = ExtResource("1_nxrf0")
+worlds = Array[ExtResource("2_2y1ov")]([ExtResource("3_us006"), ExtResource("4_ax0xb"), ExtResource("5_3mpcc"), ExtResource("6_vrfts"), ExtResource("7_e7idc")])

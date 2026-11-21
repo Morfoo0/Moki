@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/ui/big_button.tscn" id="1_button"]
+[ext_resource type="Script" path="res://scripts/ui/world_map.gd" id="2_map"]
 
 [node name="WorldMap" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_map")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -17,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.72, 0.9, 1, 1)
 
 [node name="Content" type="VBoxContainer" parent="."]
@@ -39,36 +42,12 @@ text = "Mundos"
 horizontal_alignment = 1
 
 [node name="Worlds" type="GridContainer" parent="Content"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 24
 columns = 3
-
-[node name="Letters" parent="Content/Worlds" instance=ExtResource("1_button")]
-layout_mode = 2
-disabled = true
-text = "Letras"
-
-[node name="Numbers" parent="Content/Worlds" instance=ExtResource("1_button")]
-layout_mode = 2
-disabled = true
-text = "Números"
-
-[node name="Shapes" parent="Content/Worlds" instance=ExtResource("1_button")]
-layout_mode = 2
-disabled = true
-text = "Figuras"
-
-[node name="Combination" parent="Content/Worlds" instance=ExtResource("1_button")]
-layout_mode = 2
-disabled = true
-text = "Combinación"
-
-[node name="Review" parent="Content/Worlds" instance=ExtResource("1_button")]
-layout_mode = 2
-disabled = true
-text = "Repaso"
 
 [node name="BackButton" parent="Content" instance=ExtResource("1_button")]
 layout_mode = 2
