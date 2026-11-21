@@ -23,6 +23,16 @@ var _label := Label.new()
 var _image := TextureRect.new()
 var _press_inside: bool = false
 
+static var _emoji: SystemFont
+
+
+## Fuente de emoji del sistema (Windows, Apple, Android/Linux), compartida.
+static func emoji_font() -> SystemFont:
+	if _emoji == null:
+		_emoji = SystemFont.new()
+		_emoji.font_names = PackedStringArray(["Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji"])
+	return _emoji
+
 
 func setup(index: int, card: CardData, bank: ContentBank, side: float) -> void:
 	card_index = index
@@ -40,7 +50,17 @@ func setup(index: int, card: CardData, bank: ContentBank, side: float) -> void:
 	_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_panel)
-	if card.kind == CardData.Kind.IMAGE:
+	if card.kind == CardData.Kind.IMAGE and card.texture == null and not card.glyph.is_empty():
+		# Dibujo provisional: emoji con la fuente de emoji del sistema.
+		_label.text = card.glyph
+		_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_label.add_theme_font_override("font", emoji_font())
+		_label.add_theme_font_size_override("font_size", int(side * 0.55))
+		add_child(_label)
+	elif card.kind == CardData.Kind.IMAGE:
 		_image.texture = card.texture
 		_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

@@ -1,0 +1,236 @@
+[gd_resource type="Resource" script_class="LevelDefinition" load_steps=40 format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/letters_i_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_choice_generator.gd" id="5_choice"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_search_generator.gd" id="6_search"]
+[ext_resource type="Script" path="res://scripts/education/generators/word_image_generator.gd" id="7_wordimg"]
+
+[sub_resource type="Resource" id="Resource_i1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy vamos a conocer a la letra I."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_i2"]
+script = ExtResource("2_line")
+text = "La I suena «iii», como un ratoncito. Estira la boca conmigo: iii."
+spoken = "La I suena iiii, como un ratoncito. Estira la boca conmigo: iii."
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_i3"]
+script = ExtResource("2_line")
+text = "La I grande es un palito derechito. La i pequeñita lleva un puntito encima, como un sombrerito."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_i4"]
+script = ExtResource("2_line")
+text = "Yo te digo qué hacer y tú tocas la respuesta. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_i5"]
+script = ExtResource("2_line")
+text = "La I está en muchas cosas: en la isla del mar, en el imán del refrigerador y en el iglú de nieve."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_i6"]
+script = ExtResource("2_line")
+text = "¡Lo hiciste genial! Ya conoces mejor a la letra I. Cuando quieras, te espera la letra O."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_i7"]
+script = ExtResource("2_line")
+text = "¡Qué bien aprendes! La I ya es tu amiga. ¡La O tiene muchas ganas de conocerte!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_i8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Hoy practicaste mucho con la letra I. ¿Vamos después con la O?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_i9"]
+script = ExtResource("5_choice")
+
+[sub_resource type="Resource" id="Resource_i10"]
+script = ExtResource("4_tpl")
+id = &"i_pick"
+title = "Toca la I"
+instruction = "Toca la letra I."
+hints = PackedStringArray("Busca la letra que suena «iii», como cuando estiras la boca como un ratoncito.", "La I es un palito derechito, muy derechito.", "Adivina, adivinanza: soy flaquita y derechita, como un palito. ¿Quién soy?", "Mira la I grande que te muestro aquí arriba. Quité algunas letras: busca una igual.")
+hints_spoken = PackedStringArray("Busca la letra que suena iiii, como cuando estiras la boca como un ratoncito.")
+generator = SubResource("Resource_i9")
+
+[sub_resource type="Resource" id="Resource_i11"]
+script = ExtResource("5_choice")
+mode = 4
+
+[sub_resource type="Resource" id="Resource_i12"]
+script = ExtResource("4_tpl")
+id = &"i_sound"
+title = "¿Qué vocal suena así?"
+instruction = "Moki dice «iii». ¿Qué vocal suena así?"
+instruction_spoken = "Moki dice iiii. ¿Qué vocal suena así?"
+hints = PackedStringArray("Di «iii» tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir «iii» estiras la boca como un ratoncito. ¿Qué vocal se dice así?", "Los ratoncitos dicen «iii». ¿Qué vocal suena como un ratoncito?", "Quité algunas vocales. Di «iii» otra vez y mira las que quedan.")
+hints_spoken = PackedStringArray("Di iiii tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir iiii estiras la boca como un ratoncito. ¿Qué vocal se dice así?", "Los ratoncitos dicen iiii. ¿Qué vocal suena como un ratoncito?", "Quité algunas vocales. Di iiii otra vez y mira las que quedan.")
+generator = SubResource("Resource_i11")
+
+[sub_resource type="Resource" id="Resource_i13"]
+script = ExtResource("6_search")
+
+[sub_resource type="Resource" id="Resource_i14"]
+script = ExtResource("4_tpl")
+id = &"i_grid"
+title = "Busca todas las I"
+view_type = 1
+stage = 1
+instruction = "Busca todas las I y tócalas una por una."
+hints = PackedStringArray("Toca cada letra I que veas. ¡Puede haber varias!", "Fíjate en las letras que son un palito derechito.", "La T también tiene un palito, pero lleva encima un techo largo, como una mesa. ¿Cuáles son solo un palito?", "Compara cada letra con la I de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_i13")
+
+[sub_resource type="Resource" id="Resource_i15"]
+script = ExtResource("5_choice")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_i16"]
+script = ExtResource("4_tpl")
+id = &"i_odd"
+title = "¿Cuál no es I?"
+stage = 1
+instruction = "Todas son I menos una. ¿Cuál NO es una I?"
+hints = PackedStringArray("Aquí hay muchas I vestidas de distinta forma. Una letra es diferente: ¡búscala!", "Mira cada letra: la I es solo un palito derechito, sin brazos ni curvas.", "Si todas fueran lápices, ¿cuál no estaría derechito?", "Compara cada letra con la I de aquí arriba. Quité algunas I para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_i15")
+
+[sub_resource type="Resource" id="Resource_i17"]
+script = ExtResource("7_wordimg")
+
+[sub_resource type="Resource" id="Resource_i18"]
+script = ExtResource("4_tpl")
+id = &"i_pick_image"
+title = "¿Qué dibujo empieza con I?"
+stage = 2
+instruction = "¿Qué dibujo empieza con I?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «iii»?", "Escucha solo el primer sonido de cada palabra.", "«Iglú» empieza con I. ¿Qué dibujo empieza igual que iglú?", "Quité algunos dibujos. Mira la I de aquí arriba y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con iiii?", "", "Iglú empieza con I. ¿Qué dibujo empieza igual que iglú?")
+generator = SubResource("Resource_i17")
+
+[sub_resource type="Resource" id="Resource_i19"]
+script = ExtResource("7_wordimg")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_i20"]
+script = ExtResource("4_tpl")
+id = &"i_initial"
+title = "¿Con qué letra empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué letra empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es el mismo que el de «iglú».", "Para decir ese primer sonido estiras la boca como un ratoncito. ¿Qué letra hace ese sonido?", "Quité algunas letras para que sea más fácil. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray("Di {word} despacito. ¿Qué sonido escuchas primero?", "El primer sonido de {word} es el mismo que el de iglú.", "", "Quité algunas letras para que sea más fácil. Di {word} otra vez, despacito.")
+generator = SubResource("Resource_i19")
+
+[sub_resource type="Resource" id="Resource_i21"]
+script = ExtResource("5_choice")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_i22"]
+script = ExtResource("4_tpl")
+id = &"i_disguised"
+title = "La I disfrazada"
+stage = 3
+difficulty_min = 2
+instruction = "Las letras se disfrazaron con otros colores y formas. ¿Puedes encontrar {letter_name}?"
+hints = PackedStringArray("Aunque cambie de color o de tamaño, la I sigue siendo la I. ¡Y la i pequeñita también es I!", "No te fijes en el color: fíjate en su forma.", "Si te pones un gorro sigues siendo tú. ¿Qué letra sigue siendo la I aunque esté disfrazada?", "Mira la letra de aquí arriba y busca la que tiene su misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_i21")
+
+[sub_resource type="Resource" id="Resource_i23"]
+script = ExtResource("6_search")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_i24"]
+script = ExtResource("4_tpl")
+id = &"i_word"
+title = "Las I de la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las I que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las I.", "Busca las letras que son un palito derechito.", "Cuando dices la palabra, en cada I estiras la boca como un ratoncito: «iii». ¿Dónde la estiras?", "Compara cada letra de la palabra con la I de aquí arriba.")
+hints_spoken = PackedStringArray("", "", "Cuando dices la palabra, en cada I estiras la boca como un ratoncito: iiii. ¿Dónde la estiras?")
+generator = SubResource("Resource_i23")
+
+[sub_resource type="Resource" id="Resource_i25"]
+script = ExtResource("6_search")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_i26"]
+script = ExtResource("4_tpl")
+id = &"i_hidden"
+title = "La I escondida"
+view_type = 1
+stage = 3
+instruction = "¡La letra I se escondió entre los juguetes! Encuentra todas las I."
+hints = PackedStringArray("Busca entre los dibujos una letra que sea I.", "La I es un palito derechito, muy derechito.", "Soy una letra flaquita como un palito y me escondí entre los juguetes. ¿Me ves?", "Quité algunas cosas para que sea más fácil. Compara con la I de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_i25")
+
+[sub_resource type="Resource" id="Resource_i27"]
+script = ExtResource("5_choice")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_i28"]
+script = ExtResource("4_tpl")
+id = &"i_case"
+title = "Grande y pequeñita"
+stage = 3
+instruction = "Esta es la {shown}. ¿Dónde está su pareja {pair}?"
+hints = PackedStringArray("Cada letra tiene una forma grande y una pequeñita. Busca la pareja {pair} de la {shown}.", "La I grande es un palito derechito; la i pequeñita es un palito con un puntito encima.", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, «iii». ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena «iii»?")
+hints_spoken = PackedStringArray("", "", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, iiii. ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena iiii?")
+generator = SubResource("Resource_i27")
+
+[sub_resource type="Resource" id="Resource_i29"]
+script = ExtResource("7_wordimg")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_i30"]
+script = ExtResource("4_tpl")
+id = &"i_sort"
+title = "Cesta de la I"
+view_type = 2
+stage = 4
+instruction = "Pon en la cesta de la I los dibujos que empiezan con I. Los demás, en la otra cesta."
+hints = PackedStringArray("Di el nombre de cada dibujo. Si empieza con «iii», va con la I.", "Escucha solo el primer sonido de cada palabra.", "«Iglú» empieza con I, «casa» no. ¿Qué dibujos suenan como iglú al principio?", "Mira la I de la cesta y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo. Si empieza con iiii, va con la I.", "", "Iglú empieza con I, casa no. ¿Qué dibujos suenan como iglú al principio?")
+generator = SubResource("Resource_i29")
+
+[sub_resource type="Resource" id="Resource_i31"]
+script = ExtResource("6_search")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_i32"]
+script = ExtResource("4_tpl")
+id = &"i_mixed"
+title = "Grandes y pequeñitas"
+view_type = 1
+stage = 4
+instruction = "Busca todas las I, grandes y pequeñitas, y tócalas."
+hints = PackedStringArray("Toca cada I grande y cada i pequeñita. ¡Hay de las dos!", "La I grande es un palito derechito; la i pequeñita es un palito con un puntito encima.", "La j pequeñita también tiene puntito, pero abajo se dobla como un anzuelo. ¿Cuáles son derechitas?", "Mira la I de aquí arriba. Recuerda que la i pequeñita también cuenta.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_i31")
+
+[resource]
+script = ExtResource("3_level")
+id = &"letters_i"
+title = "La letra I"
+objective = "Reconocer la vocal I (mayúscula y minúscula), distinguirla de otras letras, identificar su sonido «iii», asociarla con palabras que empiezan con I y encontrarla en distintos contextos."
+concept_ids = Array[StringName]([&"letter_i"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_i1"), SubResource("Resource_i2"), SubResource("Resource_i3"), SubResource("Resource_i4"), SubResource("Resource_i5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_i6"), SubResource("Resource_i7"), SubResource("Resource_i8")])
+reinforce_lines = PackedStringArray("La I suena «iii», como un ratoncito.", "La i pequeñita lleva su puntito.", "La I es derechita, como un palito.")
+templates = Array[ExtResource("4_tpl")]([SubResource("Resource_i10"), SubResource("Resource_i12"), SubResource("Resource_i14"), SubResource("Resource_i16"), SubResource("Resource_i18"), SubResource("Resource_i20"), SubResource("Resource_i22"), SubResource("Resource_i24"), SubResource("Resource_i26"), SubResource("Resource_i28"), SubResource("Resource_i30"), SubResource("Resource_i32")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"letters_o"])

@@ -213,4 +213,13 @@ func _apply_saved(data: Dictionary, _saved_at: int) -> void:
 			_data["unlocked_worlds"].append(String(world.id))
 			if not world.levels.is_empty():
 				_data["unlocked_levels"].append(String(world.levels[0].id))
+	# Desbloqueo retroactivo: un nivel ya completado abre sus siguientes aunque
+	# la partida sea de antes de que existieran (p. ej. la E tras la A).
+	for world: WorldDefinition in catalog.worlds:
+		for level: LevelDefinition in world.levels:
+			if level == null or times_completed(level.id) <= 0:
+				continue
+			for unlocked: StringName in level.unlocks:
+				if not _data["unlocked_levels"].has(String(unlocked)):
+					_data["unlocked_levels"].append(String(unlocked))
 	progress_changed.emit()

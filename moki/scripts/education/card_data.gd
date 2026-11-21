@@ -8,6 +8,8 @@ var kind: Kind = Kind.LETTER
 ## Letra o palabra que se muestra (para IMAGE, la palabra se usa solo como "spoken").
 var text: String = ""
 var texture: Texture2D
+## IMAGE sin textura: emoji provisional (WordEntry.glyph).
+var glyph: String = ""
 ## Índice de tipografía en ContentBank (0 = la del juego).
 var font_index: int = 0
 var font_size: int = 110
@@ -34,6 +36,7 @@ static func image(entry: WordEntry) -> CardData:
 	card.kind = Kind.IMAGE
 	card.text = entry.word
 	card.texture = entry.texture
+	card.glyph = entry.glyph if entry.texture == null else ""
 	card.spoken = entry.spoken_word()
 	return card
 

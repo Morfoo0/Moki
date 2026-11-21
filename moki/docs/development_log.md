@@ -62,7 +62,8 @@
 - [x] Motor de niveles y lecciones dinámicas (base).
 - [x] Actividades (prototipo: Mundo Letras · Nivel 1, letra A).
 - [x] Progresión por niveles y progreso persistente.
-- [ ] Resto de niveles de Letras y mundos Números, Figuras, Combinación y Repaso.
+- [x] Mundo Letras completo: vocales A, E, I, O, U.
+- [ ] Mundos Números, Figuras, Combinación y Repaso.
 
 ### Notas — Sistema educativo (2026-11-20)
 - Nivel = objetivo permanente; lección = sesión generada de 5–8 actividades, distinta cada vez (historial, firmas de contenido, puntuación ponderada, sin repetir plantilla ni vista seguidas).
@@ -78,6 +79,19 @@
 - **Arte recomendado**: más imágenes de palabras con A (avión, abeja, árbol, araña, anillo); la "alfombra" actual (vista desde arriba) se reconoce con dificultad. Iconos para los botones de ayuda y escuchar.
 - **Limitación conocida**: con solo 3 vistas, los refuerzos para un niño con dificultades suelen ser la cesta de clasificar (es la única vista distinta disponible); mejorará al añadir más tipos de actividad.
 - Pruebas: motor (23 comprobaciones: 2.700 instancias generadas válidas, ayuda progresiva, 20 lecciones con niño que acierta y 12 con niño con dificultades, separación de sistemas), interfaz (34: navegación, guía, introducción, lección completa con ratón y dedo, pistas, salto suave, final, repetición distinta, registro), persistencia entre dos procesos, y regresión del cuidado (58).
+
+### Notas — Mundo Letras completo: E, I, O, U (2026-11-21)
+- Cuatro niveles nuevos con datos (banco + nivel por vocal) sobre el mismo motor; la A no cambia salvo `unlocks = [letters_e]` (antes no desbloqueaba nada).
+- Guía: Moki (Chibbi era el nombre antiguo del personaje). Mismo `MokiGuide`, mismas pistas progresivas y salto suave.
+- 12 dinámicas por vocal: las 9 de la A con textos propios de cada vocal + 3 nuevas (¿qué vocal suena así?, grande y pequeñita, todas grandes y pequeñitas). Cada etapa tiene al menos 2 dinámicas, así que la primera y la última actividad también varían (en la A siempre son "toca la A" y la cesta).
+- Refuerzo del concepto tras cada acierto (`reinforce_lines`) y cierres que invitan a la siguiente vocal.
+- Desbloqueo retroactivo al cargar: las partidas con la A ya completada abren la E.
+- **Dibujos provisionales con emoji** (decisión del usuario): solo había estrella (E) y oso (O) en la habitación. Se comprobó el render en color en Windows; dependen de la fuente de emoji del sistema. Descartados: `1️⃣` para "uno" (se veía una caja vacía) y el estante (no se reconoce).
+- Corregido: la cesta de clasificar mostraba vacíos los dibujos emoji (solo pintaba texturas) y la tarjeta de sonido se salía del recuadro.
+- **Voz**: sigue desactivada (decisión del usuario: se buscará una voz no robótica). La actividad de sonido se apoya en el texto («eee») y en describir la boca; cada frase lleva ya su texto hablado (`spoken`) para cuando haya voz.
+- **Arte pendiente (prioridad)**: PNG para sustituir los emoji, sobre todo U (solo uvas y unicornio: faltan uña, uniforme, uno) e iguana (se parece a una lagartija). El resto: elefante, escoba, erizo, espejo, isla, imán, iglesia, oveja, ojo, oruga, ola, oreja.
+- **Limitación conocida del constructor de lecciones** (afecta también a la A; no se cambió para no alterar la A): en ~55 % de las lecciones una plantilla aparece dos veces (con contenido distinto), porque los huecos extra solo eligen entre las 2 etapas más débiles y la regla de no repetir vista. Propuesta: en `LessonBuilder._ordered_candidates`, descartar plantillas ya usadas en la lección cuando haya alternativas válidas.
+- Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada): motor (755.380 comprobaciones, 34.200 actividades generadas en las 5 vocales: respuestas válidas, pistas rellenas, la pista visual nunca retira la respuesta, dibujos "con/sin" vocal correctos, sin "l" junto a "I", 25 lecciones por vocal sin plantilla ni vista seguidas y sin lecciones consecutivas idénticas, sesiones de niño que acierta y con dificultades); progreso (37: cadena de desbloqueo, rejugar, migración de partida antigua, persistencia entre dos procesos); interfaz (112: mapa con 5 lecciones y estados, lecciones completas de A, E, I, O, U alternando ratón y toque, ayuda, cesta, final); arranque de la escena principal sin errores en consola.
 
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.

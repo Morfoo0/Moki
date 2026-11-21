@@ -113,6 +113,17 @@ Independiente del cuidado de Moki: nada en `scripts/education/` usa `NeedsManage
 - `LessonScreen`: introducción (auto o botón "Seguir") → actividades → celebración ("Otra vez" / "Mapa"). `LevelMap` y `WorldMap` se generan desde el catálogo.
 - Entrada: `_gui_input` con clic; los toques se emulan como clic (`emulate_mouse_from_touch`). En SORT: tocar tarjeta + tocar cesta, o arrastrar.
 
+### Mundo Letras (A, E, I, O, U)
+- `resources/education/worlds/letters.tres`: niveles `letters_a` … `letters_u` en orden. Cada uno tiene su `ContentBank` (`content/letters_x_bank.tres`) y su `LevelDefinition` (`levels/letters_x.tres`) con plantillas propias (las pistas describen la forma y el sonido de cada vocal); los generadores son los mismos.
+- Desbloqueo: `LevelDefinition.unlocks` (A→E→I→O→U). `EducationProgress._apply_saved()` hace además un **desbloqueo retroactivo**: un nivel ya completado abre sus `unlocks` aunque la partida sea anterior a ellos (una partida con la A completada abre la E).
+- Ampliaciones aditivas (la A no las usa y se comporta igual):
+  - `WordEntry.glyph` / `CardData.glyph`: emoji provisional cuando no hay `texture`. `ActivityCard` y `SortBin` lo dibujan con la fuente de emoji del sistema (`ActivityCard.emoji_font()`: Segoe UI Emoji / Apple Color Emoji / Noto Color Emoji). Asignar `texture` en el `.tres` lo sustituye sin tocar código.
+  - `ContentBank.sound` («eee»), `ContentBank.vowel_peers()` (las otras vocales) y `ContentBank.confusable_with_upper` (minúsculas que no se mezclan con la mayúscula objetivo: "l" junto a "I").
+  - `LetterChoiceGenerator`: modos `MATCH_CASE` (enunciado mayúscula → elegir minúscula; desde dificultad 3, a veces al revés) y `SOUND` (enunciado con el sonido → elegir la vocal entre otras vocales). Ambos sin tarjeta modelo (sería la respuesta): la pista visual solo retira opciones.
+  - `LetterSearchGenerator`: modo `MIXED_CASE` (cuadrícula de mayúsculas y minúsculas; tocar todas las de la vocal).
+  - Los modos nuevos van **al final** de cada enum: los `.tres` guardan el modo como número.
+  - `LevelDefinition.reinforce_lines`: tras un acierto, `LessonSession` añade una de estas frases a la felicitación.
+
 ### Añadir contenido
 - Nivel nuevo de letras: un `ContentBank` + un `LevelDefinition` con las mismas plantillas (o variantes) y añadirlo al `WorldDefinition`.
 - Otro tipo de conocimiento (números, figuras, cantidades, memoria…): nuevos generadores (y, si hace falta, nuevas vistas) reutilizando `LessonBuilder`, `LessonSession`, `HintLadder`, `MokiGuide` y `EducationProgress`.

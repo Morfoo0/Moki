@@ -14,6 +14,9 @@ extends Resource
 @export var intro: Array[DialogueLine] = []
 ## Frases de cierre (se elige una).
 @export var outro: Array[DialogueLine] = []
+## Frases cortas que refuerzan el concepto tras un acierto (se añade una a la
+## felicitación). Vacío = solo la felicitación.
+@export var reinforce_lines: PackedStringArray = []
 @export var templates: Array[ActivityTemplate] = []
 @export var content: ContentBank
 @export_range(1, 12) var lesson_min: int = 5

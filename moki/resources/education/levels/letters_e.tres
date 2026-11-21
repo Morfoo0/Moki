@@ -1,0 +1,236 @@
+[gd_resource type="Resource" script_class="LevelDefinition" load_steps=40 format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/letters_e_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_choice_generator.gd" id="5_choice"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_search_generator.gd" id="6_search"]
+[ext_resource type="Script" path="res://scripts/education/generators/word_image_generator.gd" id="7_wordimg"]
+
+[sub_resource type="Resource" id="Resource_e1"]
+script = ExtResource("2_line")
+text = "¡Hola otra vez! Soy Moki. Hoy vamos a conocer a la letra E."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_e2"]
+script = ExtResource("2_line")
+text = "La E suena «eee», como cuando sonríes enseñando los dientes. ¡Sonríe conmigo: eee!"
+spoken = "La E suena eeee, como cuando sonríes enseñando los dientes. ¡Sonríe conmigo: eee!"
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_e3"]
+script = ExtResource("2_line")
+text = "La E grande tiene un palito y tres rayitas, como un peine. La e pequeñita es redondita."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_e4"]
+script = ExtResource("2_line")
+text = "Yo te digo qué hacer y tú tocas la respuesta. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_e5"]
+script = ExtResource("2_line")
+text = "La E está en muchas cosas: en las estrellas del cielo, en el elefante del zoológico y en el elote que comes."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_e6"]
+script = ExtResource("2_line")
+text = "¡Lo hiciste genial! Ya conoces mejor a la letra E. Cuando quieras, te espera la letra I."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_e7"]
+script = ExtResource("2_line")
+text = "¡Qué bien aprendes! La E ya es tu amiga. ¡La I tiene muchas ganas de conocerte!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_e8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Hoy practicaste mucho con la letra E. ¿Vamos después con la I?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_e9"]
+script = ExtResource("5_choice")
+
+[sub_resource type="Resource" id="Resource_e10"]
+script = ExtResource("4_tpl")
+id = &"e_pick"
+title = "Toca la E"
+instruction = "Toca la letra E."
+hints = PackedStringArray("Busca la letra que suena «eee», como cuando sonríes enseñando los dientes.", "La E tiene un palito y tres rayitas hacia un lado, como un peine.", "Adivina, adivinanza: tengo un palito y tres rayitas, y parezco un peine. ¿Quién soy?", "Mira la E grande que te muestro aquí arriba. Quité algunas letras: busca una igual.")
+hints_spoken = PackedStringArray("Busca la letra que suena eeee, como cuando sonríes enseñando los dientes.")
+generator = SubResource("Resource_e9")
+
+[sub_resource type="Resource" id="Resource_e11"]
+script = ExtResource("5_choice")
+mode = 4
+
+[sub_resource type="Resource" id="Resource_e12"]
+script = ExtResource("4_tpl")
+id = &"e_sound"
+title = "¿Qué vocal suena así?"
+instruction = "Moki dice «eee». ¿Qué vocal suena así?"
+instruction_spoken = "Moki dice eeee. ¿Qué vocal suena así?"
+hints = PackedStringArray("Di «eee» tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir «eee» sonríes enseñando los dientes. ¿Qué vocal se dice así?", "«Elote» empieza con ese sonido: «eee». ¿Qué vocal suena al principio de elote?", "Quité algunas vocales. Di «eee» otra vez y mira las que quedan.")
+hints_spoken = PackedStringArray("Di eeee tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir eeee sonríes enseñando los dientes. ¿Qué vocal se dice así?", "Elote empieza con ese sonido: eeee. ¿Qué vocal suena al principio de elote?", "Quité algunas vocales. Di eeee otra vez y mira las que quedan.")
+generator = SubResource("Resource_e11")
+
+[sub_resource type="Resource" id="Resource_e13"]
+script = ExtResource("6_search")
+
+[sub_resource type="Resource" id="Resource_e14"]
+script = ExtResource("4_tpl")
+id = &"e_grid"
+title = "Busca todas las E"
+view_type = 1
+stage = 1
+instruction = "Busca todas las E y tócalas una por una."
+hints = PackedStringArray("Toca cada letra E que veas. ¡Puede haber varias!", "Fíjate en las letras con un palito y tres rayitas.", "La F se parece a la E, pero solo tiene dos rayitas. ¿Cuáles tienen tres?", "Compara cada letra con la E de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_e13")
+
+[sub_resource type="Resource" id="Resource_e15"]
+script = ExtResource("5_choice")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_e16"]
+script = ExtResource("4_tpl")
+id = &"e_odd"
+title = "¿Cuál no es E?"
+stage = 1
+instruction = "Todas son E menos una. ¿Cuál NO es una E?"
+hints = PackedStringArray("Aquí hay muchas E vestidas de distinta forma. Una letra es diferente: ¡búscala!", "Cuenta las rayitas de cada letra: la E siempre tiene tres.", "Si todas fueran peines, ¿cuál no tendría sus tres dientes?", "Compara cada letra con la E de aquí arriba. Quité algunas E para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_e15")
+
+[sub_resource type="Resource" id="Resource_e17"]
+script = ExtResource("7_wordimg")
+
+[sub_resource type="Resource" id="Resource_e18"]
+script = ExtResource("4_tpl")
+id = &"e_pick_image"
+title = "¿Qué dibujo empieza con E?"
+stage = 2
+instruction = "¿Qué dibujo empieza con E?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «eee»?", "Escucha solo el primer sonido de cada palabra.", "«Elote» empieza con E. ¿Qué dibujo empieza igual que elote?", "Quité algunos dibujos. Mira la E de aquí arriba y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con eeee?", "", "Elote empieza con E. ¿Qué dibujo empieza igual que elote?")
+generator = SubResource("Resource_e17")
+
+[sub_resource type="Resource" id="Resource_e19"]
+script = ExtResource("7_wordimg")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_e20"]
+script = ExtResource("4_tpl")
+id = &"e_initial"
+title = "¿Con qué letra empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué letra empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es el mismo que el de «elote».", "Para decir ese primer sonido sonríes enseñando los dientes. ¿Qué letra hace ese sonido?", "Quité algunas letras para que sea más fácil. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray("Di {word} despacito. ¿Qué sonido escuchas primero?", "El primer sonido de {word} es el mismo que el de elote.", "", "Quité algunas letras para que sea más fácil. Di {word} otra vez, despacito.")
+generator = SubResource("Resource_e19")
+
+[sub_resource type="Resource" id="Resource_e21"]
+script = ExtResource("5_choice")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_e22"]
+script = ExtResource("4_tpl")
+id = &"e_disguised"
+title = "La E disfrazada"
+stage = 3
+difficulty_min = 2
+instruction = "Las letras se disfrazaron con otros colores y formas. ¿Puedes encontrar {letter_name}?"
+hints = PackedStringArray("Aunque cambie de color o de tamaño, la E sigue siendo la E. ¡Y la e pequeñita también es E!", "No te fijes en el color: fíjate en su forma.", "Si te pones unas gafas sigues siendo tú. ¿Qué letra sigue siendo la E aunque esté disfrazada?", "Mira la letra de aquí arriba y busca la que tiene su misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_e21")
+
+[sub_resource type="Resource" id="Resource_e23"]
+script = ExtResource("6_search")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_e24"]
+script = ExtResource("4_tpl")
+id = &"e_word"
+title = "Las E de la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las E que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las E.", "Busca las letras con un palito y tres rayitas.", "Cuando dices la palabra, en cada E sonríes un poquito: «eee». ¿Dónde sonríes?", "Compara cada letra de la palabra con la E de aquí arriba.")
+hints_spoken = PackedStringArray("", "", "Cuando dices la palabra, en cada E sonríes un poquito: eeee. ¿Dónde sonríes?")
+generator = SubResource("Resource_e23")
+
+[sub_resource type="Resource" id="Resource_e25"]
+script = ExtResource("6_search")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_e26"]
+script = ExtResource("4_tpl")
+id = &"e_hidden"
+title = "La E escondida"
+view_type = 1
+stage = 3
+instruction = "¡La letra E se escondió entre los juguetes! Encuentra todas las E."
+hints = PackedStringArray("Busca entre los dibujos una letra que sea E.", "La E tiene un palito y tres rayitas hacia un lado, como un peine.", "Soy una letra con tres rayitas, como un peine, y me escondí entre los juguetes. ¿Me ves?", "Quité algunas cosas para que sea más fácil. Compara con la E de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_e25")
+
+[sub_resource type="Resource" id="Resource_e27"]
+script = ExtResource("5_choice")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_e28"]
+script = ExtResource("4_tpl")
+id = &"e_case"
+title = "Grande y pequeñita"
+stage = 3
+instruction = "Esta es la {shown}. ¿Dónde está su pareja {pair}?"
+hints = PackedStringArray("Cada letra tiene una forma grande y una pequeñita. Busca la pareja {pair} de la {shown}.", "La E grande tiene tres rayitas; la e pequeñita es redondita, con una rayita en medio.", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, «eee». ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena «eee»?")
+hints_spoken = PackedStringArray("", "", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, eeee. ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena eeee?")
+generator = SubResource("Resource_e27")
+
+[sub_resource type="Resource" id="Resource_e29"]
+script = ExtResource("7_wordimg")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_e30"]
+script = ExtResource("4_tpl")
+id = &"e_sort"
+title = "Cesta de la E"
+view_type = 2
+stage = 4
+instruction = "Pon en la cesta de la E los dibujos que empiezan con E. Los demás, en la otra cesta."
+hints = PackedStringArray("Di el nombre de cada dibujo. Si empieza con «eee», va con la E.", "Escucha solo el primer sonido de cada palabra.", "«Elote» empieza con E, «mesa» no. ¿Qué dibujos suenan como elote al principio?", "Mira la E de la cesta y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo. Si empieza con eeee, va con la E.", "", "Elote empieza con E, mesa no. ¿Qué dibujos suenan como elote al principio?")
+generator = SubResource("Resource_e29")
+
+[sub_resource type="Resource" id="Resource_e31"]
+script = ExtResource("6_search")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_e32"]
+script = ExtResource("4_tpl")
+id = &"e_mixed"
+title = "Grandes y pequeñitas"
+view_type = 1
+stage = 4
+instruction = "Busca todas las E, grandes y pequeñitas, y tócalas."
+hints = PackedStringArray("Toca cada E grande y cada e pequeñita. ¡Hay de las dos!", "La E grande tiene tres rayitas; la e pequeñita es redondita, con una rayita en medio.", "La c pequeñita se parece a la e, pero no tiene rayita en medio. ¿Cuáles sí la tienen?", "Mira la E de aquí arriba. Recuerda que la e pequeñita también cuenta.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_e31")
+
+[resource]
+script = ExtResource("3_level")
+id = &"letters_e"
+title = "La letra E"
+objective = "Reconocer la vocal E (mayúscula y minúscula), distinguirla de otras letras, identificar su sonido «eee», asociarla con palabras que empiezan con E y encontrarla en distintos contextos."
+concept_ids = Array[StringName]([&"letter_e"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_e1"), SubResource("Resource_e2"), SubResource("Resource_e3"), SubResource("Resource_e4"), SubResource("Resource_e5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_e6"), SubResource("Resource_e7"), SubResource("Resource_e8")])
+reinforce_lines = PackedStringArray("La E suena «eee».", "La E tiene tres rayitas, como un peine.", "¡Con la E se sonríe: eee!")
+templates = Array[ExtResource("4_tpl")]([SubResource("Resource_e10"), SubResource("Resource_e12"), SubResource("Resource_e14"), SubResource("Resource_e16"), SubResource("Resource_e18"), SubResource("Resource_e20"), SubResource("Resource_e22"), SubResource("Resource_e24"), SubResource("Resource_e26"), SubResource("Resource_e28"), SubResource("Resource_e30"), SubResource("Resource_e32")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"letters_i"])

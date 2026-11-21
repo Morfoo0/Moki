@@ -1,0 +1,236 @@
+[gd_resource type="Resource" script_class="LevelDefinition" load_steps=40 format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/letters_o_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_choice_generator.gd" id="5_choice"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_search_generator.gd" id="6_search"]
+[ext_resource type="Script" path="res://scripts/education/generators/word_image_generator.gd" id="7_wordimg"]
+
+[sub_resource type="Resource" id="Resource_o1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy vamos a conocer a la letra O."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_o2"]
+script = ExtResource("2_line")
+text = "La O suena «ooo», como cuando algo te sorprende: ¡oh! Pon la boca redonda conmigo."
+spoken = "La O suena oooo, como cuando algo te sorprende: ¡oh! Pon la boca redonda conmigo."
+kind = 1
+mood = 3
+
+[sub_resource type="Resource" id="Resource_o3"]
+script = ExtResource("2_line")
+text = "La O es redonda, como una pelota. La o pequeñita es igual, pero más chiquita."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_o4"]
+script = ExtResource("2_line")
+text = "Yo te digo qué hacer y tú tocas la respuesta. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_o5"]
+script = ExtResource("2_line")
+text = "La O está en muchas cosas: en el oso de peluche, en tus ojos y en las olas del mar."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_o6"]
+script = ExtResource("2_line")
+text = "¡Lo hiciste genial! Ya conoces mejor a la letra O. Cuando quieras, te espera la letra U."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_o7"]
+script = ExtResource("2_line")
+text = "¡Qué bien aprendes! La O ya es tu amiga. ¡La U tiene muchas ganas de conocerte!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_o8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Hoy practicaste mucho con la letra O. ¿Vamos después con la U?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_o9"]
+script = ExtResource("5_choice")
+
+[sub_resource type="Resource" id="Resource_o10"]
+script = ExtResource("4_tpl")
+id = &"o_pick"
+title = "Toca la O"
+instruction = "Toca la letra O."
+hints = PackedStringArray("Busca la letra que suena «ooo», como cuando pones la boca redonda, como cuando algo te sorprende.", "La O es redonda y cerrada, como una pelota o una rueda.", "Adivina, adivinanza: soy redonda como una rueda y no tengo principio ni final. ¿Quién soy?", "Mira la O grande que te muestro aquí arriba. Quité algunas letras: busca una igual.")
+hints_spoken = PackedStringArray("Busca la letra que suena oooo, como cuando pones la boca redonda, como cuando algo te sorprende.")
+generator = SubResource("Resource_o9")
+
+[sub_resource type="Resource" id="Resource_o11"]
+script = ExtResource("5_choice")
+mode = 4
+
+[sub_resource type="Resource" id="Resource_o12"]
+script = ExtResource("4_tpl")
+id = &"o_sound"
+title = "¿Qué vocal suena así?"
+instruction = "Moki dice «ooo». ¿Qué vocal suena así?"
+instruction_spoken = "Moki dice oooo. ¿Qué vocal suena así?"
+hints = PackedStringArray("Di «ooo» tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir «ooo» pones la boca redonda, como cuando algo te sorprende. ¿Qué vocal se dice así?", "Cuando algo te sorprende dices «¡oh!». ¿Qué vocal suena así?", "Quité algunas vocales. Di «ooo» otra vez y mira las que quedan.")
+hints_spoken = PackedStringArray("Di oooo tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir oooo pones la boca redonda, como cuando algo te sorprende. ¿Qué vocal se dice así?", "Cuando algo te sorprende dices ¡oh!. ¿Qué vocal suena así?", "Quité algunas vocales. Di oooo otra vez y mira las que quedan.")
+generator = SubResource("Resource_o11")
+
+[sub_resource type="Resource" id="Resource_o13"]
+script = ExtResource("6_search")
+
+[sub_resource type="Resource" id="Resource_o14"]
+script = ExtResource("4_tpl")
+id = &"o_grid"
+title = "Busca todas las O"
+view_type = 1
+stage = 1
+instruction = "Busca todas las O y tócalas una por una."
+hints = PackedStringArray("Toca cada letra O que veas. ¡Puede haber varias!", "Fíjate en las letras redondas y cerradas.", "La C también es redonda, pero está abierta, como una galleta mordida. ¿Cuáles están cerradas?", "Compara cada letra con la O de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_o13")
+
+[sub_resource type="Resource" id="Resource_o15"]
+script = ExtResource("5_choice")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_o16"]
+script = ExtResource("4_tpl")
+id = &"o_odd"
+title = "¿Cuál no es O?"
+stage = 1
+instruction = "Todas son O menos una. ¿Cuál NO es una O?"
+hints = PackedStringArray("Aquí hay muchas O vestidas de distinta forma. Una letra es diferente: ¡búscala!", "Fíjate si cada letra está cerrada y redondita, sin colita: así es la O.", "Si todas fueran ruedas, ¿cuál no podría rodar?", "Compara cada letra con la O de aquí arriba. Quité algunas O para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_o15")
+
+[sub_resource type="Resource" id="Resource_o17"]
+script = ExtResource("7_wordimg")
+
+[sub_resource type="Resource" id="Resource_o18"]
+script = ExtResource("4_tpl")
+id = &"o_pick_image"
+title = "¿Qué dibujo empieza con O?"
+stage = 2
+instruction = "¿Qué dibujo empieza con O?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «ooo»?", "Escucha solo el primer sonido de cada palabra.", "«Olla» empieza con O. ¿Qué dibujo empieza igual que olla?", "Quité algunos dibujos. Mira la O de aquí arriba y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con oooo?", "", "Olla empieza con O. ¿Qué dibujo empieza igual que olla?")
+generator = SubResource("Resource_o17")
+
+[sub_resource type="Resource" id="Resource_o19"]
+script = ExtResource("7_wordimg")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_o20"]
+script = ExtResource("4_tpl")
+id = &"o_initial"
+title = "¿Con qué letra empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué letra empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es el mismo que el de «olla».", "Para decir ese primer sonido pones la boca redonda, como cuando algo te sorprende. ¿Qué letra hace ese sonido?", "Quité algunas letras para que sea más fácil. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray("Di {word} despacito. ¿Qué sonido escuchas primero?", "El primer sonido de {word} es el mismo que el de olla.", "", "Quité algunas letras para que sea más fácil. Di {word} otra vez, despacito.")
+generator = SubResource("Resource_o19")
+
+[sub_resource type="Resource" id="Resource_o21"]
+script = ExtResource("5_choice")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_o22"]
+script = ExtResource("4_tpl")
+id = &"o_disguised"
+title = "La O disfrazada"
+stage = 3
+difficulty_min = 2
+instruction = "Las letras se disfrazaron con otros colores y formas. ¿Puedes encontrar {letter_name}?"
+hints = PackedStringArray("Aunque cambie de color o de tamaño, la O sigue siendo la O. ¡Y la o pequeñita también es O!", "No te fijes en el color: fíjate en su forma.", "Si te pones una capa sigues siendo tú. ¿Qué letra sigue siendo la O aunque esté disfrazada?", "Mira la letra de aquí arriba y busca la que tiene su misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_o21")
+
+[sub_resource type="Resource" id="Resource_o23"]
+script = ExtResource("6_search")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_o24"]
+script = ExtResource("4_tpl")
+id = &"o_word"
+title = "Las O de la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las O que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las O.", "Busca las letras redondas y cerradas.", "Cuando dices la palabra, en cada O la boca se pone redonda: «ooo». ¿Dónde se pone redonda?", "Compara cada letra de la palabra con la O de aquí arriba.")
+hints_spoken = PackedStringArray("", "", "Cuando dices la palabra, en cada O la boca se pone redonda: oooo. ¿Dónde se pone redonda?")
+generator = SubResource("Resource_o23")
+
+[sub_resource type="Resource" id="Resource_o25"]
+script = ExtResource("6_search")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_o26"]
+script = ExtResource("4_tpl")
+id = &"o_hidden"
+title = "La O escondida"
+view_type = 1
+stage = 3
+instruction = "¡La letra O se escondió entre los juguetes! Encuentra todas las O."
+hints = PackedStringArray("Busca entre los dibujos una letra que sea O.", "La O es redonda y cerrada, como una pelota o una rueda.", "Soy una letra redonda como una pelota y me escondí entre los juguetes. ¿Me ves?", "Quité algunas cosas para que sea más fácil. Compara con la O de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_o25")
+
+[sub_resource type="Resource" id="Resource_o27"]
+script = ExtResource("5_choice")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_o28"]
+script = ExtResource("4_tpl")
+id = &"o_case"
+title = "Grande y pequeñita"
+stage = 3
+instruction = "Esta es la {shown}. ¿Dónde está su pareja {pair}?"
+hints = PackedStringArray("Cada letra tiene una forma grande y una pequeñita. Busca la pareja {pair} de la {shown}.", "La O grande y la o pequeñita tienen la misma forma: las dos son redondas. Solo cambia el tamaño.", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, «ooo». ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena «ooo»?")
+hints_spoken = PackedStringArray("", "", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, oooo. ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena oooo?")
+generator = SubResource("Resource_o27")
+
+[sub_resource type="Resource" id="Resource_o29"]
+script = ExtResource("7_wordimg")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_o30"]
+script = ExtResource("4_tpl")
+id = &"o_sort"
+title = "Cesta de la O"
+view_type = 2
+stage = 4
+instruction = "Pon en la cesta de la O los dibujos que empiezan con O. Los demás, en la otra cesta."
+hints = PackedStringArray("Di el nombre de cada dibujo. Si empieza con «ooo», va con la O.", "Escucha solo el primer sonido de cada palabra.", "«Olla» empieza con O, «silla» no. ¿Qué dibujos suenan como olla al principio?", "Mira la O de la cesta y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo. Si empieza con oooo, va con la O.", "", "Olla empieza con O, silla no. ¿Qué dibujos suenan como olla al principio?")
+generator = SubResource("Resource_o29")
+
+[sub_resource type="Resource" id="Resource_o31"]
+script = ExtResource("6_search")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_o32"]
+script = ExtResource("4_tpl")
+id = &"o_mixed"
+title = "Grandes y pequeñitas"
+view_type = 1
+stage = 4
+instruction = "Busca todas las O, grandes y pequeñitas, y tócalas."
+hints = PackedStringArray("Toca cada O grande y cada o pequeñita. ¡Hay de las dos!", "La O grande y la o pequeñita tienen la misma forma: las dos son redondas. Solo cambia el tamaño.", "La c pequeñita es redonda pero está abierta, y la a lleva una colita. ¿Cuáles son redonditas y cerradas?", "Mira la O de aquí arriba. Recuerda que la o pequeñita también cuenta.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_o31")
+
+[resource]
+script = ExtResource("3_level")
+id = &"letters_o"
+title = "La letra O"
+objective = "Reconocer la vocal O (mayúscula y minúscula), distinguirla de otras letras, identificar su sonido «ooo», asociarla con palabras que empiezan con O y encontrarla en distintos contextos."
+concept_ids = Array[StringName]([&"letter_o"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_o1"), SubResource("Resource_o2"), SubResource("Resource_o3"), SubResource("Resource_o4"), SubResource("Resource_o5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_o6"), SubResource("Resource_o7"), SubResource("Resource_o8")])
+reinforce_lines = PackedStringArray("La O suena «ooo».", "La O es redonda, como una pelota.", "Con la O la boca se pone redonda.")
+templates = Array[ExtResource("4_tpl")]([SubResource("Resource_o10"), SubResource("Resource_o12"), SubResource("Resource_o14"), SubResource("Resource_o16"), SubResource("Resource_o18"), SubResource("Resource_o20"), SubResource("Resource_o22"), SubResource("Resource_o24"), SubResource("Resource_o26"), SubResource("Resource_o28"), SubResource("Resource_o30"), SubResource("Resource_o32")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"letters_u"])

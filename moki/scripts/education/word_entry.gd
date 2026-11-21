@@ -5,6 +5,9 @@ extends Resource
 
 @export var word: String = ""
 @export var texture: Texture2D
+## Emoji provisional que se muestra si no hay textura (p. ej. "🐘").
+## Para usar arte definitivo basta con asignar "texture" (tiene prioridad).
+@export var glyph: String = ""
 ## Artículo para frases ("un", "una", "unos"...).
 @export var article: String = "un"
 ## Dificultad mínima para usarla (p. ej. palabras con tilde a partir de 3).

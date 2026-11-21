@@ -184,3 +184,4 @@ intro = Array[ExtResource("2_lriqr")]([SubResource("Resource_ga7nn"), SubResourc
 outro = Array[ExtResource("2_lriqr")]([SubResource("Resource_f3577"), SubResource("Resource_sqw2d"), SubResource("Resource_e15ee")])
 templates = Array[ExtResource("4_v3711")]([SubResource("Resource_nutcr"), SubResource("Resource_p3pn5"), SubResource("Resource_3iu6t"), SubResource("Resource_vmfmu"), SubResource("Resource_a1c8m"), SubResource("Resource_mh18j"), SubResource("Resource_ufiuk"), SubResource("Resource_fiua5"), SubResource("Resource_r1h1g")])
 content = ExtResource("1_7n272")
+unlocks = Array[StringName]([&"letters_e"])

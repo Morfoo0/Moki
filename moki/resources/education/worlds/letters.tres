@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_wbe1l"]
 [ext_resource type="Resource" path="res://resources/education/levels/letters_a.tres" id="2_i02od"]
 [ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="3_2v77k"]
+[ext_resource type="Resource" path="res://resources/education/levels/letters_e.tres" id="4_lte"]
+[ext_resource type="Resource" path="res://resources/education/levels/letters_i.tres" id="5_lti"]
+[ext_resource type="Resource" path="res://resources/education/levels/letters_o.tres" id="6_lto"]
+[ext_resource type="Resource" path="res://resources/education/levels/letters_u.tres" id="7_ltu"]
 
 [resource]
 script = ExtResource("3_2v77k")
@@ -10,5 +14,5 @@ id = &"letters"
 title = "Letras"
 color = Color(0.9098039, 0.3647059, 0.24705882, 1)
 unlocked_by_default = true
-levels = Array[ExtResource("1_wbe1l")]([ExtResource("2_i02od")])
-upcoming_levels = PackedStringArray("La letra E", "La letra I", "La letra O", "La letra U")
+levels = Array[ExtResource("1_wbe1l")]([ExtResource("2_i02od"), ExtResource("4_lte"), ExtResource("5_lti"), ExtResource("6_lto"), ExtResource("7_ltu")])
+upcoming_levels = PackedStringArray()

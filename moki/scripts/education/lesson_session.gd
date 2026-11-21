@@ -178,6 +178,8 @@ func _complete(skipped: bool) -> void:
 		line = _line(PRAISE_FIRST_TRY, DialogueLine.Kind.PRAISE, Moki.Mood.LAUGHING)
 	else:
 		line = _line(PRAISE_EFFORT, DialogueLine.Kind.PRAISE, Moki.Mood.HAPPY)
+	if not skipped and not level.reinforce_lines.is_empty():
+		line.text += " " + level.reinforce_lines[rng.randi_range(0, level.reinforce_lines.size() - 1)]
 	activity_finished.emit(result, line)
 
 

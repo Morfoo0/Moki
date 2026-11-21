@@ -1,0 +1,235 @@
+[gd_resource type="Resource" script_class="LevelDefinition" load_steps=40 format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/letters_u_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_choice_generator.gd" id="5_choice"]
+[ext_resource type="Script" path="res://scripts/education/generators/letter_search_generator.gd" id="6_search"]
+[ext_resource type="Script" path="res://scripts/education/generators/word_image_generator.gd" id="7_wordimg"]
+
+[sub_resource type="Resource" id="Resource_u1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy conocerás a la última vocal: la letra U."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_u2"]
+script = ExtResource("2_line")
+text = "La U suena «uuu», como el búho por la noche. Pon la boquita como para dar un beso: uuu."
+spoken = "La U suena uuuu, como el búho por la noche. Pon la boquita como para dar un beso: uuu."
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_u3"]
+script = ExtResource("2_line")
+text = "La U tiene forma de vasito: abierta arriba y redondita abajo. La u pequeñita es casi igual."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_u4"]
+script = ExtResource("2_line")
+text = "Yo te digo qué hacer y tú tocas la respuesta. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_u5"]
+script = ExtResource("2_line")
+text = "La U está en muchas cosas: en las uvas que comes, en el número uno y en el unicornio de los cuentos."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_u6"]
+script = ExtResource("2_line")
+text = "¡Lo lograste! Ya conoces la U... ¡y las cinco vocales: A, E, I, O, U!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_u7"]
+script = ExtResource("2_line")
+text = "¡Qué orgulloso estoy de ti! La U ya es tu amiga. ¡Ya conoces todas las vocales!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_u8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Practicaste mucho con la U. Puedes volver a jugar con cualquier vocal cuando quieras."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_u9"]
+script = ExtResource("5_choice")
+
+[sub_resource type="Resource" id="Resource_u10"]
+script = ExtResource("4_tpl")
+id = &"u_pick"
+title = "Toca la U"
+instruction = "Toca la letra U."
+hints = PackedStringArray("Busca la letra que suena «uuu», como cuando pones la boca chiquita, como para dar un beso.", "La U tiene forma de vasito: abierta arriba y redondita abajo.", "Adivina, adivinanza: parezco un vasito, abierta por arriba y redondita por abajo. ¿Quién soy?", "Mira la U grande que te muestro aquí arriba. Quité algunas letras: busca una igual.")
+hints_spoken = PackedStringArray("Busca la letra que suena uuuu, como cuando pones la boca chiquita, como para dar un beso.")
+generator = SubResource("Resource_u9")
+
+[sub_resource type="Resource" id="Resource_u11"]
+script = ExtResource("5_choice")
+mode = 4
+
+[sub_resource type="Resource" id="Resource_u12"]
+script = ExtResource("4_tpl")
+id = &"u_sound"
+title = "¿Qué vocal suena así?"
+instruction = "Moki dice «uuu». ¿Qué vocal suena así?"
+instruction_spoken = "Moki dice uuuu. ¿Qué vocal suena así?"
+hints = PackedStringArray("Di «uuu» tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir «uuu» pones la boca chiquita, como para dar un beso. ¿Qué vocal se dice así?", "El búho canta «uuu, uuu» por la noche. ¿Qué vocal suena como el búho?", "Quité algunas vocales. Di «uuu» otra vez y mira las que quedan.")
+hints_spoken = PackedStringArray("Di uuuu tú también, despacito. ¿Qué vocal hace ese sonido?", "Para decir uuuu pones la boca chiquita, como para dar un beso. ¿Qué vocal se dice así?", "El búho canta uuu, uuu por la noche. ¿Qué vocal suena como el búho?", "Quité algunas vocales. Di uuuu otra vez y mira las que quedan.")
+generator = SubResource("Resource_u11")
+
+[sub_resource type="Resource" id="Resource_u13"]
+script = ExtResource("6_search")
+
+[sub_resource type="Resource" id="Resource_u14"]
+script = ExtResource("4_tpl")
+id = &"u_grid"
+title = "Busca todas las U"
+view_type = 1
+stage = 1
+instruction = "Busca todas las U y tócalas una por una."
+hints = PackedStringArray("Toca cada letra U que veas. ¡Puede haber varias!", "Fíjate en las letras con forma de vasito.", "La V también está abierta arriba, pero abajo tiene pico. ¿Cuáles son redonditas abajo?", "Compara cada letra con la U de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_u13")
+
+[sub_resource type="Resource" id="Resource_u15"]
+script = ExtResource("5_choice")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_u16"]
+script = ExtResource("4_tpl")
+id = &"u_odd"
+title = "¿Cuál no es U?"
+stage = 1
+instruction = "Todas son U menos una. ¿Cuál NO es una U?"
+hints = PackedStringArray("Aquí hay muchas U vestidas de distinta forma. Una letra es diferente: ¡búscala!", "Mira la parte de abajo de cada letra: la U es redondita, como un vasito.", "Si todas fueran vasitos, ¿en cuál no podrías echar agua?", "Compara cada letra con la U de aquí arriba. Quité algunas U para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_u15")
+
+[sub_resource type="Resource" id="Resource_u17"]
+script = ExtResource("7_wordimg")
+
+[sub_resource type="Resource" id="Resource_u18"]
+script = ExtResource("4_tpl")
+id = &"u_pick_image"
+title = "¿Qué dibujo empieza con U?"
+stage = 2
+instruction = "¿Qué dibujo empieza con U?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «uuu»?", "Escucha solo el primer sonido de cada palabra.", "«Uña» empieza con U. ¿Qué dibujo empieza igual que uña?", "Quité algunos dibujos. Mira la U de aquí arriba y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con uuuu?", "", "Uña empieza con U. ¿Qué dibujo empieza igual que uña?")
+generator = SubResource("Resource_u17")
+
+[sub_resource type="Resource" id="Resource_u19"]
+script = ExtResource("7_wordimg")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_u20"]
+script = ExtResource("4_tpl")
+id = &"u_initial"
+title = "¿Con qué letra empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué letra empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es el mismo que el de «uña».", "Para decir ese primer sonido pones la boca chiquita, como para dar un beso. ¿Qué letra hace ese sonido?", "Quité algunas letras para que sea más fácil. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray("Di {word} despacito. ¿Qué sonido escuchas primero?", "El primer sonido de {word} es el mismo que el de uña.", "", "Quité algunas letras para que sea más fácil. Di {word} otra vez, despacito.")
+generator = SubResource("Resource_u19")
+
+[sub_resource type="Resource" id="Resource_u21"]
+script = ExtResource("5_choice")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_u22"]
+script = ExtResource("4_tpl")
+id = &"u_disguised"
+title = "La U disfrazada"
+stage = 3
+difficulty_min = 2
+instruction = "Las letras se disfrazaron con otros colores y formas. ¿Puedes encontrar {letter_name}?"
+hints = PackedStringArray("Aunque cambie de color o de tamaño, la U sigue siendo la U. ¡Y la u pequeñita también es U!", "No te fijes en el color: fíjate en su forma.", "Si te pones un bigote sigues siendo tú. ¿Qué letra sigue siendo la U aunque esté disfrazada?", "Mira la letra de aquí arriba y busca la que tiene su misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_u21")
+
+[sub_resource type="Resource" id="Resource_u23"]
+script = ExtResource("6_search")
+mode = 1
+
+[sub_resource type="Resource" id="Resource_u24"]
+script = ExtResource("4_tpl")
+id = &"u_word"
+title = "Las U de la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las U que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las U.", "Busca las letras con forma de vasito.", "Cuando dices la palabra, en cada U la boca se pone chiquita, como para un beso: «uuu». ¿Dónde?", "Compara cada letra de la palabra con la U de aquí arriba.")
+hints_spoken = PackedStringArray("", "", "Cuando dices la palabra, en cada U la boca se pone chiquita, como para un beso: uuuu. ¿Dónde?")
+generator = SubResource("Resource_u23")
+
+[sub_resource type="Resource" id="Resource_u25"]
+script = ExtResource("6_search")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_u26"]
+script = ExtResource("4_tpl")
+id = &"u_hidden"
+title = "La U escondida"
+view_type = 1
+stage = 3
+instruction = "¡La letra U se escondió entre los juguetes! Encuentra todas las U."
+hints = PackedStringArray("Busca entre los dibujos una letra que sea U.", "La U tiene forma de vasito: abierta arriba y redondita abajo.", "Soy una letra con forma de vasito y me escondí entre los juguetes. ¿Me ves?", "Quité algunas cosas para que sea más fácil. Compara con la U de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_u25")
+
+[sub_resource type="Resource" id="Resource_u27"]
+script = ExtResource("5_choice")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_u28"]
+script = ExtResource("4_tpl")
+id = &"u_case"
+title = "Grande y pequeñita"
+stage = 3
+instruction = "Esta es la {shown}. ¿Dónde está su pareja {pair}?"
+hints = PackedStringArray("Cada letra tiene una forma grande y una pequeñita. Busca la pareja {pair} de la {shown}.", "La U grande y la u pequeñita tienen la misma forma de vasito; la pequeñita a veces lleva una colita.", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, «uuu». ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena «uuu»?")
+hints_spoken = PackedStringArray("", "", "La grande y la pequeñita son como mamá y bebé: se llaman igual y suenan igual, uuuu. ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena uuuu?")
+generator = SubResource("Resource_u27")
+
+[sub_resource type="Resource" id="Resource_u29"]
+script = ExtResource("7_wordimg")
+mode = 2
+
+[sub_resource type="Resource" id="Resource_u30"]
+script = ExtResource("4_tpl")
+id = &"u_sort"
+title = "Cesta de la U"
+view_type = 2
+stage = 4
+instruction = "Pon en la cesta de la U los dibujos que empiezan con U. Los demás, en la otra cesta."
+hints = PackedStringArray("Di el nombre de cada dibujo. Si empieza con «uuu», va con la U.", "Escucha solo el primer sonido de cada palabra.", "«Uña» empieza con U, «mesa» no. ¿Qué dibujos suenan como uña al principio?", "Mira la U de la cesta y di cada nombre despacito.")
+hints_spoken = PackedStringArray("Di el nombre de cada dibujo. Si empieza con uuuu, va con la U.", "", "Uña empieza con U, mesa no. ¿Qué dibujos suenan como uña al principio?")
+generator = SubResource("Resource_u29")
+
+[sub_resource type="Resource" id="Resource_u31"]
+script = ExtResource("6_search")
+mode = 3
+
+[sub_resource type="Resource" id="Resource_u32"]
+script = ExtResource("4_tpl")
+id = &"u_mixed"
+title = "Grandes y pequeñitas"
+view_type = 1
+stage = 4
+instruction = "Busca todas las U, grandes y pequeñitas, y tócalas."
+hints = PackedStringArray("Toca cada U grande y cada u pequeñita. ¡Hay de las dos!", "La U grande y la u pequeñita tienen la misma forma de vasito; la pequeñita a veces lleva una colita.", "La n pequeñita es como una u de cabeza: está abierta por abajo. ¿Cuáles están abiertas por arriba?", "Mira la U de aquí arriba. Recuerda que la u pequeñita también cuenta.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_u31")
+
+[resource]
+script = ExtResource("3_level")
+id = &"letters_u"
+title = "La letra U"
+objective = "Reconocer la vocal U (mayúscula y minúscula), distinguirla de otras letras, identificar su sonido «uuu», asociarla con palabras que empiezan con U, encontrarla en distintos contextos y completar las cinco vocales."
+concept_ids = Array[StringName]([&"letter_u"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_u1"), SubResource("Resource_u2"), SubResource("Resource_u3"), SubResource("Resource_u4"), SubResource("Resource_u5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_u6"), SubResource("Resource_u7"), SubResource("Resource_u8")])
+reinforce_lines = PackedStringArray("La U suena «uuu», como el búho.", "La U parece un vasito.", "Con la U la boquita se pone de beso.")
+templates = Array[ExtResource("4_tpl")]([SubResource("Resource_u10"), SubResource("Resource_u12"), SubResource("Resource_u14"), SubResource("Resource_u16"), SubResource("Resource_u18"), SubResource("Resource_u20"), SubResource("Resource_u22"), SubResource("Resource_u24"), SubResource("Resource_u26"), SubResource("Resource_u28"), SubResource("Resource_u30"), SubResource("Resource_u32")])
+content = ExtResource("1_bank")

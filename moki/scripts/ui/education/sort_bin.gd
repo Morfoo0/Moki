@@ -37,6 +37,17 @@ func setup(index: int, label_card: CardData, bank: ContentBank) -> void:
 
 
 func add_item(card: CardData) -> void:
+	if card.texture == null and not card.glyph.is_empty():
+		var glyph := Label.new()
+		glyph.text = card.glyph
+		glyph.custom_minimum_size = Vector2(56, 56)
+		glyph.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		glyph.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		glyph.add_theme_font_override("font", ActivityCard.emoji_font())
+		glyph.add_theme_font_size_override("font_size", 36)
+		glyph.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_items.add_child(glyph)
+		return
 	var icon := TextureRect.new()
 	icon.texture = card.texture
 	icon.custom_minimum_size = Vector2(56, 56)

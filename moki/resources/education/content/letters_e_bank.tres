@@ -1,0 +1,136 @@
+[gd_resource type="Resource" script_class="ContentBank" load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://scripts/education/content_bank.gd" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/word_entry.gd" id="2_word"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_star.png" id="3_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/teddy_bear.png" id="4_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/toy_house.png" id="5_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/block_castle.png" id="6_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/books/books_shelf.png" id="7_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/window.png" id="8_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_flower.png" id="9_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/furniture/chair_yellow.png" id="10_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/furniture/table_small_yellow.png" id="11_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/props/pencil_cup.png" id="12_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/cube_blue.png" id="13_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/bins/bin_shelf_blue.png" id="14_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/toys/ring_stacker.png" id="15_t"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/frame_rainbow.png" id="16_t"]
+
+[sub_resource type="Resource" id="Resource_ew1"]
+script = ExtResource("2_word")
+word = "estrella"
+texture = ExtResource("3_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew2"]
+script = ExtResource("2_word")
+word = "elefante"
+glyph = "🐘"
+
+[sub_resource type="Resource" id="Resource_ew3"]
+script = ExtResource("2_word")
+word = "escoba"
+glyph = "🧹"
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew4"]
+script = ExtResource("2_word")
+word = "erizo"
+glyph = "🦔"
+
+[sub_resource type="Resource" id="Resource_ew5"]
+script = ExtResource("2_word")
+word = "espejo"
+glyph = "🪞"
+min_difficulty = 2
+
+[sub_resource type="Resource" id="Resource_ew6"]
+script = ExtResource("2_word")
+word = "oso"
+texture = ExtResource("4_t")
+
+[sub_resource type="Resource" id="Resource_ew7"]
+script = ExtResource("2_word")
+word = "casa"
+texture = ExtResource("5_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew8"]
+script = ExtResource("2_word")
+word = "castillo"
+texture = ExtResource("6_t")
+
+[sub_resource type="Resource" id="Resource_ew9"]
+script = ExtResource("2_word")
+word = "libros"
+texture = ExtResource("7_t")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_ew10"]
+script = ExtResource("2_word")
+word = "ventana"
+texture = ExtResource("8_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew11"]
+script = ExtResource("2_word")
+word = "flor"
+texture = ExtResource("9_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew12"]
+script = ExtResource("2_word")
+word = "silla"
+texture = ExtResource("10_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew13"]
+script = ExtResource("2_word")
+word = "mesa"
+texture = ExtResource("11_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew14"]
+script = ExtResource("2_word")
+word = "lápices"
+texture = ExtResource("12_t")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_ew15"]
+script = ExtResource("2_word")
+word = "cubo"
+texture = ExtResource("13_t")
+
+[sub_resource type="Resource" id="Resource_ew16"]
+script = ExtResource("2_word")
+word = "caja"
+texture = ExtResource("14_t")
+article = "una"
+
+[sub_resource type="Resource" id="Resource_ew17"]
+script = ExtResource("2_word")
+word = "aros"
+texture = ExtResource("15_t")
+article = "unos"
+
+[sub_resource type="Resource" id="Resource_ew18"]
+script = ExtResource("2_word")
+word = "arcoíris"
+texture = ExtResource("16_t")
+min_difficulty = 3
+
+[resource]
+script = ExtResource("1_bank")
+target = "E"
+target_lower = "e"
+sound = "eee"
+easy_letters = PackedStringArray("O", "S", "C", "U")
+medium_letters = PackedStringArray("A", "T", "H", "K")
+similar_letters = PackedStringArray("F", "B", "P", "L", "R")
+lower_distractors = PackedStringArray("c", "o", "a", "s")
+confusable_with_upper = PackedStringArray()
+words_with_target = Array[ExtResource("2_word")]([SubResource("Resource_ew1"), SubResource("Resource_ew2"), SubResource("Resource_ew3"), SubResource("Resource_ew4"), SubResource("Resource_ew5")])
+words_without_target = Array[ExtResource("2_word")]([SubResource("Resource_ew6"), SubResource("Resource_ew7"), SubResource("Resource_ew8"), SubResource("Resource_ew9"), SubResource("Resource_ew10"), SubResource("Resource_ew11"), SubResource("Resource_ew12"), SubResource("Resource_ew13"), SubResource("Resource_ew14"), SubResource("Resource_ew15"), SubResource("Resource_ew16"), SubResource("Resource_ew17"), SubResource("Resource_ew18")])
+spelling_words_easy = PackedStringArray("MESA", "PERA", "PELO", "TREN", "PEZ", "LECHE")
+spelling_words_hard = PackedStringArray("ELEFANTE", "ESTRELLA", "ESCOBA", "CEREZA", "PELOTA")
