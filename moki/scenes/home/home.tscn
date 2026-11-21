@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://mytdvjeumm1e"]
 
 [ext_resource type="PackedScene" path="res://scenes/ui/big_button.tscn" id="1_button"]
+[ext_resource type="Script" path="res://scripts/characters/chibbi_stage.gd" id="2_stage"]
+[ext_resource type="PackedScene" path="res://scenes/characters/chibbi.tscn" id="3_chibbi"]
 
-[node name="Home" type="Control"]
+[node name="Home" type="Control" unique_id=1301630537]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,42 +12,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=692829204]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(1, 0.89, 0.72, 1)
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Layout" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="ChibbiStage" type="Control" parent="Layout" node_paths=PackedStringArray("chibbi")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_stage")
+chibbi = NodePath("Chibbi")
+
+[node name="Chibbi" parent="Layout/ChibbiStage" instance=ExtResource("3_chibbi")]
+
+[node name="Content" type="VBoxContainer" parent="Layout" unique_id=1482937518]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Title" type="Label" parent="Content"]
+[node name="Title" type="Label" parent="Layout/Content" unique_id=889323534]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45, 0.3, 0.2, 1)
 theme_override_font_sizes/font_size = 120
 text = "Moki"
 horizontal_alignment = 1
 
-[node name="Greeting" type="Label" parent="Content"]
+[node name="Greeting" type="Label" parent="Layout/Content" unique_id=974048633]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45, 0.3, 0.2, 1)
 theme_override_font_sizes/font_size = 48
-text = "¡Hola! Soy Chibbi"
+text = "¡Hola! Soy Moki
+Bienvenido"
 horizontal_alignment = 1
 
-[node name="PlayButton" parent="Content" instance=ExtResource("1_button")]
+[node name="PlayButton" parent="Layout/Content" unique_id=1123079273 instance=ExtResource("1_button")]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Jugar"

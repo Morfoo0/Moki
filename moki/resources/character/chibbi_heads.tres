@@ -1,0 +1,114 @@
+[gd_resource type="Resource" script_class="PartLibrary" format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/part_library.gd" id="1_g86yf"]
+[ext_resource type="Script" path="res://scripts/characters/part_variant.gd" id="2_tuixi"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_front_neutral.png" id="3_pag6t"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_front_happy.png" id="4_xta7i"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_front_laughing.png" id="5_wee7e"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_front_surprised.png" id="6_1budg"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_front_angry.png" id="7_ek5lr"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_3q_neutral.png" id="8_tiwgo"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_3q_happy.png" id="9_gr4ts"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_3q_laughing.png" id="10_k7o80"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_3q_surprised.png" id="11_238fj"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_3q_angry.png" id="12_h5rkk"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_side_neutral.png" id="13_3im1i"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_side_happy.png" id="14_lpdcu"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_side_laughing.png" id="15_p01mw"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_side_surprised.png" id="16_mgrjt"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibbi/sprites/heads/head_side_angry.png" id="17_b0nu7"]
+
+[sub_resource type="Resource" id="Resource_pl4rw"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("3_pag6t")
+pivot = Vector2(125, 158)
+
+[sub_resource type="Resource" id="Resource_373o8"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("4_xta7i")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_5fv77"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("5_wee7e")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_vqdp5"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("6_1budg")
+pivot = Vector2(123, 158)
+
+[sub_resource type="Resource" id="Resource_wiiu6"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("7_ek5lr")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_lroot"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("8_tiwgo")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_fxeqy"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("9_gr4ts")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_mkobb"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("10_k7o80")
+pivot = Vector2(121, 158)
+
+[sub_resource type="Resource" id="Resource_5mvui"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("11_238fj")
+pivot = Vector2(122, 158)
+
+[sub_resource type="Resource" id="Resource_j5l17"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("12_h5rkk")
+pivot = Vector2(121, 158)
+
+[sub_resource type="Resource" id="Resource_s182o"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("13_3im1i")
+pivot = Vector2(91, 158)
+
+[sub_resource type="Resource" id="Resource_cemrl"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("14_lpdcu")
+pivot = Vector2(92, 158)
+
+[sub_resource type="Resource" id="Resource_4sin6"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("15_p01mw")
+pivot = Vector2(91, 158)
+
+[sub_resource type="Resource" id="Resource_jv8fq"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("16_mgrjt")
+pivot = Vector2(91, 158)
+
+[sub_resource type="Resource" id="Resource_c1f1e"]
+script = ExtResource("2_tuixi")
+texture = ExtResource("17_b0nu7")
+pivot = Vector2(91, 158)
+
+[resource]
+script = ExtResource("1_g86yf")
+variants = Dictionary[StringName, ExtResource("2_tuixi")]({
+&"3q_angry": SubResource("Resource_j5l17"),
+&"3q_happy": SubResource("Resource_fxeqy"),
+&"3q_laughing": SubResource("Resource_mkobb"),
+&"3q_neutral": SubResource("Resource_lroot"),
+&"3q_surprised": SubResource("Resource_5mvui"),
+&"front_angry": SubResource("Resource_wiiu6"),
+&"front_happy": SubResource("Resource_373o8"),
+&"front_laughing": SubResource("Resource_5fv77"),
+&"front_neutral": SubResource("Resource_pl4rw"),
+&"front_surprised": SubResource("Resource_vqdp5"),
+&"side_angry": SubResource("Resource_c1f1e"),
+&"side_happy": SubResource("Resource_cemrl"),
+&"side_laughing": SubResource("Resource_4sin6"),
+&"side_neutral": SubResource("Resource_s182o"),
+&"side_surprised": SubResource("Resource_jv8fq")
+})
