@@ -57,6 +57,9 @@ const TAP_REACTIONS: Array[StringName] = [&"bounce", &"wave", &"surprised", &"ti
 		if changed and is_node_ready() and not Engine.is_editor_hint():
 			expression_changed.emit(value)
 
+## Expresión a la que vuelve Chibbi cuando no está reaccionando.
+@export var rest_expression: Mood = Mood.NEUTRAL
+
 @export_group("Sombra")
 @export var shadow_size: Vector2 = Vector2(110, 18)
 @export var shadow_color: Color = Color(0.3, 0.2, 0.1, 0.18)
@@ -92,6 +95,14 @@ func _draw() -> void:
 ## Cambia la expresión sin afectar a la animación en curso.
 func set_expression(value: Mood) -> void:
 	expression = value
+
+
+## Cambia la expresión de reposo. Si no hay una reacción en curso se aplica ya;
+## si la hay, se aplicará al terminar.
+func set_rest_expression(value: Mood) -> void:
+	rest_expression = value
+	if is_node_ready() and not is_reacting():
+		set_expression(value)
 
 
 func is_rig_mode() -> bool:
@@ -159,5 +170,5 @@ func _apply_expression() -> void:
 func _on_animation_finished(anim_name: StringName) -> void:
 	if not REACTIONS.has(anim_name):
 		return
-	set_expression(Mood.NEUTRAL)
+	set_expression(rest_expression)
 	_animation_player.play(ANIM_IDLE)

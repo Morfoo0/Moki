@@ -23,12 +23,18 @@ var _caption_tween: Tween
 
 @onready var _chibbi: Chibbi = %Chibbi
 @onready var _caption: Label = %Caption
+@onready var _needs_hud: NeedsHud = get_node_or_null("%NeedsHud")
+@onready var _needs_link: ChibbiNeedsLink = get_node_or_null("%ChibbiNeedsLink")
 
 
 func _ready() -> void:
 	_caption.modulate.a = 0.0
 	for item: RoomItem in get_items():
 		item.selected.connect(_on_item_selected)
+	if _needs_hud != null:
+		_needs_hud.need_selected.connect(_on_need_selected)
+		if _needs_link != null:
+			_needs_link.attention_requested.connect(_needs_hud.highlight)
 
 
 ## Todos los RoomItem de la habitación, en orden de árbol.
@@ -52,6 +58,12 @@ func _on_item_selected(item: RoomItem) -> void:
 	var reaction: StringName = CATEGORY_REACTIONS.get(item.category, &"")
 	if not reaction.is_empty() and not _chibbi.is_reacting():
 		_chibbi.react(reaction)
+
+
+func _on_need_selected(need_id: StringName) -> void:
+	var definition: NeedDefinition = NeedsManager.get_definition(need_id)
+	if definition != null:
+		_show_caption(definition.display_name)
 
 
 func _show_caption(text: String) -> void:
