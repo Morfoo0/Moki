@@ -219,6 +219,29 @@
     - Combinación: 512.791 / 162 / 61. Que el motor dé exactamente el mismo número confirma que el sorteo sin pesos no cambió.
   - Arranque sin errores.
 
+### Notas — Nuevo diseño de Moki (2026-11-21)
+- El usuario incorporó el diseño nuevo (10 ilustraciones de expresión + piezas sueltas en `sprites/`) y retiró los PNG antiguos. Las librerías apuntaban a archivos borrados: Moki y el retrato del guía salían vacíos y con errores.
+- **Integración con poses completas** (decisión del usuario):
+  - una pose por expresión, con su pivote en el suelo;
+  - **tamaño nativo sin ampliar** (Moki pasa de ~470 px a ~250 px en pantalla);
+  - **reposo = feliz** (no hay pose neutral);
+  - nuevas expresiones: curioso, pensativo, triste, asustado, dormido (al descansar) y comiendo (al comer).
+- El guía usa la zona de la cara de cada pose (`AtlasTexture`). El rig Skeleton2D se conserva sin cambios y desactivado.
+- **Auditoría de los PNG**:
+  - todos RGBA y recortados con 2 px de margen;
+  - resolución baja (≤ 270 px);
+  - las zonas sólidas tienen alfa 249–253 (nunca 255): no se nota en las poses completas, pero sí se notaría al superponer piezas;
+  - `sprites/arms/` y `sprites/brazos/` son idénticas;
+  - `mascara_ceja_*` parecen orejas;
+  - no hay vistas de lado ni de espalda, ni pares de ojos, ni ojos cerrados, ni boca cerrada.
+- **Pendiente**:
+  - borrar, si el usuario lo autoriza, las librerías antiguas sin uso (`resources/character/moki_{bodies,heads,arms,legs}.tres`) y la carpeta duplicada;
+  - para un rig futuro, piezas limpias a escala común.
+- **Pruebas**:
+  - importación y arranque sin errores;
+  - capturas en Home, la habitación y una lección con las 11 expresiones: escala 1,0, mismo punto de apoyo y sin saltos al cambiar de pose;
+  - pruebas de interfaz de los cinco mundos sin cambios: Letras 112, Números 192, Figuras 164, Combinación 162, Repaso 184 (Figuras y Combinación pasaron al repetirlas por separado; en la tanda seguida, las ventanas de prueba recibieron interferencias).
+
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.
 - [ ] Sistema de guardado.

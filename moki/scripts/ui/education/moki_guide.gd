@@ -9,13 +9,21 @@ extends HBoxContainer
 signal help_pressed
 signal listen_pressed
 
-const HEADS: PartLibrary = preload("res://resources/character/moki_heads.tres")
+## Retratos: la zona de la cara de cada ilustración de expresión (AtlasTexture
+## sobre los mismos PNG; no son imágenes nuevas).
+const HEADS: PartLibrary = preload("res://resources/character/moki_portraits.tres")
 const MOOD_KEYS: Dictionary[Moki.Mood, StringName] = {
-	Moki.Mood.NEUTRAL: &"front_neutral",
-	Moki.Mood.HAPPY: &"front_happy",
-	Moki.Mood.LAUGHING: &"front_laughing",
-	Moki.Mood.SURPRISED: &"front_surprised",
-	Moki.Mood.ANGRY: &"front_neutral",  # nunca se muestra enfadado
+	Moki.Mood.NEUTRAL: &"happy",  # no hay pose neutral: el reposo es feliz
+	Moki.Mood.HAPPY: &"happy",
+	Moki.Mood.LAUGHING: &"laughing",
+	Moki.Mood.SURPRISED: &"surprised",
+	Moki.Mood.ANGRY: &"happy",  # el guía nunca se muestra enfadado
+	Moki.Mood.CURIOUS: &"curious",
+	Moki.Mood.THINKING: &"thinking",
+	Moki.Mood.SAD: &"happy",  # el guía no se muestra triste ni asustado
+	Moki.Mood.SCARED: &"happy",
+	Moki.Mood.SLEEPING: &"happy",
+	Moki.Mood.EATING: &"happy",
 }
 ## Color de fondo de cada tipo de frase (pistas y acertijos se distinguen).
 const KIND_COLORS: Dictionary[DialogueLine.Kind, Color] = {
@@ -101,7 +109,7 @@ func get_text() -> String:
 
 
 func set_expression(mood: Moki.Mood) -> void:
-	var variant: PartVariant = HEADS.get_variant(MOOD_KEYS.get(mood, &"front_happy"))
+	var variant: PartVariant = HEADS.get_variant(MOOD_KEYS.get(mood, &"happy"))
 	if variant != null:
 		_portrait.texture = variant.texture
 

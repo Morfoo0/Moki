@@ -23,7 +23,7 @@ signal fed(item: ItemDefinition)
 ## Capa donde se dibuja la comida que vuela hacia Moki.
 @export var effects_layer: Control
 ## Punto de la boca de Moki en sus coordenadas locales (origen = pies).
-@export var mouth_offset: Vector2 = Vector2(0, -345)
+@export var mouth_offset: Vector2 = Vector2(0, -135)
 
 const FULL_MESSAGE: String = "¡Estoy lleno!"
 const FLY_TIME: float = 0.45
@@ -117,7 +117,8 @@ func _fly_to_mouth(item: ItemDefinition) -> void:
 func _on_food_eaten(item: ItemDefinition) -> void:
 	if not item.reaction.is_empty():
 		_moki.react(item.reaction)
-		_moki.set_expression(item.reaction_mood)
+		# Pose comiendo mientras dura la reacción (luego vuelve a la de reposo).
+		_moki.set_expression(Moki.Mood.EATING)
 	if not item.use_message.is_empty():
 		message_requested.emit(item.use_message)
 	fed.emit(item)

@@ -67,8 +67,8 @@ func _on_resting_changed(resting: bool) -> void:
 func _apply_resting(resting: bool, animate: bool) -> void:
 	moki.set_animation_speed(resting_animation_speed if resting else 1.0)
 	if resting:
-		# No hay cara de sueño todavía: cara tranquila y respiración lenta.
-		moki.set_rest_expression(Moki.Mood.NEUTRAL)
+		# Pose dormido y respiración lenta.
+		moki.set_rest_expression(Moki.Mood.SLEEPING)
 		return
 	moki.set_rest_expression(REST_EXPRESSIONS.get(NeedsManager.get_overall_state(), Moki.Mood.NEUTRAL))
 	if animate and not moki.is_reacting():

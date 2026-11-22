@@ -44,11 +44,21 @@ Las rutas están en `ScenePaths`. `BigButton.target_scene` navega mediante `Scen
 - `scenes/characters/moki.tscn` (`Moki`, scripts/characters/moki.gd). Origen = suelo entre los pies.
 - Piezas: `CharacterPart` (Sprite2D) lee textura y pivote de una `PartLibrary` (diccionario de `PartVariant`). Cambiar de variante no desplaza la pieza; `variant` se puede animar con pistas discretas.
 - Dos modos:
-  - **Pose completa** (actual): `body_*` de la vista + cabeza de expresión superpuesta exactamente sobre la cabeza integrada.
-  - **Rig** (Skeleton2D/Bone2D: Hip → Tail, LegL/R, Torso → ArmL/R, Head): se activa solo cuando `moki_torsos.tres` tenga torso para la vista. Las librerías de torso y cola existen vacías a propósito.
-- Animaciones (`AnimationPlayer`): RESET, idle, bounce, wave, surprised, tilt. Todas fijan la pose completa en su primer fotograma. El nodo `Body` se mueve en ambos modos; los huesos solo se ven en modo rig.
-- Expresiones (`Moki.Mood`): NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY. Solo cambian la textura de la cabeza: son independientes de la animación. `rest_expression` = cara a la que vuelve tras reaccionar.
-- `MokiStage` (Control): coloca y escala a Moki dentro de la UI y convierte toques en `react_to_tap()`. Solo su zona táctil cuenta como "punto" del control, para no tapar objetos detrás.
+  - **Pose completa** (actual, diseño nuevo): cada expresión es una ilustración de cuerpo entero (`assets/characters/moki/expressions/expresion_*.png`) en `resources/character/moki_expressions.tres`.
+    - Cada variante tiene su **pivote en el suelo**, entre los pies (centrado en el eje de la cabeza), así que cambiar de expresión no desplaza a Moki.
+    - `FullPose` tiene el origen en el suelo; `FullPoseHead` ya no se usa (la cara forma parte de la pose).
+    - Se muestra a **tamaño real** (~170–263 px), sin ampliar.
+  - **Rig** (Skeleton2D/Bone2D: Hip → Tail, LegL/R, Torso → ArmL/R, Head): se conserva **desactivado**. Solo se activaría si `moki_torsos.tres` tuviera un torso. Sus sprites ya no tienen librería: las antiguas apuntaban a PNG retirados.
+    - Las piezas sueltas del diseño nuevo (`sprites/`: cabeza, cuerpo, brazos, patas, colas, ojos, bocas, antifaz, orejas) aún no sirven para un rig: la cabeza trae ojos y orejas dibujados, el cuerpo trae brazos y pies, y la escala no coincide con la de las poses.
+- Animaciones (`AnimationPlayer`): RESET, idle, bounce, wave, surprised, tilt. El nodo `Body` se mueve en ambos modos; los huesos solo se ven en modo rig.
+- **Expresiones** (`Moki.Mood`): NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY, CURIOUS, THINKING, SAD, SCARED, SLEEPING, EATING. Las nuevas van al final porque los valores se guardan como números en recursos.
+  - Pose de cada una: feliz (NEUTRAL y HAPPY: no hay pose neutral), emocionado, sorprendido, enojado, curioso, pensativo, triste, asustado, dormido, comiendo.
+  - Cambiar de expresión cambia la pose entera, independientemente de la animación. `rest_expression` = la pose a la que vuelve tras reaccionar.
+- **Cuidado**: descansar → dormido (`MokiNeedsLink`); comer → comiendo durante la reacción (`MokiCare`; `mouth_offset` = (0, −135)). Por las necesidades nunca se usan caras negativas.
+- **Guía** (`MokiGuide`): retratos en `resources/character/moki_portraits.tres` (`AtlasTexture` con la zona de la cara de cada pose; no son imágenes nuevas). El guía nunca se muestra enfadado, triste ni asustado.
+- `MokiStage` (Control): coloca a Moki dentro de la UI y convierte toques en `react_to_tap()`.
+  - `character_height` = 300 y `touch_area` = 260×270. La escala está limitada a ≤ 1: Moki solo se reduce si no cabe.
+  - Solo su zona táctil cuenta como "punto" del control, para no tapar objetos detrás.
 
 ## Habitación de Moki
 - `scenes/characters/moki_room.tscn` (`MokiRoom`, scripts/gameplay/moki_room.gd).

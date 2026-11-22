@@ -2,12 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/characters/moki.gd" id="1_knaxm"]
 [ext_resource type="Script" path="res://scripts/characters/character_part.gd" id="2_3kox1"]
-[ext_resource type="Resource" path="res://resources/character/moki_bodies.tres" id="3_5rqal"]
-[ext_resource type="Resource" path="res://resources/character/moki_heads.tres" id="4_s665n"]
+[ext_resource type="Resource" path="res://resources/character/moki_expressions.tres" id="3_expr"]
 [ext_resource type="Resource" path="res://resources/character/moki_tails.tres" id="5_7ln4c"]
-[ext_resource type="Resource" path="res://resources/character/moki_legs.tres" id="6_mn03o"]
 [ext_resource type="Resource" path="res://resources/character/moki_torsos.tres" id="7_2022x"]
-[ext_resource type="Resource" path="res://resources/character/moki_arms.tres" id="8_xai31"]
 
 [sub_resource type="Animation" id="Animation_o3g5q"]
 length = 0.001
@@ -832,22 +829,21 @@ _data = {
 
 [node name="Moki" type="Node2D" unique_id=1747286315]
 script = ExtResource("1_knaxm")
+shadow_size = Vector2(80, 14)
 
 [node name="Body" type="Node2D" parent="." unique_id=1036990492]
 
 [node name="FullPose" type="Sprite2D" parent="Body" unique_id=724673362]
 unique_name_in_owner = true
-position = Vector2(0, -308)
 script = ExtResource("2_3kox1")
-library = ExtResource("3_5rqal")
-variant = &"front"
+library = ExtResource("3_expr")
+variant = &"happy"
 
 [node name="FullPoseHead" type="Sprite2D" parent="Body" unique_id=2057244717]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -308)
 script = ExtResource("2_3kox1")
-library = ExtResource("4_s665n")
-variant = &"front_neutral"
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Body" unique_id=2044299410]
 
@@ -881,7 +877,6 @@ bone_angle = 90.0
 unique_name_in_owner = true
 scale = Vector2(-1, 1)
 script = ExtResource("2_3kox1")
-library = ExtResource("6_mn03o")
 variant = &"01"
 
 [node name="LegR" type="Bone2D" parent="Body/Skeleton2D/Hip" unique_id=1954819690]
@@ -894,7 +889,6 @@ bone_angle = 90.0
 [node name="LegRSprite" type="Sprite2D" parent="Body/Skeleton2D/Hip/LegR" unique_id=2061209957]
 unique_name_in_owner = true
 script = ExtResource("2_3kox1")
-library = ExtResource("6_mn03o")
 variant = &"01"
 
 [node name="Torso" type="Bone2D" parent="Body/Skeleton2D/Hip" unique_id=1760375543]
@@ -920,7 +914,6 @@ bone_angle = 90.0
 unique_name_in_owner = true
 scale = Vector2(-0.85, 0.85)
 script = ExtResource("2_3kox1")
-library = ExtResource("8_xai31")
 variant = &"01"
 
 [node name="ArmR" type="Bone2D" parent="Body/Skeleton2D/Hip/Torso" unique_id=2063851368]
@@ -935,7 +928,6 @@ bone_angle = 90.0
 unique_name_in_owner = true
 scale = Vector2(0.85, 0.85)
 script = ExtResource("2_3kox1")
-library = ExtResource("8_xai31")
 variant = &"01"
 
 [node name="Head" type="Bone2D" parent="Body/Skeleton2D/Hip/Torso" unique_id=1948961780]
@@ -948,7 +940,6 @@ bone_angle = -90.0
 [node name="HeadSprite" type="Sprite2D" parent="Body/Skeleton2D/Hip/Torso/Head" unique_id=1573280937]
 unique_name_in_owner = true
 script = ExtResource("2_3kox1")
-library = ExtResource("4_s665n")
 variant = &"front_neutral"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=796416425]

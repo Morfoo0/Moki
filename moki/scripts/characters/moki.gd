@@ -6,27 +6,39 @@ extends Node2D
 ## - Modo "rig": torso, cola, cabeza, brazos y piernas como piezas sueltas sobre
 ##   Skeleton2D/Bone2D. Se activa solo cuando existe un torso para la vista actual
 ##   en moki_torsos.tres (hoy no hay torsos, ver docs/development_log.md).
-## - Modo "pose completa": muestra el body_* de la vista actual con la cabeza de
-##   expresión superpuesta exactamente sobre la cabeza integrada.
+## - Modo "pose completa" (el que se usa): cada expresión es una ilustración de
+##   cuerpo entero (assets/characters/moki/expressions/), en moki_expressions.tres.
+##   Cada pose tiene su pivote en el suelo, entre los pies, así que Moki no
+##   "salta" al cambiar de expresión. Se muestra a su tamaño real (sin ampliar).
 ##
 ## Las animaciones mueven el nodo Body (afecta a ambos modos) y los huesos (solo
-## visibles en modo rig). Las expresiones cambian solo la textura de la cabeza, así
-## que son independientes de la animación que se esté reproduciendo.
+## visibles en modo rig). Cambiar de expresión cambia la pose entera, pero es
+## independiente de la animación que se esté reproduciendo.
 ##
 ## El origen del nodo es el suelo, entre los pies.
 
 signal reacted(reaction: StringName)
 signal expression_changed(expression: Mood)
 
-enum Mood { NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY }
+## Los valores se guardan como números en recursos (DialogueLine.mood,
+## ItemDefinition.reaction_mood...): las expresiones nuevas van al final.
+enum Mood { NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY, CURIOUS, THINKING, SAD, SCARED, SLEEPING, EATING }
 enum View { FRONT, THREE_QUARTER, SIDE }
 
+## Expresión → pose de moki_expressions.tres. No hay ilustración neutral: el
+## reposo de Moki es la pose feliz.
 const EXPRESSION_KEYS: Dictionary[Mood, StringName] = {
-	Mood.NEUTRAL: &"neutral",
+	Mood.NEUTRAL: &"happy",
 	Mood.HAPPY: &"happy",
 	Mood.LAUGHING: &"laughing",
 	Mood.SURPRISED: &"surprised",
 	Mood.ANGRY: &"angry",
+	Mood.CURIOUS: &"curious",
+	Mood.THINKING: &"thinking",
+	Mood.SAD: &"sad",
+	Mood.SCARED: &"scared",
+	Mood.SLEEPING: &"sleeping",
+	Mood.EATING: &"eating",
 }
 const VIEW_KEYS: Dictionary[View, StringName] = {
 	View.FRONT: &"front",
@@ -150,9 +162,9 @@ func _refresh() -> void:
 	var key: StringName = VIEW_KEYS[view]
 	var rig: bool = is_rig_mode()
 
-	_full_pose.variant = key
 	_full_pose.visible = not rig
-	_full_pose_head.visible = not rig
+	# La cara ya forma parte de cada pose: la cabeza superpuesta no se usa.
+	_full_pose_head.visible = false
 
 	_torso.variant = key if rig else &""
 	_tail.variant = key if rig and _tail.library != null and _tail.library.has_variant(key) else &""
@@ -167,9 +179,10 @@ func _refresh() -> void:
 func _apply_expression() -> void:
 	if not is_node_ready():
 		return
-	var key: StringName = StringName("%s_%s" % [VIEW_KEYS[view], EXPRESSION_KEYS[expression]])
-	_head.variant = key
-	_full_pose_head.variant = key
+	# Pose completa de la expresión (solo hay arte de frente).
+	_full_pose.variant = EXPRESSION_KEYS[expression]
+	# Rig (desactivado): mismo esquema de claves de siempre, por si vuelve a usarse.
+	_head.variant = StringName("%s_%s" % [VIEW_KEYS[view], EXPRESSION_KEYS[expression]])
 
 
 func _on_animation_finished(anim_name: StringName) -> void:

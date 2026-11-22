@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="PartLibrary" format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/part_library.gd" id="1_lib"]
+[ext_resource type="Script" path="res://scripts/characters/part_variant.gd" id="2_var"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_feliz.png" id="3_happy"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_emocionado.png" id="4_laughing"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_sorprendido.png" id="5_surprised"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_enojado.png" id="6_angry"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_curioso.png" id="7_curious"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_pensativo.png" id="8_thinking"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_triste.png" id="9_sad"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_asustado.png" id="10_scared"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_dormido.png" id="11_sleeping"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_comiendo.png" id="12_eating"]
+
+[sub_resource type="Resource" id="Var_happy"]
+script = ExtResource("2_var")
+texture = ExtResource("3_happy")
+pivot = Vector2(111, 234)
+
+[sub_resource type="Resource" id="Var_laughing"]
+script = ExtResource("2_var")
+texture = ExtResource("4_laughing")
+pivot = Vector2(97, 245)
+
+[sub_resource type="Resource" id="Var_surprised"]
+script = ExtResource("2_var")
+texture = ExtResource("5_surprised")
+pivot = Vector2(110, 257)
+
+[sub_resource type="Resource" id="Var_angry"]
+script = ExtResource("2_var")
+texture = ExtResource("6_angry")
+pivot = Vector2(106, 232)
+
+[sub_resource type="Resource" id="Var_curious"]
+script = ExtResource("2_var")
+texture = ExtResource("7_curious")
+pivot = Vector2(80, 229)
+
+[sub_resource type="Resource" id="Var_thinking"]
+script = ExtResource("2_var")
+texture = ExtResource("8_thinking")
+pivot = Vector2(89, 228)
+
+[sub_resource type="Resource" id="Var_sad"]
+script = ExtResource("2_var")
+texture = ExtResource("9_sad")
+pivot = Vector2(98, 230)
+
+[sub_resource type="Resource" id="Var_scared"]
+script = ExtResource("2_var")
+texture = ExtResource("10_scared")
+pivot = Vector2(114, 236)
+
+[sub_resource type="Resource" id="Var_sleeping"]
+script = ExtResource("2_var")
+texture = ExtResource("11_sleeping")
+pivot = Vector2(126, 167)
+
+[sub_resource type="Resource" id="Var_eating"]
+script = ExtResource("2_var")
+texture = ExtResource("12_eating")
+pivot = Vector2(115, 260)
+
+[resource]
+script = ExtResource("1_lib")
+variants = Dictionary[StringName, ExtResource("2_var")]({
+&"happy": SubResource("Var_happy"),
+&"laughing": SubResource("Var_laughing"),
+&"surprised": SubResource("Var_surprised"),
+&"angry": SubResource("Var_angry"),
+&"curious": SubResource("Var_curious"),
+&"thinking": SubResource("Var_thinking"),
+&"sad": SubResource("Var_sad"),
+&"scared": SubResource("Var_scared"),
+&"sleeping": SubResource("Var_sleeping"),
+&"eating": SubResource("Var_eating")
+})

@@ -9,10 +9,12 @@ extends Control
 @export var moki: Moki
 ## Distancia entre el borde inferior y los pies.
 @export var bottom_margin: float = 40.0
-## Alto de referencia del personaje, incluido el espacio del salto.
-@export var character_height: float = 560.0
+## Alto de referencia del personaje, incluido el espacio del salto. Moki se
+## muestra a su tamaño real (las poses miden ~170-263 px); solo se reduce si no
+## cabe, nunca se amplía.
+@export var character_height: float = 300.0
 ## Zona táctil alrededor de Moki (ancho, alto) en px sin escalar, desde los pies hacia arriba.
-@export var touch_area: Vector2 = Vector2(320.0, 480.0)
+@export var touch_area: Vector2 = Vector2(260.0, 270.0)
 
 ## Se emite al tocar a Moki.
 signal tapped
