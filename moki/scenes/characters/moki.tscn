@@ -837,7 +837,8 @@ shadow_size = Vector2(80, 14)
 unique_name_in_owner = true
 script = ExtResource("2_3kox1")
 library = ExtResource("3_expr")
-variant = &"happy"
+variant = &"calmado_1"
+use_variant_scale = true
 
 [node name="FullPoseHead" type="Sprite2D" parent="Body" unique_id=2057244717]
 unique_name_in_owner = true

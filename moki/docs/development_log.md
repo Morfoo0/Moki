@@ -235,12 +235,24 @@
   - `mascara_ceja_*` parecen orejas;
   - no hay vistas de lado ni de espalda, ni pares de ojos, ni ojos cerrados, ni boca cerrada.
 - **Pendiente**:
-  - borrar, si el usuario lo autoriza, las librerías antiguas sin uso (`resources/character/moki_{bodies,heads,arms,legs}.tres`) y la carpeta duplicada;
+  - ~~borrar las librerías antiguas sin uso y la carpeta duplicada~~ — hecho con autorización del usuario: se borraron `resources/character/moki_{bodies,heads,arms,legs}.tres` y `sprites/arms/` (queda `sprites/brazos/`, idéntica);
   - para un rig futuro, piezas limpias a escala común.
 - **Pruebas**:
   - importación y arranque sin errores;
   - capturas en Home, la habitación y una lección con las 11 expresiones: escala 1,0, mismo punto de apoyo y sin saltos al cambiar de pose;
   - pruebas de interfaz de los cinco mundos sin cambios: Letras 112, Números 192, Figuras 164, Combinación 162, Repaso 184 (Figuras y Combinación pasaron al repetirlas por separado; en la tanda seguida, las ventanas de prueba recibieron interferencias).
+
+### Notas — Expresiones por estado y habla de Moki (2026-11-21)
+- Se integran las secuencias de `assets/characters/moki/animations/` (calmado, cansado, feliz, hablando, hirritado, sorprendido): 25 fotogramas en `moki_expressions.tres` y sus caras en `moki_portraits.tres`. No hay imágenes nuevas ni se ha tocado ningún asset.
+- **Reposo = calmado** (sustituye al "feliz" provisional). Energía baja → cansado (fotogramas 1–3); hambre baja → irritado por hambre. Si las dos están bajas, gana la de peor estado y, si empatan, el hambre. Esto sustituye la regla anterior de "sin caras negativas por necesidades" a petición del usuario. Las necesidades (valores, umbrales, ritmo) no cambian.
+- **Tamaño común** (decisión del usuario): cada fotograma y pose se escala para que la cabeza mida como la de calmado (~160 px), apoyado en el suelo entre los pies. Habla ×1,22–1,40 (sus PNG encogen un 12 % del 1 al 6); poses ×0,81–1,07. Pivotes y escalas medidos de los PNG (generador fuera del proyecto).
+- **Habla**: los fotogramas de habla son de cuerpo entero; no se pueden superponer solo bocas sin piezas nuevas. Se reproducen los 6 en el orden pedido, alineados y normalizados, así que en pantalla solo cambian boca y párpados (el cuerpo de esos dibujos es algo más alargado). Sin voz, la duración se estima por la longitud del texto. Se usa en el guía de las lecciones y en los mensajes de Moki en la habitación.
+- **Comer**: el mensaje "¡Qué rico…!" sale a la vez que se come, así que comiendo (igual que dormido) no se tapa con la habla.
+- Cansado_4 ("Zzz") solo se ve 0,9 s al empezar a descansar, antes de dormido (decisión del usuario).
+- **Pruebas**:
+  - escenarios del personaje en la habitación, con las necesidades reales: 40 comprobaciones sin fallos. Cubren los 9 pedidos, más las dos necesidades bajas, dos diálogos seguidos, el mensaje en la habitación, que dormido no se interrumpa, escala y pivote por fotograma y el retrato del guía;
+  - regresión: motor, progreso (dos fases) e interfaz de los cinco mundos sin fallos (Letras 112, Números 192, Figuras 164, Combinación 162, Repaso 183);
+  - arranque sin errores; la partida del usuario se restauró idéntica.
 
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.

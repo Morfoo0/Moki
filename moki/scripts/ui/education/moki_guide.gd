@@ -9,21 +9,24 @@ extends HBoxContainer
 signal help_pressed
 signal listen_pressed
 
-## Retratos: la zona de la cara de cada ilustración de expresión (AtlasTexture
-## sobre los mismos PNG; no son imágenes nuevas).
+## Retratos: la zona de la cara de cada pose y fotograma (AtlasTexture sobre
+## los mismos PNG; no son imágenes nuevas).
 const HEADS: PartLibrary = preload("res://resources/character/moki_portraits.tres")
 const MOOD_KEYS: Dictionary[Moki.Mood, StringName] = {
-	Moki.Mood.NEUTRAL: &"happy",  # no hay pose neutral: el reposo es feliz
-	Moki.Mood.HAPPY: &"happy",
+	Moki.Mood.NEUTRAL: &"calmado_1",
+	Moki.Mood.HAPPY: &"feliz_1",
 	Moki.Mood.LAUGHING: &"laughing",
-	Moki.Mood.SURPRISED: &"surprised",
-	Moki.Mood.ANGRY: &"happy",  # el guía nunca se muestra enfadado
+	Moki.Mood.SURPRISED: &"sorprendido_1",
+	Moki.Mood.ANGRY: &"calmado_1",  # el guía nunca se muestra enfadado
 	Moki.Mood.CURIOUS: &"curious",
 	Moki.Mood.THINKING: &"thinking",
-	Moki.Mood.SAD: &"happy",  # el guía no se muestra triste ni asustado
-	Moki.Mood.SCARED: &"happy",
-	Moki.Mood.SLEEPING: &"happy",
-	Moki.Mood.EATING: &"happy",
+	Moki.Mood.SAD: &"calmado_1",  # el guía no se muestra triste, asustado, cansado ni con hambre
+	Moki.Mood.SCARED: &"calmado_1",
+	Moki.Mood.SLEEPING: &"calmado_1",
+	Moki.Mood.EATING: &"calmado_1",
+	Moki.Mood.TIRED: &"calmado_1",
+	Moki.Mood.HUNGRY: &"calmado_1",
+	Moki.Mood.TALKING: &"hablando_1",
 }
 ## Color de fondo de cada tipo de frase (pistas y acertijos se distinguen).
 const KIND_COLORS: Dictionary[DialogueLine.Kind, Color] = {
@@ -35,6 +38,11 @@ const BUBBLE_COLOR: Color = Color(1, 1, 1)
 const BUBBLE_BORDER: Color = Color(0.45, 0.3, 0.2)
 
 var current_line: DialogueLine
+
+## Habla del retrato: segundos que quedan y fotograma actual de la secuencia.
+var _talk_left: float = 0.0
+var _talk_time: float = 0.0
+var _talk_frame: int = 0
 
 @onready var _portrait: TextureRect = %Portrait
 @onready var _tail: BubbleTail = %Tail
@@ -67,6 +75,36 @@ func _ready() -> void:
 	set_expression(Moki.Mood.HAPPY)
 
 
+func _process(delta: float) -> void:
+	if _talk_left <= 0.0:
+		return
+	_talk_left -= delta
+	if _talk_left <= 0.0:
+		_talk_left = 0.0
+		set_expression(current_line.mood if current_line != null else Moki.Mood.NEUTRAL)
+		return
+	var sequence: Dictionary = Moki.SEQUENCES[Moki.Mood.TALKING]
+	_talk_time += delta
+	var step: float = 1.0 / float(sequence["fps"])
+	if _talk_time >= step:
+		_talk_time = fmod(_talk_time, step)
+		_talk_frame = (_talk_frame + 1) % sequence["frames"].size()
+		_show_portrait(sequence["frames"][_talk_frame])
+
+
+## El retrato "habla" durante "seconds" y luego muestra la expresión de la
+## frase. Una frase nueva reinicia el mismo temporizador (nunca hay dos a la vez).
+func _start_talking(seconds: float) -> void:
+	_talk_left = seconds
+	_talk_time = 0.0
+	_talk_frame = 0
+	_show_portrait(Moki.SEQUENCES[Moki.Mood.TALKING]["frames"][0])
+
+
+func is_talking() -> bool:
+	return _talk_left > 0.0
+
+
 func show_guide() -> void:
 	visible = true
 	modulate.a = 0.0
@@ -85,6 +123,7 @@ func say(line: DialogueLine) -> void:
 	current_line = line
 	_text.text = line.text
 	set_expression(line.mood)
+	_start_talking(Moki.talk_time(line.text))
 	var color: Color = KIND_COLORS.get(line.kind, BUBBLE_COLOR)
 	_bubble_style.bg_color = color
 	_tail.fill = color
@@ -101,6 +140,7 @@ func say_text(text: String, kind: DialogueLine.Kind = DialogueLine.Kind.EXPLANAT
 func replay() -> void:
 	if current_line != null:
 		Narrator.speak(current_line)
+		_start_talking(Moki.talk_time(current_line.text))
 		_pop()
 
 
@@ -108,8 +148,15 @@ func get_text() -> String:
 	return _text.text
 
 
+## Expresión del retrato (si está hablando, se aplica al terminar de hablar).
 func set_expression(mood: Moki.Mood) -> void:
-	var variant: PartVariant = HEADS.get_variant(MOOD_KEYS.get(mood, &"happy"))
+	if _talk_left > 0.0:
+		return
+	_show_portrait(MOOD_KEYS.get(mood, &"calmado_1"))
+
+
+func _show_portrait(key: StringName) -> void:
+	var variant: PartVariant = HEADS.get_variant(key)
 	if variant != null:
 		_portrait.texture = variant.texture
 

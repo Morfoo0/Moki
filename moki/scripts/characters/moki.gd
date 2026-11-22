@@ -22,16 +22,18 @@ signal expression_changed(expression: Mood)
 
 ## Los valores se guardan como números en recursos (DialogueLine.mood,
 ## ItemDefinition.reaction_mood...): las expresiones nuevas van al final.
-enum Mood { NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY, CURIOUS, THINKING, SAD, SCARED, SLEEPING, EATING }
+## NEUTRAL = calmado (el reposo). TIRED = cansado, HUNGRY = irritado por hambre,
+## TALKING = secuencia de habla (normalmente se activa con talk()).
+enum Mood { NEUTRAL, HAPPY, LAUGHING, SURPRISED, ANGRY, CURIOUS, THINKING, SAD, SCARED, SLEEPING, EATING, TIRED, HUNGRY, TALKING }
 enum View { FRONT, THREE_QUARTER, SIDE }
 
-## Expresión → pose de moki_expressions.tres. No hay ilustración neutral: el
-## reposo de Moki es la pose feliz.
+## Expresión → variante de moki_expressions.tres (el primer fotograma si la
+## expresión tiene secuencia en SEQUENCES).
 const EXPRESSION_KEYS: Dictionary[Mood, StringName] = {
-	Mood.NEUTRAL: &"happy",
-	Mood.HAPPY: &"happy",
+	Mood.NEUTRAL: &"calmado_1",
+	Mood.HAPPY: &"feliz_1",
 	Mood.LAUGHING: &"laughing",
-	Mood.SURPRISED: &"surprised",
+	Mood.SURPRISED: &"sorprendido_1",
 	Mood.ANGRY: &"angry",
 	Mood.CURIOUS: &"curious",
 	Mood.THINKING: &"thinking",
@@ -39,7 +41,30 @@ const EXPRESSION_KEYS: Dictionary[Mood, StringName] = {
 	Mood.SCARED: &"scared",
 	Mood.SLEEPING: &"sleeping",
 	Mood.EATING: &"eating",
+	Mood.TIRED: &"cansado_1",
+	Mood.HUNGRY: &"hirritado_1",
+	Mood.TALKING: &"hablando_1",
 }
+## Secuencias de fotogramas (en bucle): fotogramas y fotogramas por segundo.
+## Todos los fotogramas comparten pivote en el suelo y tamaño de cabeza, así
+## que solo cambian la cara y pequeños gestos.
+const SEQUENCES: Dictionary[Mood, Dictionary] = {
+	Mood.NEUTRAL: {"frames": [&"calmado_1", &"calmado_2", &"calmado_3", &"calmado_2"], "fps": 1.2},
+	# Cansado: ojos pesados y bostezo (el fotograma 4, con "Zzz", es la
+	# transición a dormir; no forma parte del bucle para no confundirlo).
+	Mood.TIRED: {"frames": [&"cansado_1", &"cansado_2", &"cansado_1", &"cansado_2", &"cansado_3", &"cansado_3", &"cansado_2"], "fps": 1.2},
+	Mood.HUNGRY: {"frames": [&"hirritado_1", &"hirritado_2", &"hirritado_2", &"hirritado_3", &"hirritado_4", &"hirritado_3", &"hirritado_1"], "fps": 1.6},
+	# Habla: cerrada, entreabierta, abierta, cerrada, abierta, entreabierta.
+	Mood.TALKING: {"frames": [&"hablando_1", &"hablando_2", &"hablando_3", &"hablando_4", &"hablando_5", &"hablando_6"], "fps": 8.0},
+	Mood.HAPPY: {"frames": [&"feliz_1", &"feliz_2", &"feliz_3", &"feliz_4"], "fps": 4.0},
+	Mood.SURPRISED: {"frames": [&"sorprendido_1", &"sorprendido_2", &"sorprendido_3", &"sorprendido_4"], "fps": 4.0},
+}
+## Expresiones que la habla no tapa: dormido, y comiendo (su mensaje, p. ej.
+## "¡Ñam!", sale a la vez y no se puede comer y hablar a la vez).
+const NOT_TALKING: Array[Mood] = [Mood.SLEEPING, Mood.EATING]
+## Transición al empezar a descansar: cabeceo con "Zzz" antes de la pose dormido.
+const SLEEP_TRANSITION_FRAME: StringName = &"cansado_4"
+const SLEEP_TRANSITION_TIME: float = 0.9
 const VIEW_KEYS: Dictionary[View, StringName] = {
 	View.FRONT: &"front",
 	View.THREE_QUARTER: &"3q",
@@ -77,6 +102,14 @@ const TAP_REACTIONS: Array[StringName] = [&"bounce", &"wave", &"surprised", &"ti
 @export var shadow_color: Color = Color(0.3, 0.2, 0.1, 0.18)
 
 var _last_reaction: StringName = &""
+## Segundos que le quedan hablando (capa temporal sobre la expresión).
+var _talk_left: float = 0.0
+## Segundos que quedan de la transición a dormir.
+var _transition_left: float = 0.0
+## Reproductor de fotogramas: qué se muestra y por dónde va.
+var _shown: Mood = Mood.NEUTRAL
+var _frame_index: int = 0
+var _frame_time: float = 0.0
 
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _full_pose: CharacterPart = %FullPose
@@ -94,6 +127,29 @@ func _ready() -> void:
 		return
 	_animation_player.animation_finished.connect(_on_animation_finished)
 	_animation_player.play(ANIM_IDLE)
+
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	if _transition_left > 0.0:
+		_transition_left -= delta
+		if _transition_left <= 0.0:
+			_update_display()
+	if _talk_left > 0.0:
+		_talk_left -= delta
+		if _talk_left <= 0.0:
+			_talk_left = 0.0
+			_update_display()  # vuelve a la expresión de ahora (no a la de antes)
+	var sequence: Dictionary = SEQUENCES.get(_shown, {})
+	if sequence.is_empty() or _transition_left > 0.0:
+		return
+	_frame_time += delta * _animation_player.speed_scale
+	var step: float = 1.0 / float(sequence["fps"])
+	if _frame_time >= step:
+		_frame_time = fmod(_frame_time, step)
+		_frame_index = (_frame_index + 1) % sequence["frames"].size()
+		_full_pose.variant = sequence["frames"][_frame_index]
 
 
 func _draw() -> void:
@@ -115,6 +171,47 @@ func set_rest_expression(value: Mood) -> void:
 	rest_expression = value
 	if is_node_ready() and not is_reacting():
 		set_expression(value)
+
+
+## Moki habla durante "seconds": se ve la secuencia de habla por encima de la
+## expresión actual y, al terminar, vuelve a la expresión que tenga EN ESE
+## MOMENTO (p. ej. irritado si mientras hablaba le entró hambre). Llamarla otra
+## vez reinicia el mismo temporizador: nunca hay dos secuencias a la vez.
+## Dormido y comiendo no se interrumpen por hablar (NOT_TALKING).
+func talk(seconds: float) -> void:
+	_talk_left = maxf(seconds, 0.0)
+	_update_display()
+
+
+func stop_talking() -> void:
+	if _talk_left > 0.0:
+		_talk_left = 0.0
+		_update_display()
+
+
+func is_talking() -> bool:
+	return _talk_left > 0.0
+
+
+## Duración de habla para un texto (no hay voz: se estima por su longitud).
+static func talk_time(text: String) -> float:
+	return clampf(0.5 + 0.05 * text.length(), 1.0, 4.0)
+
+
+## Al empezar a descansar: cabeceo con "Zzz" y luego la pose dormido.
+func play_sleep_transition() -> void:
+	_transition_left = SLEEP_TRANSITION_TIME
+	_update_display()
+
+
+## Lo que se está mostrando (TALKING mientras habla).
+func get_shown_mood() -> Mood:
+	return _shown
+
+
+## Variante (fotograma) que se muestra ahora mismo.
+func get_shown_variant() -> StringName:
+	return _full_pose.variant
 
 
 ## Velocidad de todas las animaciones (1 = normal). P. ej. 0.4 al descansar.
@@ -179,10 +276,27 @@ func _refresh() -> void:
 func _apply_expression() -> void:
 	if not is_node_ready():
 		return
-	# Pose completa de la expresión (solo hay arte de frente).
-	_full_pose.variant = EXPRESSION_KEYS[expression]
+	_update_display()
 	# Rig (desactivado): mismo esquema de claves de siempre, por si vuelve a usarse.
 	_head.variant = StringName("%s_%s" % [VIEW_KEYS[view], EXPRESSION_KEYS[expression]])
+
+
+## Prioridad visual: transición a dormir > dormido/comiendo > hablando > expresión actual.
+func _update_display() -> void:
+	if not is_node_ready():
+		return
+	if _transition_left > 0.0 and expression == Mood.SLEEPING:
+		_full_pose.variant = SLEEP_TRANSITION_FRAME
+		return
+	var mood: Mood = expression
+	if _talk_left > 0.0 and not expression in NOT_TALKING:
+		mood = Mood.TALKING
+	if mood != _shown or not SEQUENCES.has(mood):
+		_frame_index = 0
+		_frame_time = 0.0
+	_shown = mood
+	var sequence: Dictionary = SEQUENCES.get(mood, {})
+	_full_pose.variant = sequence["frames"][_frame_index] if not sequence.is_empty() else EXPRESSION_KEYS[mood]
 
 
 func _on_animation_finished(anim_name: StringName) -> void:

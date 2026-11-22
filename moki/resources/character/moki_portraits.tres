@@ -12,10 +12,35 @@
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_asustado.png" id="10_scared"]
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_dormido.png" id="11_sleeping"]
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_comiendo.png" id="12_eating"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_1.png" id="13_calmado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_2.png" id="14_calmado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_3.png" id="15_calmado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_1.png" id="16_cansado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_2.png" id="17_cansado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_3.png" id="18_cansado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_4.png" id="19_cansado_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_1.png" id="20_feliz_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_2.png" id="21_feliz_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_3.png" id="22_feliz_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_4.png" id="23_feliz_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_1.png" id="24_hablando_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_2.png" id="25_hablando_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_3.png" id="26_hablando_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_4.png" id="27_hablando_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_5.png" id="28_hablando_5"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_6.png" id="29_hablando_6"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_1.png" id="30_hirritado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_2.png" id="31_hirritado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_3.png" id="32_hirritado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_4.png" id="33_hirritado_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_1.png" id="34_sorprendido_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_2.png" id="35_sorprendido_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_3.png" id="36_sorprendido_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_4.png" id="37_sorprendido_4"]
 
 [sub_resource type="AtlasTexture" id="Atlas_happy"]
 atlas = ExtResource("3_happy")
-region = Rect2(5, 3, 212, 212)
+region = Rect2(28, 3, 188, 188)
 
 [sub_resource type="Resource" id="Var_happy"]
 script = ExtResource("2_var")
@@ -23,7 +48,7 @@ texture = SubResource("Atlas_happy")
 
 [sub_resource type="AtlasTexture" id="Atlas_laughing"]
 atlas = ExtResource("4_laughing")
-region = Rect2(8, 3, 179, 179)
+region = Rect2(7, 3, 181, 187)
 
 [sub_resource type="Resource" id="Var_laughing"]
 script = ExtResource("2_var")
@@ -31,7 +56,7 @@ texture = SubResource("Atlas_laughing")
 
 [sub_resource type="AtlasTexture" id="Atlas_surprised"]
 atlas = ExtResource("5_surprised")
-region = Rect2(6, 3, 208, 208)
+region = Rect2(0, 3, 224, 228)
 
 [sub_resource type="Resource" id="Var_surprised"]
 script = ExtResource("2_var")
@@ -39,7 +64,7 @@ texture = SubResource("Atlas_surprised")
 
 [sub_resource type="AtlasTexture" id="Atlas_angry"]
 atlas = ExtResource("6_angry")
-region = Rect2(16, 3, 181, 181)
+region = Rect2(20, 3, 172, 172)
 
 [sub_resource type="Resource" id="Var_angry"]
 script = ExtResource("2_var")
@@ -47,7 +72,7 @@ texture = SubResource("Atlas_angry")
 
 [sub_resource type="AtlasTexture" id="Atlas_curious"]
 atlas = ExtResource("7_curious")
-region = Rect2(0, 3, 162, 162)
+region = Rect2(0, 3, 181, 181)
 
 [sub_resource type="Resource" id="Var_curious"]
 script = ExtResource("2_var")
@@ -55,7 +80,7 @@ texture = SubResource("Atlas_curious")
 
 [sub_resource type="AtlasTexture" id="Atlas_thinking"]
 atlas = ExtResource("8_thinking")
-region = Rect2(8, 3, 163, 163)
+region = Rect2(1, 3, 174, 174)
 
 [sub_resource type="Resource" id="Var_thinking"]
 script = ExtResource("2_var")
@@ -63,7 +88,7 @@ texture = SubResource("Atlas_thinking")
 
 [sub_resource type="AtlasTexture" id="Atlas_sad"]
 atlas = ExtResource("9_sad")
-region = Rect2(8, 3, 180, 180)
+region = Rect2(8, 3, 181, 181)
 
 [sub_resource type="Resource" id="Var_sad"]
 script = ExtResource("2_var")
@@ -71,7 +96,7 @@ texture = SubResource("Atlas_sad")
 
 [sub_resource type="AtlasTexture" id="Atlas_scared"]
 atlas = ExtResource("10_scared")
-region = Rect2(29, 2, 171, 171)
+region = Rect2(29, 2, 172, 175)
 
 [sub_resource type="Resource" id="Var_scared"]
 script = ExtResource("2_var")
@@ -79,7 +104,7 @@ texture = SubResource("Atlas_scared")
 
 [sub_resource type="AtlasTexture" id="Atlas_sleeping"]
 atlas = ExtResource("11_sleeping")
-region = Rect2(0, 0, 156, 170)
+region = Rect2(17, 2, 229, 168)
 
 [sub_resource type="Resource" id="Var_sleeping"]
 script = ExtResource("2_var")
@@ -87,11 +112,211 @@ texture = SubResource("Atlas_sleeping")
 
 [sub_resource type="AtlasTexture" id="Atlas_eating"]
 atlas = ExtResource("12_eating")
-region = Rect2(18, 2, 194, 194)
+region = Rect2(15, 2, 201, 201)
 
 [sub_resource type="Resource" id="Var_eating"]
 script = ExtResource("2_var")
 texture = SubResource("Atlas_eating")
+
+[sub_resource type="AtlasTexture" id="Atlas_calmado_1"]
+atlas = ExtResource("13_calmado_1")
+region = Rect2(0, 2, 186, 186)
+
+[sub_resource type="Resource" id="Var_calmado_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_calmado_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_calmado_2"]
+atlas = ExtResource("14_calmado_2")
+region = Rect2(0, 2, 182, 182)
+
+[sub_resource type="Resource" id="Var_calmado_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_calmado_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_calmado_3"]
+atlas = ExtResource("15_calmado_3")
+region = Rect2(0, 2, 185, 185)
+
+[sub_resource type="Resource" id="Var_calmado_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_calmado_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_cansado_1"]
+atlas = ExtResource("16_cansado_1")
+region = Rect2(0, 3, 187, 190)
+
+[sub_resource type="Resource" id="Var_cansado_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_cansado_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_cansado_2"]
+atlas = ExtResource("17_cansado_2")
+region = Rect2(0, 3, 174, 174)
+
+[sub_resource type="Resource" id="Var_cansado_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_cansado_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_cansado_3"]
+atlas = ExtResource("18_cansado_3")
+region = Rect2(1, 3, 167, 167)
+
+[sub_resource type="Resource" id="Var_cansado_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_cansado_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_cansado_4"]
+atlas = ExtResource("19_cansado_4")
+region = Rect2(18, 32, 167, 167)
+
+[sub_resource type="Resource" id="Var_cansado_4"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_cansado_4")
+
+[sub_resource type="AtlasTexture" id="Atlas_feliz_1"]
+atlas = ExtResource("20_feliz_1")
+region = Rect2(5, 3, 174, 174)
+
+[sub_resource type="Resource" id="Var_feliz_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_feliz_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_feliz_2"]
+atlas = ExtResource("21_feliz_2")
+region = Rect2(0, 3, 178, 178)
+
+[sub_resource type="Resource" id="Var_feliz_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_feliz_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_feliz_3"]
+atlas = ExtResource("22_feliz_3")
+region = Rect2(0, 3, 174, 174)
+
+[sub_resource type="Resource" id="Var_feliz_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_feliz_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_feliz_4"]
+atlas = ExtResource("23_feliz_4")
+region = Rect2(0, 3, 172, 172)
+
+[sub_resource type="Resource" id="Var_feliz_4"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_feliz_4")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_1"]
+atlas = ExtResource("24_hablando_1")
+region = Rect2(0, 3, 135, 151)
+
+[sub_resource type="Resource" id="Var_hablando_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_2"]
+atlas = ExtResource("25_hablando_2")
+region = Rect2(0, 3, 133, 147)
+
+[sub_resource type="Resource" id="Var_hablando_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_3"]
+atlas = ExtResource("26_hablando_3")
+region = Rect2(0, 3, 134, 141)
+
+[sub_resource type="Resource" id="Var_hablando_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_4"]
+atlas = ExtResource("27_hablando_4")
+region = Rect2(0, 3, 133, 144)
+
+[sub_resource type="Resource" id="Var_hablando_4"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_4")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_5"]
+atlas = ExtResource("28_hablando_5")
+region = Rect2(0, 3, 128, 134)
+
+[sub_resource type="Resource" id="Var_hablando_5"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_5")
+
+[sub_resource type="AtlasTexture" id="Atlas_hablando_6"]
+atlas = ExtResource("29_hablando_6")
+region = Rect2(0, 2, 125, 132)
+
+[sub_resource type="Resource" id="Var_hablando_6"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hablando_6")
+
+[sub_resource type="AtlasTexture" id="Atlas_hirritado_1"]
+atlas = ExtResource("30_hirritado_1")
+region = Rect2(1, 3, 175, 175)
+
+[sub_resource type="Resource" id="Var_hirritado_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hirritado_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_hirritado_2"]
+atlas = ExtResource("31_hirritado_2")
+region = Rect2(2, 3, 164, 164)
+
+[sub_resource type="Resource" id="Var_hirritado_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hirritado_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_hirritado_3"]
+atlas = ExtResource("32_hirritado_3")
+region = Rect2(0, 3, 154, 154)
+
+[sub_resource type="Resource" id="Var_hirritado_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hirritado_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_hirritado_4"]
+atlas = ExtResource("33_hirritado_4")
+region = Rect2(0, 2, 159, 159)
+
+[sub_resource type="Resource" id="Var_hirritado_4"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_hirritado_4")
+
+[sub_resource type="AtlasTexture" id="Atlas_sorprendido_1"]
+atlas = ExtResource("34_sorprendido_1")
+region = Rect2(0, 3, 177, 186)
+
+[sub_resource type="Resource" id="Var_sorprendido_1"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_sorprendido_1")
+
+[sub_resource type="AtlasTexture" id="Atlas_sorprendido_2"]
+atlas = ExtResource("35_sorprendido_2")
+region = Rect2(0, 3, 168, 170)
+
+[sub_resource type="Resource" id="Var_sorprendido_2"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_sorprendido_2")
+
+[sub_resource type="AtlasTexture" id="Atlas_sorprendido_3"]
+atlas = ExtResource("36_sorprendido_3")
+region = Rect2(0, 3, 170, 170)
+
+[sub_resource type="Resource" id="Var_sorprendido_3"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_sorprendido_3")
+
+[sub_resource type="AtlasTexture" id="Atlas_sorprendido_4"]
+atlas = ExtResource("37_sorprendido_4")
+region = Rect2(0, 3, 177, 177)
+
+[sub_resource type="Resource" id="Var_sorprendido_4"]
+script = ExtResource("2_var")
+texture = SubResource("Atlas_sorprendido_4")
 
 [resource]
 script = ExtResource("1_lib")
@@ -105,5 +330,30 @@ variants = Dictionary[StringName, ExtResource("2_var")]({
 &"sad": SubResource("Var_sad"),
 &"scared": SubResource("Var_scared"),
 &"sleeping": SubResource("Var_sleeping"),
-&"eating": SubResource("Var_eating")
+&"eating": SubResource("Var_eating"),
+&"calmado_1": SubResource("Var_calmado_1"),
+&"calmado_2": SubResource("Var_calmado_2"),
+&"calmado_3": SubResource("Var_calmado_3"),
+&"cansado_1": SubResource("Var_cansado_1"),
+&"cansado_2": SubResource("Var_cansado_2"),
+&"cansado_3": SubResource("Var_cansado_3"),
+&"cansado_4": SubResource("Var_cansado_4"),
+&"feliz_1": SubResource("Var_feliz_1"),
+&"feliz_2": SubResource("Var_feliz_2"),
+&"feliz_3": SubResource("Var_feliz_3"),
+&"feliz_4": SubResource("Var_feliz_4"),
+&"hablando_1": SubResource("Var_hablando_1"),
+&"hablando_2": SubResource("Var_hablando_2"),
+&"hablando_3": SubResource("Var_hablando_3"),
+&"hablando_4": SubResource("Var_hablando_4"),
+&"hablando_5": SubResource("Var_hablando_5"),
+&"hablando_6": SubResource("Var_hablando_6"),
+&"hirritado_1": SubResource("Var_hirritado_1"),
+&"hirritado_2": SubResource("Var_hirritado_2"),
+&"hirritado_3": SubResource("Var_hirritado_3"),
+&"hirritado_4": SubResource("Var_hirritado_4"),
+&"sorprendido_1": SubResource("Var_sorprendido_1"),
+&"sorprendido_2": SubResource("Var_sorprendido_2"),
+&"sorprendido_3": SubResource("Var_sorprendido_3"),
+&"sorprendido_4": SubResource("Var_sorprendido_4")
 })

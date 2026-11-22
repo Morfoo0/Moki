@@ -9,3 +9,6 @@ extends Resource
 
 @export var texture: Texture2D
 @export var pivot: Vector2 = Vector2.ZERO
+## Escala de normalización (p. ej. fotogramas dibujados a distinto tamaño).
+## Solo la usa un CharacterPart con use_variant_scale = true.
+@export var scale: float = 1.0

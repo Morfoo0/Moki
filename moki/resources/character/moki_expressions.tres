@@ -12,56 +12,241 @@
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_asustado.png" id="10_scared"]
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_dormido.png" id="11_sleeping"]
 [ext_resource type="Texture2D" path="res://assets/characters/moki/expressions/expresion_comiendo.png" id="12_eating"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_1.png" id="13_calmado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_2.png" id="14_calmado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/calmado/calmado_3.png" id="15_calmado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_1.png" id="16_cansado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_2.png" id="17_cansado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_3.png" id="18_cansado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/cansado/cansado_4.png" id="19_cansado_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_1.png" id="20_feliz_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_2.png" id="21_feliz_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_3.png" id="22_feliz_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/feliz/feliz_4.png" id="23_feliz_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_1.png" id="24_hablando_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_2.png" id="25_hablando_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_3.png" id="26_hablando_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_4.png" id="27_hablando_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_5.png" id="28_hablando_5"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hablando/hablando_6.png" id="29_hablando_6"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_1.png" id="30_hirritado_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_2.png" id="31_hirritado_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_3.png" id="32_hirritado_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/hirritado/hirritado_4.png" id="33_hirritado_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_1.png" id="34_sorprendido_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_2.png" id="35_sorprendido_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_3.png" id="36_sorprendido_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/moki/animations/sorprendido/sorprendido_4.png" id="37_sorprendido_4"]
 
 [sub_resource type="Resource" id="Var_happy"]
 script = ExtResource("2_var")
 texture = ExtResource("3_happy")
-pivot = Vector2(111, 234)
+pivot = Vector2(122, 234)
+scale = 0.98
 
 [sub_resource type="Resource" id="Var_laughing"]
 script = ExtResource("2_var")
 texture = ExtResource("4_laughing")
-pivot = Vector2(97, 245)
+pivot = Vector2(100, 245)
+scale = 0.986
 
 [sub_resource type="Resource" id="Var_surprised"]
 script = ExtResource("2_var")
 texture = ExtResource("5_surprised")
-pivot = Vector2(110, 257)
+pivot = Vector2(112, 257)
+scale = 0.807
 
 [sub_resource type="Resource" id="Var_angry"]
 script = ExtResource("2_var")
 texture = ExtResource("6_angry")
 pivot = Vector2(106, 232)
+scale = 1.071
 
 [sub_resource type="Resource" id="Var_curious"]
 script = ExtResource("2_var")
 texture = ExtResource("7_curious")
-pivot = Vector2(80, 229)
+pivot = Vector2(83, 229)
+scale = 1.017
 
 [sub_resource type="Resource" id="Var_thinking"]
 script = ExtResource("2_var")
 texture = ExtResource("8_thinking")
-pivot = Vector2(89, 228)
+pivot = Vector2(88, 228)
+scale = 1.057
 
 [sub_resource type="Resource" id="Var_sad"]
 script = ExtResource("2_var")
 texture = ExtResource("9_sad")
 pivot = Vector2(98, 230)
+scale = 1.017
 
 [sub_resource type="Resource" id="Var_scared"]
 script = ExtResource("2_var")
 texture = ExtResource("10_scared")
-pivot = Vector2(114, 236)
+pivot = Vector2(116, 236)
+scale = 1.05
 
 [sub_resource type="Resource" id="Var_sleeping"]
 script = ExtResource("2_var")
 texture = ExtResource("11_sleeping")
-pivot = Vector2(126, 167)
+pivot = Vector2(131, 167)
+scale = 0.98
 
 [sub_resource type="Resource" id="Var_eating"]
 script = ExtResource("2_var")
 texture = ExtResource("12_eating")
 pivot = Vector2(115, 260)
+scale = 0.918
+
+[sub_resource type="Resource" id="Var_calmado_1"]
+script = ExtResource("2_var")
+texture = ExtResource("13_calmado_1")
+pivot = Vector2(92, 230)
+scale = 0.992
+
+[sub_resource type="Resource" id="Var_calmado_2"]
+script = ExtResource("2_var")
+texture = ExtResource("14_calmado_2")
+pivot = Vector2(90, 232)
+scale = 1.01
+
+[sub_resource type="Resource" id="Var_calmado_3"]
+script = ExtResource("2_var")
+texture = ExtResource("15_calmado_3")
+pivot = Vector2(87, 225)
+scale = 0.998
+
+[sub_resource type="Resource" id="Var_cansado_1"]
+script = ExtResource("2_var")
+texture = ExtResource("16_cansado_1")
+pivot = Vector2(89, 226)
+scale = 0.968
+
+[sub_resource type="Resource" id="Var_cansado_2"]
+script = ExtResource("2_var")
+texture = ExtResource("17_cansado_2")
+pivot = Vector2(85, 218)
+scale = 1.057
+
+[sub_resource type="Resource" id="Var_cansado_3"]
+script = ExtResource("2_var")
+texture = ExtResource("18_cansado_3")
+pivot = Vector2(84, 199)
+scale = 1.1
+
+[sub_resource type="Resource" id="Var_cansado_4"]
+script = ExtResource("2_var")
+texture = ExtResource("19_cansado_4")
+pivot = Vector2(101, 200)
+scale = 1.1
+
+[sub_resource type="Resource" id="Var_feliz_1"]
+script = ExtResource("2_var")
+texture = ExtResource("20_feliz_1")
+pivot = Vector2(92, 228)
+scale = 1.057
+
+[sub_resource type="Resource" id="Var_feliz_2"]
+script = ExtResource("2_var")
+texture = ExtResource("21_feliz_2")
+pivot = Vector2(87, 241)
+scale = 1.037
+
+[sub_resource type="Resource" id="Var_feliz_3"]
+script = ExtResource("2_var")
+texture = ExtResource("22_feliz_3")
+pivot = Vector2(86, 229)
+scale = 1.057
+
+[sub_resource type="Resource" id="Var_feliz_4"]
+script = ExtResource("2_var")
+texture = ExtResource("23_feliz_4")
+pivot = Vector2(80, 229)
+scale = 1.071
+
+[sub_resource type="Resource" id="Var_hablando_1"]
+script = ExtResource("2_var")
+texture = ExtResource("24_hablando_1")
+pivot = Vector2(68, 216)
+scale = 1.217
+
+[sub_resource type="Resource" id="Var_hablando_2"]
+script = ExtResource("2_var")
+texture = ExtResource("25_hablando_2")
+pivot = Vector2(68, 216)
+scale = 1.255
+
+[sub_resource type="Resource" id="Var_hablando_3"]
+script = ExtResource("2_var")
+texture = ExtResource("26_hablando_3")
+pivot = Vector2(67, 218)
+scale = 1.306
+
+[sub_resource type="Resource" id="Var_hablando_4"]
+script = ExtResource("2_var")
+texture = ExtResource("27_hablando_4")
+pivot = Vector2(68, 208)
+scale = 1.275
+
+[sub_resource type="Resource" id="Var_hablando_5"]
+script = ExtResource("2_var")
+texture = ExtResource("28_hablando_5")
+pivot = Vector2(66, 206)
+scale = 1.373
+
+[sub_resource type="Resource" id="Var_hablando_6"]
+script = ExtResource("2_var")
+texture = ExtResource("29_hablando_6")
+pivot = Vector2(62, 199)
+scale = 1.397
+
+[sub_resource type="Resource" id="Var_hirritado_1"]
+script = ExtResource("2_var")
+texture = ExtResource("30_hirritado_1")
+pivot = Vector2(88, 220)
+scale = 1.05
+
+[sub_resource type="Resource" id="Var_hirritado_2"]
+script = ExtResource("2_var")
+texture = ExtResource("31_hirritado_2")
+pivot = Vector2(84, 212)
+scale = 1.124
+
+[sub_resource type="Resource" id="Var_hirritado_3"]
+script = ExtResource("2_var")
+texture = ExtResource("32_hirritado_3")
+pivot = Vector2(74, 214)
+scale = 1.199
+
+[sub_resource type="Resource" id="Var_hirritado_4"]
+script = ExtResource("2_var")
+texture = ExtResource("33_hirritado_4")
+pivot = Vector2(76, 213)
+scale = 1.156
+
+[sub_resource type="Resource" id="Var_sorprendido_1"]
+script = ExtResource("2_var")
+texture = ExtResource("34_sorprendido_1")
+pivot = Vector2(86, 232)
+scale = 0.992
+
+[sub_resource type="Resource" id="Var_sorprendido_2"]
+script = ExtResource("2_var")
+texture = ExtResource("35_sorprendido_2")
+pivot = Vector2(84, 225)
+scale = 1.086
+
+[sub_resource type="Resource" id="Var_sorprendido_3"]
+script = ExtResource("2_var")
+texture = ExtResource("36_sorprendido_3")
+pivot = Vector2(75, 236)
+scale = 1.086
+
+[sub_resource type="Resource" id="Var_sorprendido_4"]
+script = ExtResource("2_var")
+texture = ExtResource("37_sorprendido_4")
+pivot = Vector2(87, 238)
+scale = 1.043
 
 [resource]
 script = ExtResource("1_lib")
@@ -75,5 +260,30 @@ variants = Dictionary[StringName, ExtResource("2_var")]({
 &"sad": SubResource("Var_sad"),
 &"scared": SubResource("Var_scared"),
 &"sleeping": SubResource("Var_sleeping"),
-&"eating": SubResource("Var_eating")
+&"eating": SubResource("Var_eating"),
+&"calmado_1": SubResource("Var_calmado_1"),
+&"calmado_2": SubResource("Var_calmado_2"),
+&"calmado_3": SubResource("Var_calmado_3"),
+&"cansado_1": SubResource("Var_cansado_1"),
+&"cansado_2": SubResource("Var_cansado_2"),
+&"cansado_3": SubResource("Var_cansado_3"),
+&"cansado_4": SubResource("Var_cansado_4"),
+&"feliz_1": SubResource("Var_feliz_1"),
+&"feliz_2": SubResource("Var_feliz_2"),
+&"feliz_3": SubResource("Var_feliz_3"),
+&"feliz_4": SubResource("Var_feliz_4"),
+&"hablando_1": SubResource("Var_hablando_1"),
+&"hablando_2": SubResource("Var_hablando_2"),
+&"hablando_3": SubResource("Var_hablando_3"),
+&"hablando_4": SubResource("Var_hablando_4"),
+&"hablando_5": SubResource("Var_hablando_5"),
+&"hablando_6": SubResource("Var_hablando_6"),
+&"hirritado_1": SubResource("Var_hirritado_1"),
+&"hirritado_2": SubResource("Var_hirritado_2"),
+&"hirritado_3": SubResource("Var_hirritado_3"),
+&"hirritado_4": SubResource("Var_hirritado_4"),
+&"sorprendido_1": SubResource("Var_sorprendido_1"),
+&"sorprendido_2": SubResource("Var_sorprendido_2"),
+&"sorprendido_3": SubResource("Var_sorprendido_3"),
+&"sorprendido_4": SubResource("Var_sorprendido_4")
 })

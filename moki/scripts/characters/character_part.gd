@@ -19,6 +19,14 @@ extends Sprite2D
 		variant = value
 		_apply()
 
+## Aplica PartVariant.scale a este sprite (escala uniforme alrededor del
+## pivote). Desactivado por defecto: los sprites con escala propia (p. ej.
+## extremidades reflejadas) no se ven afectados.
+@export var use_variant_scale: bool = false:
+	set(value):
+		use_variant_scale = value
+		_apply()
+
 
 func _ready() -> void:
 	_apply()
@@ -41,6 +49,8 @@ func _apply() -> void:
 		return
 	texture = data.texture
 	offset = -data.pivot
+	if use_variant_scale:
+		scale = Vector2.ONE * data.scale
 
 
 func _validate_property(property: Dictionary) -> void:

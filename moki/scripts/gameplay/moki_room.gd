@@ -38,7 +38,14 @@ func _ready() -> void:
 		if _needs_link != null:
 			_needs_link.attention_requested.connect(_needs_hud.highlight)
 	if _care != null:
-		_care.message_requested.connect(show_caption)
+		_care.message_requested.connect(_on_moki_message)
+
+
+## Mensaje que dice Moki (p. ej. "¡Estoy lleno!"): rótulo + secuencia de habla.
+## Los nombres de objetos al tocarlos no son habla de Moki.
+func _on_moki_message(text: String) -> void:
+	show_caption(text)
+	_moki.talk(Moki.talk_time(text))
 
 
 ## Todos los RoomItem de la habitación, en orden de árbol.
