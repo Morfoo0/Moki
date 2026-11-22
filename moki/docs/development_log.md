@@ -254,6 +254,24 @@
   - regresión: motor, progreso (dos fases) e interfaz de los cinco mundos sin fallos (Letras 112, Números 192, Figuras 164, Combinación 162, Repaso 183);
   - arranque sin errores; la partida del usuario se restauró idéntica.
 
+### Notas — Menú principal v2, de prueba (2026-11-21)
+- **Escena nueva** `scenes/home/home_v2.tscn`; `home.tscn` no se toca.
+- **Composición**:
+  - Moki calmado a la izquierda, sobre la alfombra de la habitación entintada en tonos tierra (`warm_tint`), con una luz cálida radial (`GradientTexture2D`) y líneas de movimiento junto a la cola (`MotionLines`);
+  - fondo de la habitación con la estantería, el osito y la caja, desenfocado y en tonos cálidos (`warm_backdrop`, que lee la pantalla).
+- **Interfaz**:
+  - "MOKI" y el saludo en **Fredoka** (OFL, `assets/fonts/`, grosor 600 con `fredoka_bold.tres`);
+  - botones café con borde interior crema, sombra suave e icono vectorial (`MenuIcon`: mando / casita), con el estilo en `assets/ui/main_menu_theme.tres`;
+  - los dos botones miden lo mismo porque van en un `VBoxContainer` común.
+- **Sin PNG nuevos**: decisión del usuario, que prefirió reutilizar la habitación; por eso no hay planta ni cesta.
+- **Activación**: `ScenePaths.HOME` → `home_v2.tscn`, y el "Volver" de la habitación y del mapa de mundos (que tenían la ruta escrita a mano) → `home_v2.tscn`.
+  - **Para volver al menú anterior**: revertir esas tres líneas.
+- **Detectado**: 23 de los 25 fotogramas de `animations/` están recortados contra el borde del lienzo (sobre todo la cola, que se ve cortada en línea recta). Es del asset; hay que volver a exportarlos con margen.
+- **Pruebas**:
+  - capturas a 1280×720, 1920×1080 y 1024×768;
+  - navegación (Jugar, Mi habitación, Volver) y toque sobre Moki: sin fallos;
+  - regresión de los cinco mundos y de los estados de Moki: sin fallos.
+
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.
 - [ ] Sistema de guardado.
