@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_pick"
+title = "Toca la figura"
+instruction = "Toca el {name}."
+hints = PackedStringArray("Busca la figura que se llama {name}.", "{fact}", "{riddle}", "Mira el {name} que te muestro aquí arriba. Quité algunas figuras: busca una con la misma forma.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

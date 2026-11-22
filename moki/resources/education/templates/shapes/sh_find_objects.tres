@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_object_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 2
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_find_objects"
+title = "Cosas con esta forma"
+view_type = 1
+stage = 2
+instruction = "Toca todas las cosas que tienen forma de {name}."
+hints = PackedStringArray("Busca las cosas que se parecen a un {name}. ¡Hay más de una!", "{fact}", "{riddle}", "Quité algunos dibujos. Compara cada uno con el {name} de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

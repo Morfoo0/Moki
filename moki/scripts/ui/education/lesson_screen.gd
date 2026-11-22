@@ -155,7 +155,7 @@ func _on_activity_finished(result: Dictionary, line: DialogueLine) -> void:
 		match instance.view_type():
 			ActivityTemplate.ViewType.CHOICE:
 				_view.mark_correct(_last_pressed)
-			ActivityTemplate.ViewType.SEARCH:
+			ActivityTemplate.ViewType.SEARCH, ActivityTemplate.ViewType.SCENE:
 				# Las encontradas (en "toca 3 manzanas" no son todas las correctas).
 				for card_index: int in session.found_cards():
 					_view.mark_correct(card_index)

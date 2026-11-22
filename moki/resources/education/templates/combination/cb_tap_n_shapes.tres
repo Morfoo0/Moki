@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 11
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_tap_n_shapes"
+title = "Toca y cuenta figuras"
+view_type = 1
+stage = 2
+instruction = "Toca {number} {shape_n}. ¡Yo cuento contigo!"
+hints = PackedStringArray("Busca los {plural} y toca solo {number}.", "Cada vez que tocas uno, yo cuento. Para cuando lleguemos a {number}.", "{fact}", "Mira el {name} de aquí arriba y cuenta despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/shapes_triangle_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_pick.tres" id="t_sh_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_match.tres" id="t_sh_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_grid.tres" id="t_sh_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_odd.tres" id="t_sh_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_twins.tres" id="t_sh_twins"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_object.tres" id="t_sh_object"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_object_shape.tres" id="t_sh_object_shape"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_find_objects.tres" id="t_sh_find_objects"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_scene.tres" id="t_sh_scene"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_corners.tres" id="t_sh_corners"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_objects.tres" id="t_sh_sort_objects"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_shapes.tres" id="t_sh_sort_shapes"]
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy conoceremos al triángulo."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_2"]
+script = ExtResource("2_line")
+text = "El triángulo tiene 3 lados y 3 esquinas. ¡Cuéntalas: una, dos, tres!"
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_3"]
+script = ExtResource("2_line")
+text = "Hay triángulos en una rebanada de pizza, en una tienda de campaña, en los banderines de una fiesta y en algunas señales."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_4"]
+script = ExtResource("2_line")
+text = "El triángulo puede estar de pie, de cabeza o de lado: si tiene 3 esquinas, ¡es un triángulo!"
+kind = 1
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_5"]
+script = ExtResource("2_line")
+text = "También repasaremos el círculo y el cuadrado. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_6"]
+script = ExtResource("2_line")
+text = "¡Muy bien! Ya conoces al triángulo y sus 3 esquinas. Cuando quieras, te espera el rectángulo."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_7"]
+script = ExtResource("2_line")
+text = "¡Qué bien observas! Encontraste triángulos aunque estuvieran girados. ¿Vamos después con el rectángulo?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_triangle_8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Círculo, cuadrado y triángulo ya son tus amigos. ¡El rectángulo te espera!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"shapes_triangle"
+title = "El triángulo"
+objective = "Reconocer el triángulo y sus 3 lados y 3 esquinas, también girado, distinguirlo de otras figuras y encontrarlo en objetos y dibujos."
+concept_ids = Array[StringName]([&"shapes_triangle"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_shapes_triangle_1"), SubResource("Resource_shapes_triangle_2"), SubResource("Resource_shapes_triangle_3"), SubResource("Resource_shapes_triangle_4"), SubResource("Resource_shapes_triangle_5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_shapes_triangle_6"), SubResource("Resource_shapes_triangle_7"), SubResource("Resource_shapes_triangle_8")])
+reinforce_lines = PackedStringArray("El triángulo tiene 3 esquinas.", "Aunque esté girado, sigue siendo un triángulo.", "El triángulo tiene 3 lados.")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_sh_pick"), ExtResource("t_sh_match"), ExtResource("t_sh_grid"), ExtResource("t_sh_odd"), ExtResource("t_sh_twins"), ExtResource("t_sh_object"), ExtResource("t_sh_object_shape"), ExtResource("t_sh_find_objects"), ExtResource("t_sh_scene"), ExtResource("t_sh_corners"), ExtResource("t_sh_sort_objects"), ExtResource("t_sh_sort_shapes")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"shapes_rectangle"])

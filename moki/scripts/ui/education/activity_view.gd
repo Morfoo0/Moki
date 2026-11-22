@@ -19,6 +19,8 @@ static func create(view_type: ActivityTemplate.ViewType) -> ActivityView:
 			return SearchView.new()
 		ActivityTemplate.ViewType.SORT:
 			return SortView.new()
+		ActivityTemplate.ViewType.SCENE:
+			return ShapeSceneView.new()
 	return ChoiceView.new()
 
 

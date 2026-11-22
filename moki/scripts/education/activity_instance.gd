@@ -47,6 +47,11 @@ func view_type() -> ActivityTemplate.ViewType:
 	return template.view_type
 
 
+## SEARCH y SCENE: hay que encontrar varias tarjetas (no basta con una).
+func finds_many() -> bool:
+	return view_type() == ActivityTemplate.ViewType.SEARCH or view_type() == ActivityTemplate.ViewType.SCENE
+
+
 ## Distractores que se retiran con la pista visual: la mitad, dejando
 ## siempre al menos 2 opciones en pantalla (nunca revela la respuesta).
 func visual_hint_removals() -> Array[int]:

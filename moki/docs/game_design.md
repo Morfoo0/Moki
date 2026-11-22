@@ -87,3 +87,67 @@ Objetivo del mundo: reconocer los números del 1 al 10 y empezar a comprenderlos
   - Introducción por lección: los números nuevos, su forma ("el 8 parece un muñeco de nieve") y ejemplos cotidianos (2 ojos, 4 patas de un perrito, 5 dedos en una mano, 10 dedos en las dos manos).
   - Pistas progresivas sin dar la respuesta: contar con el dedo, levantar un dedo por cada objeto y adivinanzas de cantidad ("soy tantas como las patas de un perrito").
   - Refuerzo tras cada acierto y cierre que invita a la siguiente lección (la 5 celebra del 1 al 10).
+
+## Mundo Figuras: círculo, cuadrado, triángulo, rectángulo y óvalo
+Objetivo del mundo: reconocer y nombrar las cinco figuras y entender qué las distingue. El círculo es redondo y sin esquinas. El cuadrado tiene 4 lados iguales y 4 esquinas. El triángulo, 3 lados y 3 esquinas. El rectángulo, 4 esquinas y 2 lados largos y 2 cortos (lados opuestos iguales). El óvalo es redondo pero alargado. Además: encontrarlas en objetos y en dibujos, y clasificar por forma.
+
+- **Se abre al terminar Números** (lección 9 y 10).
+- Cinco lecciones acumulativas. Completar una abre la siguiente y las completadas se pueden rejugar:
+
+| Lección | Figura nueva | Repaso |
+|---|---|---|
+| 1 | círculo | — |
+| 2 | cuadrado | círculo |
+| 3 | triángulo | círculo, cuadrado |
+| 4 | rectángulo (frente al cuadrado) | las 3 anteriores |
+| 5 | óvalo + repaso de las cinco | las 4 (≈ 50 % de repaso) |
+
+- **Las figuras se dibujan por código** con su geometría real, nunca deformadas: el cuadrado es 1:1, el rectángulo 1,6–2,0 y el óvalo 1,45–1,7. El color, el tamaño y el giro varían, pero nunca cambian la respuesta. El cuadrado se gira como mucho 20°, para que no parezca un rombo.
+- Actividades (12 dinámicas compartidas):
+  - **Reconocer**: toca el {figura} · ¿dónde hay otra con la misma forma? (otro color y tamaño).
+  - **Distinguir**: busca todos los {figuras} · ¿cuál es diferente? · figuras parecidas (cuadrado ↔ rectángulo, círculo ↔ óvalo; desde la lección 2).
+  - **Asociar con objetos**: ¿qué cosa tiene forma de…? · ¿qué forma tiene la pelota? · toca todas las cosas con forma de…
+  - **Contexto**: figuras escondidas en un dibujo (casa, coche, cohete, muñeco de nieve, barco, tren, helado, pez) · ¿cuántas esquinas (o lados) tiene? (desde la lección 2).
+  - **Reforzar**: cada cosa a la cesta de su forma · cada figura a su cesta (2 cestas; 3 con dificultad alta cuando ya se conocen suficientes figuras).
+- **Dificultad progresiva**:
+  - pasa de 2 a 4 opciones;
+  - los giros aparecen desde la dificultad 3;
+  - primero se compara con figuras muy distintas y después con la parecida;
+  - los dibujos se vuelven más complejos;
+  - las cestas tienen más tarjetas.
+- **Objetos cotidianos** (provisionales: emoji y dibujos de la habitación):
+  - círculo: pelota, galleta, reloj, moneda, dona, luna llena;
+  - cuadrado: regalo, ventana, caja;
+  - triángulo: pizza, señal, tienda de campaña, banderines;
+  - rectángulo: puerta, teléfono, chocolate, sobre, cuadro;
+  - óvalo: huevo, balón ovalado, espejo, alfombra.
+- **Moki**:
+  - Introducción por lección: la figura, su característica, objetos cotidianos y qué hacer.
+  - Pistas progresivas sin dar la respuesta: "cuenta sus esquinas con el dedo", "el cuadrado tiene sus 4 lados iguales; el rectángulo, 2 largos y 2 cortos", adivinanzas.
+  - Refuerzo tras cada acierto y cierre que invita a la siguiente figura (la lección 5 celebra las cinco).
+
+## Mundo Combinación: usar juntos lo aprendido
+Objetivo del mundo: usar lo aprendido en Letras, Números y Figuras en contextos nuevos y relacionar conceptos dentro de una misma actividad, siempre con una razón educativa. No hay contenido nuevo que aprender: solo vocales, números del 1 al 10, cantidades y las cinco figuras.
+
+- **Se abre al terminar Figuras.** Cinco lecciones en orden; las completadas se pueden repetir.
+
+| Lección | Qué combina | Actividades |
+|---|---|---|
+| 1 Letras e imágenes | las cinco vocales a la vez | toca la vocal · ¿qué vocal suena así? · busca la vocal entre vocales · grande y pequeñita · ¿con qué vocal empieza el dibujo? · ¿qué dibujo empieza con…? · toca los dibujos que empiezan con… · la vocal en la palabra · cestas de vocales |
+| 2 Números y cantidades | todo el 1–10 | las 12 dinámicas del Mundo de Números con los números del 1 al 10 |
+| 3 Figuras y cantidades | figuras + contar | reconocer y distinguir figuras · ¿cuántos triángulos hay? (entre otras figuras) · ¿dónde hay más círculos? · toca 3 cuadrados · cuenta las figuras de un dibujo · esquinas · cestas por forma y redondas / con esquinas |
+| 4 Retos combinados | dos conceptos por reto | ¿cuántos dibujos empiezan con la A? · toca 4 letras E · cuenta figuras · ¿qué figura tiene 3 esquinas? · letras o números (cestas) · redondas / con esquinas |
+| 5 El gran desafío de Moki | los tres mundos, como una aventura | un "camino de retos" que mezcla vocales, números, cantidades, figuras, dibujos, secuencias y cestas de letras / números / figuras |
+
+- **Cada reto combinado tiene su razón**:
+  - contar solo la figura pedida obliga a distinguirla de las demás;
+  - contar dibujos de una vocal une sonido inicial y conteo;
+  - "¿qué figura tiene 3 esquinas?" une figuras y números;
+  - las cestas de letras y números enseñan a distinguir qué es cada símbolo (no se usan la I ni el 1, que se confunden).
+- **Respuesta única**: nunca hay dos opciones válidas. Por ejemplo, el cuadrado y el rectángulo, que tienen las dos 4 esquinas, nunca aparecen juntos al preguntar por esquinas.
+- **Progresión**: en cada lección, primero un concepto (reconocer, distinguir), luego dos relacionados (asociar), después en contexto (dibujos, conteos) y al final clasificar. Con dificultad alta hay más opciones, cantidades más cercanas, figuras parecidas mezcladas, minúsculas y 3 cestas.
+- **Moki**:
+  - Presenta cada reto con ejemplos cotidianos.
+  - La lección 5 es una aventura: "un camino de retos" en el que no hay prisa y pedir ayuda está bien.
+  - Pistas que ayudan a relacionar ("primero busca los triángulos y luego cuéntalos").
+  - Felicita por todo lo aprendido en los tres mundos.

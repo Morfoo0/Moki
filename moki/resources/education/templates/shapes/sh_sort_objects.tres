@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_object_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 3
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_sort_objects"
+title = "Cesta de las cosas"
+view_type = 2
+stage = 4
+instruction = "Pon cada cosa en la cesta de su forma."
+hints = PackedStringArray("Mira cada dibujo y busca la cesta con su misma forma.", "{fact}", "¿Tiene esquinas o es redondo? Eso te ayuda a elegir la cesta.", "Mira la figura de cada cesta y compara.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

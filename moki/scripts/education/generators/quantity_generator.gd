@@ -104,6 +104,11 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 ## tarjetas pequeñas de clasificar (hasta SORT_MAX_AMOUNT); si no, una pareja
 ## de números de repaso (p. ej. 5 y 6 en la lección del 7 y el 8).
 static func _sort_pair(numbers: NumberBank, rng: RandomNumberGenerator) -> Vector2i:
+	# Banco con muchos números (Combinación: 1-10): una pareja seguida al azar,
+	# siempre legible (hasta SORT_MAX_AMOUNT). Con 2 números, como siempre.
+	if numbers.numbers.size() > 2:
+		var first: int = rng.randi_range(maxi(1, numbers.numbers[0]), mini(numbers.max_number, SORT_MAX_AMOUNT) - 1)
+		return Vector2i(first, first + 1)
 	var a: int = numbers.numbers[0]
 	var b: int = numbers.numbers[1] if numbers.numbers.size() > 1 else mini(a + 1, numbers.max_number)
 	if b <= SORT_MAX_AMOUNT:

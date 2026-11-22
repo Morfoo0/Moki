@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_object_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 1
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_object_shape"
+title = "¿Qué forma tiene?"
+stage = 2
+instruction = "Mira {object}. ¿Qué forma tiene?"
+hints = PackedStringArray("Fíjate en el borde de {object}. ¿A qué figura se parece?", "Pasa tu dedo por el borde de {object}: ¿tiene esquinas o es redondo?", "Si dibujaras {object} con una sola figura, ¿cuál usarías?", "Quité algunas figuras. Mira otra vez {object}.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

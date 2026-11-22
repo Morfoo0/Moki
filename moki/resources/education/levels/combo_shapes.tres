@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/combo_shapes_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_pick.tres" id="t_sh_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_match.tres" id="t_sh_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_grid.tres" id="t_sh_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_odd.tres" id="t_sh_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_twins.tres" id="t_sh_twins"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_count_shapes.tres" id="t_cb_count_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_compare_shapes.tres" id="t_cb_compare_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_tap_n_shapes.tres" id="t_cb_tap_n_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_scene_count.tres" id="t_cb_scene_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_corners.tres" id="t_sh_corners"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_shapes.tres" id="t_sh_sort_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_round.tres" id="t_cb_sort_round"]
+
+[sub_resource type="Resource" id="Resource_combo_shapes_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy juntaremos las figuras con los números."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_combo_shapes_2"]
+script = ExtResource("2_line")
+text = "Primero buscarás una figura, por ejemplo los círculos, y después contarás cuántos hay."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_combo_shapes_3"]
+script = ExtResource("2_line")
+text = "¡Mira a tu alrededor! Una ventana es un cuadrado y las ruedas de un coche son círculos. ¿Cuántas ruedas tiene un coche?"
+kind = 2
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_shapes_4"]
+script = ExtResource("2_line")
+text = "Cuenta solo la figura que te pido: las otras no cuentan. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_combo_shapes_5"]
+script = ExtResource("2_line")
+text = "¡Muy bien! Encontraste figuras y las contaste. Cuando quieras, te esperan los retos combinados."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_shapes_6"]
+script = ExtResource("2_line")
+text = "¡Qué buen observador eres! Figuras y números juntos. ¿Vamos después con los retos?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_shapes_7"]
+script = ExtResource("2_line")
+text = "¡Bravo! Contaste círculos, cuadrados y triángulos. ¡Los retos combinados te esperan!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"combo_shapes"
+title = "Figuras y cantidades"
+objective = "Combinar figuras y números: reconocer y clasificar las cinco figuras, contar cuántas hay de una figura entre otras, contarlas en dibujos y comparar conjuntos."
+concept_ids = Array[StringName]([&"combo_shapes"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_combo_shapes_1"), SubResource("Resource_combo_shapes_2"), SubResource("Resource_combo_shapes_3"), SubResource("Resource_combo_shapes_4")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_combo_shapes_5"), SubResource("Resource_combo_shapes_6"), SubResource("Resource_combo_shapes_7")])
+reinforce_lines = PackedStringArray("¡Buscaste la figura y la contaste!", "¡Figuras y números juntos!", "¡Solo contaste la figura que tocaba!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_sh_pick"), ExtResource("t_sh_match"), ExtResource("t_sh_grid"), ExtResource("t_sh_odd"), ExtResource("t_sh_twins"), ExtResource("t_cb_count_shapes"), ExtResource("t_cb_compare_shapes"), ExtResource("t_cb_tap_n_shapes"), ExtResource("t_cb_scene_count"), ExtResource("t_sh_corners"), ExtResource("t_sh_sort_shapes"), ExtResource("t_cb_sort_round")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"combo_mixed"])

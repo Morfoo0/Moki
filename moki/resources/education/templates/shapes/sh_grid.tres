@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 2
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_grid"
+title = "Busca todas"
+view_type = 1
+stage = 1
+instruction = "Busca todos los {plural} y tócalos uno por uno."
+hints = PackedStringArray("Toca cada {name} que veas. ¡Puede haber grandes, pequeños y de colores!", "{fact}", "{similar}", "Compara cada figura con el {name} de aquí arriba. Quité algunas para que sea más fácil.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

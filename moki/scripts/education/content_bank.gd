@@ -68,6 +68,13 @@ func distractors_for(difficulty: int) -> PackedStringArray:
 	return pool
 
 
+## Banco con el que se genera una actividad de "template". Por defecto, este
+## mismo. Un banco que combina varios (CombinationBank) entrega a cada
+## plantilla el banco que entiende su generador.
+func resolve_for(_template: ActivityTemplate, _rng: RandomNumberGenerator) -> ContentBank:
+	return self
+
+
 func font_count() -> int:
 	return font_names.size() + 1
 

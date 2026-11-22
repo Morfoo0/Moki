@@ -22,6 +22,11 @@ var _panel := Panel.new()
 var _label := Label.new()
 var _image := TextureRect.new()
 var _press_inside: bool = false
+## SHAPE: la figura dibujada.
+var _drawing: ShapeDrawing
+## Sin marco: solo la figura (partes de un dibujo compuesto). Los toques solo
+## cuentan dentro de la figura.
+var frameless: bool = false
 
 static var _emoji: SystemFont
 
@@ -52,8 +57,16 @@ func setup(index: int, card: CardData, bank: ContentBank, side: float, width: fl
 	_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_panel)
-	if card.kind == CardData.Kind.GROUP:
+	if card.kind == CardData.Kind.SHAPE:
+		_drawing = ShapeDrawing.new()
+		_drawing.setup(card, 0.14)
+		_drawing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_drawing.set_anchors_preset(Control.PRESET_FULL_RECT)
+		add_child(_drawing)
+	elif card.kind == CardData.Kind.GROUP:
 		_build_group(card, card_size)
+	elif card.kind == CardData.Kind.COLLECTION:
+		_build_collection(card, card_size, bank)
 	elif card.kind == CardData.Kind.IMAGE and card.texture == null and not card.glyph.is_empty():
 		# Dibujo provisional: emoji con la fuente de emoji del sistema.
 		_label.text = card.glyph
@@ -134,6 +147,51 @@ func _build_group(card: CardData, card_size: Vector2) -> void:
 		add_child(item)
 
 
+## Conjunto de elementos distintos (figuras, dibujos, letras o números), cada
+## uno en su celda (group_rects), dibujado como su propio tipo.
+func _build_collection(card: CardData, card_size: Vector2, bank: ContentBank) -> void:
+	var margin: float = minf(card_size.x, card_size.y) * 0.08
+	var area := Rect2(Vector2(margin, margin), card_size - Vector2(margin, margin) * 2.0)
+	var rects: Array[Rect2] = group_rects(card, area)
+	for i in mini(rects.size(), card.items.size()):
+		var element: CardData = card.items[i]
+		var rect: Rect2 = rects[i]
+		var item: Control
+		match element.kind:
+			CardData.Kind.SHAPE:
+				var drawing := ShapeDrawing.new()
+				drawing.setup(element, 0.04)
+				item = drawing
+			CardData.Kind.IMAGE:
+				if element.texture != null:
+					var picture := TextureRect.new()
+					picture.texture = element.texture
+					picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+					picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+					item = picture
+				else:
+					item = _centered_label(element.glyph, int(rect.size.y * 0.8), Color.WHITE, emoji_font())
+			_:
+				var font: Font = bank.get_font(element.font_index) if bank != null else null
+				item = _centered_label(element.text, int(rect.size.y * 0.85), element.color, font)
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		item.position = rect.position
+		item.size = rect.size
+		add_child(item)
+
+
+static func _centered_label(value: String, font_size: int, tint: Color, font: Font) -> Label:
+	var label := Label.new()
+	label.text = value
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", maxi(font_size, 8))
+	label.add_theme_color_override("font_color", tint)
+	if font != null:
+		label.add_theme_font_override("font", font)
+	return label
+
+
 ## Rectángulos (uno por objeto) dentro de "area". Deterministas: dependen solo
 ## de la tarjeta (count, layout, layout_seed). Nunca se solapan.
 static func group_rects(card: CardData, area: Rect2) -> Array[Rect2]:
@@ -200,9 +258,26 @@ func mark_correct() -> void:
 	_style.border_color = CORRECT
 	_style.set_border_width_all(10)
 	_style.bg_color = Color("#E9F8E3")
+	if frameless and _drawing != null:
+		_drawing.set_highlight(CORRECT)
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE * 1.15, 0.12).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.2)
+
+
+## Solo la figura, sin marco (partes de un dibujo compuesto).
+func make_frameless() -> void:
+	frameless = true
+	_panel.visible = false
+	if _drawing != null:
+		_drawing.margin_ratio = 0.0
+		_drawing.queue_redraw()
+
+
+func _has_point(point: Vector2) -> bool:
+	if frameless and _drawing != null:
+		return _drawing.contains_point(point)
+	return Rect2(Vector2.ZERO, size).has_point(point)
 
 
 ## Error: sacudida suave (sin colores negativos ni castigo).

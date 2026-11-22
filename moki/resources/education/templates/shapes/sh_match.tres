@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/shape_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 1
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"sh_match"
+title = "La misma forma"
+instruction = "Mira esta figura. ¿Dónde hay otra con la misma forma?"
+hints = PackedStringArray("No importa el color ni el tamaño: busca la misma forma.", "{fact}", "Si fueran gemelas vestidas de otro color, ¿cuál sería su gemela?", "Quité algunas figuras. Compara cada una con la de arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

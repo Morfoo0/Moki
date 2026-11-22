@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 4
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_vowel_initial"
+title = "¿Con qué vocal empieza?"
+stage = 2
+instruction = "{this_is} {article} {word}. ¿Con qué vocal empieza {word}?"
+hints = PackedStringArray("Di «{word}» despacito. ¿Qué sonido escuchas primero?", "El primer sonido de «{word}» es una vocal. Abre la boca como para decirla.", "Di las vocales: a, e, i, o, u. ¿Cuál suena al principio de «{word}»?", "Quité algunas vocales. Di «{word}» otra vez, despacito.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

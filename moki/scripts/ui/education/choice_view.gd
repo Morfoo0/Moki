@@ -9,12 +9,14 @@ const WIDE_PROMPT_WIDTH: float = 560.0
 
 func _build() -> void:
 	var column: BoxContainer = centered_box(true)
-	var group_options: bool = not instance.cards.is_empty() and instance.cards[0].kind == CardData.Kind.GROUP
+	var group_options: bool = not instance.cards.is_empty() and (instance.cards[0].kind == CardData.Kind.GROUP
+		or instance.cards[0].kind == CardData.Kind.COLLECTION)
 	if instance.prompt_card != null:
 		var prompt := ActivityCard.new()
 		if instance.prompt_card.wide:
 			# Apaisada: grupos de hasta 10 objetos o filas de números.
-			var height: float = 190.0 if instance.prompt_card.kind == CardData.Kind.GROUP else 150.0
+			var tall: bool = instance.prompt_card.kind == CardData.Kind.GROUP or instance.prompt_card.kind == CardData.Kind.COLLECTION
+			var height: float = 190.0 if tall else 150.0
 			prompt.setup(-1, instance.prompt_card, bank, height, WIDE_PROMPT_WIDTH)
 		else:
 			prompt.setup(-1, instance.prompt_card, bank, 120.0 if group_options else 170.0)

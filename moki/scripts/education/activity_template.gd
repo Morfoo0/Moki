@@ -5,7 +5,9 @@ extends Resource
 ## El generador produce instancias concretas (ActivityInstance) según la dificultad.
 
 ## Vista que presenta la actividad (reutilizable entre mundos).
-enum ViewType { CHOICE, SEARCH, SORT }
+## SCENE: encontrar partes dentro de un dibujo compuesto; se evalúa como SEARCH.
+## (Las vistas nuevas van al final: los .tres guardan la vista como número.)
+enum ViewType { CHOICE, SEARCH, SORT, SCENE }
 ## Etapa del aprendizaje del concepto (orden de una lección).
 enum Stage { RECOGNIZE, DISCRIMINATE, ASSOCIATE, CONTEXT, REINFORCE }
 ## Escalones de la ayuda progresiva.

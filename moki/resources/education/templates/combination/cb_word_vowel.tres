@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 7
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_word_vowel"
+title = "La vocal en la palabra"
+view_type = 1
+stage = 3
+instruction = "Esta palabra es {word}. Toca todas las {letter} que tiene."
+hints = PackedStringArray("Mira las letras de la palabra una por una y toca las {letter}.", "La palabra tiene otras vocales también: busca solo la {letter}.", "Cuando dices la palabra despacito, ¿dónde suena «{sound}»?", "Compara cada letra de la palabra con la {letter} de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

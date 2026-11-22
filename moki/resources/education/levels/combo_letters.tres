@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/combo_letters_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_pick.tres" id="t_cb_vowel_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_sound.tres" id="t_cb_vowel_sound"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_grid.tres" id="t_cb_vowel_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_case.tres" id="t_cb_vowel_case"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_initial.tres" id="t_cb_vowel_initial"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_image_for_vowel.tres" id="t_cb_image_for_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_find_images.tres" id="t_cb_find_images"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_word_vowel.tres" id="t_cb_word_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_vowels.tres" id="t_cb_sort_vowels"]
+
+[sub_resource type="Resource" id="Resource_combo_letters_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. ¡Bienvenido al mundo de Combinación! Aquí usarás todo lo que ya aprendiste."
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_letters_2"]
+script = ExtResource("2_line")
+text = "Hoy jugaremos con las cinco vocales a la vez: A, E, I, O, U. ¡Ya las conoces todas!"
+kind = 1
+
+[sub_resource type="Resource" id="Resource_combo_letters_3"]
+script = ExtResource("2_line")
+text = "Cada dibujo tiene un nombre, y muchos nombres empiezan con una vocal: oso empieza con O, uvas con U."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_combo_letters_4"]
+script = ExtResource("2_line")
+text = "Di los nombres despacito y escucha el primer sonido. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_combo_letters_5"]
+script = ExtResource("2_line")
+text = "¡Muy bien! Usaste las cinco vocales con muchos dibujos. Cuando quieras, te esperan los números."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_letters_6"]
+script = ExtResource("2_line")
+text = "¡Qué buen oído tienes! Encontraste las vocales al principio de las palabras. ¿Vamos después con los números?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_letters_7"]
+script = ExtResource("2_line")
+text = "¡Bravo! A, E, I, O, U: ¡las conoces todas! Los números te esperan."
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"combo_letters"
+title = "Letras e imágenes"
+objective = "Usar las cinco vocales en distintos contextos: distinguirlas entre sí, reconocer su sonido y su forma pequeñita, encontrar la vocal inicial de palabras con dibujo, buscarla dentro de palabras y clasificar dibujos por su vocal."
+concept_ids = Array[StringName]([&"combo_letters"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_combo_letters_1"), SubResource("Resource_combo_letters_2"), SubResource("Resource_combo_letters_3"), SubResource("Resource_combo_letters_4")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_combo_letters_5"), SubResource("Resource_combo_letters_6"), SubResource("Resource_combo_letters_7")])
+reinforce_lines = PackedStringArray("¡Escuchaste muy bien el primer sonido!", "¡Las cinco vocales son tus amigas!", "Cada vocal tiene su sonido.")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_cb_vowel_pick"), ExtResource("t_cb_vowel_sound"), ExtResource("t_cb_vowel_grid"), ExtResource("t_cb_vowel_case"), ExtResource("t_cb_vowel_initial"), ExtResource("t_cb_image_for_vowel"), ExtResource("t_cb_find_images"), ExtResource("t_cb_word_vowel"), ExtResource("t_cb_sort_vowels")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"combo_numbers"])

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 12
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_scene_count"
+title = "Cuenta en el dibujo"
+view_type = 3
+stage = 3
+instruction = "¡Este dibujo es {scene}! Toca todos los {plural} para contarlos. ¡Yo cuento contigo!"
+hints = PackedStringArray("Busca en el dibujo todos los {plural} y tócalos uno por uno.", "{fact}", "{riddle}", "Quité algunas partes del dibujo. Compara con el {name} de aquí arriba.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

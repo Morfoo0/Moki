@@ -23,20 +23,55 @@ func setup(index: int, label_card: CardData, bank: ContentBank) -> void:
 	var column := VBoxContainer.new()
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(column)
-	var title := Label.new()
-	title.text = label_card.text
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 64)
-	title.add_theme_color_override("font_color", Color("#5B3A29"))
-	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	column.add_child(title)
+	if label_card.kind == CardData.Kind.SHAPE:
+		column.add_child(_shape_icon(label_card, 78.0))  # cesta de una figura
+	elif label_card.kind == CardData.Kind.COLLECTION:
+		# Cesta de una clase de cosas (p. ej. "letras": A E O), con ejemplos.
+		var examples := ActivityCard.new()
+		examples.setup(-1, label_card, bank, 70.0, 200.0)
+		examples.locked = true
+		examples.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		examples.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		column.add_child(examples)
+	else:
+		var title := Label.new()
+		title.text = label_card.text
+		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		title.add_theme_font_size_override("font_size", 64)
+		title.add_theme_color_override("font_color", Color("#5B3A29"))
+		title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		column.add_child(title)
 	_items.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_items.alignment = FlowContainer.ALIGNMENT_CENTER
 	column.add_child(_items)
 	tooltip_text = label_card.spoken
 
 
+## Figura dibujada de lado "side", centrada.
+static func _shape_icon(card: CardData, side: float) -> Control:
+	var drawing := ShapeDrawing.new()
+	drawing.setup(card, 0.06)
+	drawing.custom_minimum_size = Vector2(side, side)
+	drawing.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	drawing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return drawing
+
+
 func add_item(card: CardData) -> void:
+	if card.kind == CardData.Kind.SHAPE:
+		_items.add_child(_shape_icon(card, 50.0))
+		return
+	if card.kind == CardData.Kind.LETTER or card.kind == CardData.Kind.NUMBER:
+		var symbol := Label.new()
+		symbol.text = card.text
+		symbol.custom_minimum_size = Vector2(44, 56)
+		symbol.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		symbol.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		symbol.add_theme_font_size_override("font_size", 40)
+		symbol.add_theme_color_override("font_color", card.color)
+		symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_items.add_child(symbol)
+		return
 	if card.texture == null and not card.glyph.is_empty():
 		var glyph := Label.new()
 		glyph.text = card.glyph

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 5
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_image_for_vowel"
+title = "Dibujos y vocales"
+stage = 2
+instruction = "¿Qué dibujo empieza con la {letter}?"
+hints = PackedStringArray("Di el nombre de cada dibujo despacito. ¿Cuál empieza con «{sound}»?", "Escucha solo el primer sonido de cada palabra.", "Si la palabra empieza con «{sound}», empieza con la {letter}. ¿Cuál es?", "Quité algunos dibujos. Mira la {letter} de aquí arriba y di cada nombre.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

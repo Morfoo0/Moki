@@ -64,7 +64,9 @@
 - [x] Progresión por niveles y progreso persistente.
 - [x] Mundo Letras completo: vocales A, E, I, O, U.
 - [x] Mundo Números completo: del 1 al 10 en cinco lecciones.
-- [ ] Mundos Figuras, Combinación y Repaso.
+- [x] Mundo Figuras completo: círculo, cuadrado, triángulo, rectángulo y óvalo.
+- [x] Mundo Combinación completo: cinco lecciones integradoras.
+- [ ] Mundo Repaso.
 
 ### Notas — Sistema educativo (2026-11-20)
 - Nivel = objetivo permanente; lección = sesión generada de 5–8 actividades, distinta cada vez (historial, firmas de contenido, puntuación ponderada, sin repetir plantilla ni vista seguidas).
@@ -115,6 +117,74 @@
   - Interfaz: 193 comprobaciones (mapa de mundos bloqueado/abierto, mapa de Números, las 5 lecciones con ratón y toque, rejugar, y una lección forzada con tocar-y-contar, secuencia, orden, comparar y cesta).
   - Regresión de Letras: motor 755.380, interfaz 112 y progreso 37, sin cambios.
   - Arranque sin errores en consola.
+
+### Notas — Mundo Figuras (2026-11-21)
+- Cinco lecciones acumulativas sobre el mismo motor. Lo nuevo es:
+  - geometría exacta dibujada por código, sin arte nuevo;
+  - un banco (`ShapeBank`), dos generadores y 8 dibujos compuestos;
+  - una cuarta vista (`SCENE`: encontrar figuras dentro de un dibujo).
+- **Figuras se abre al terminar Números.**
+- 12 dinámicas compartidas:
+  - reconocer y emparejar sin fijarse en el color;
+  - buscar entre figuras variadas y la diferente;
+  - figuras parecidas (cuadrado ↔ rectángulo, círculo ↔ óvalo);
+  - figura ↔ objeto en los dos sentidos, y tocar todas las cosas de una forma;
+  - figuras en dibujos y contar esquinas o lados;
+  - clasificar objetos y figuras en 2 o 3 cestas.
+- **Objetos revisados con capturas.** Se descartaron waffle 🧇 (se ve como un rombo), dado 🎲 y cubo de hielo 🧊 (cubos en 3D, no cuadrados), queso 🧀 y limón 🍋 (formas irregulares). Se añadieron dibujos de la habitación que sí tienen su forma: ventana y caja (cuadrado), banderines (triángulo), cuadro (rectángulo) y alfombra (óvalo).
+- **Archivos sin usar** que se crearon durante este desarrollo y ya no se referencian: `resources/education/content/shape_objects/{waffle,die,ice,cheese,lemon}.tres`. No se han borrado (CLAUDE.md: no eliminar archivos sin autorización); se pueden borrar.
+- Corregido en el dibujo del tren: la chimenea flotaba separada de la locomotora.
+- **Pendiente / limitaciones**:
+  - Emoji provisionales para algunos objetos.
+  - Por la alternancia de vistas del `LessonBuilder`, "figuras parecidas" sale en ~24 % de las lecciones y "cuenta las esquinas" en ~21 %. La comparación cuadrado ↔ rectángulo también aparece en "toca", "busca todos" y "¿cuál es diferente?" con dificultad alta, porque allí la figura parecida es el primer distractor.
+  - "Figuras escondidas" sale en casi todas las lecciones.
+  - Voz desactivada.
+- Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada):
+  - Motor: 8.349.167 comprobaciones.
+    - Geometría: radio constante, lados opuestos iguales, ángulos rectos, cuadrado 1:1 y poco girado, proporciones del rectángulo y del óvalo, triángulos no aplastados, y todo dentro de su espacio, también en los 8 dibujos.
+    - Respuestas: una por forma, objeto ↔ forma, esquinas correctas, cestas correctas, partes del dibujo = figura pedida.
+    - Pistas rellenas y la pista visual nunca retira la respuesta.
+    - Repaso presente.
+    - 200 lecciones por nivel sin plantilla ni vista seguidas ni lecciones idénticas.
+    - Sesiones de niño que acierta y con dificultades.
+  - Progreso: 39 comprobaciones (bloqueo hasta Números, cadena 1→5, rejugar, pistas, historial, migración, persistencia entre dos procesos).
+  - Interfaz: 164 comprobaciones.
+    - Toques en partes superpuestas (gana la de encima; fuera de la figura no cuenta).
+    - Mapa de mundos y de Figuras.
+    - Las cinco lecciones con ratón y toque, y una lección forzada con parecidas, dibujo, esquinas, objetos y cestas.
+  - Regresión: Letras (motor 755.380, interfaz 112, progreso 37) y Números (motor 665.245, interfaz 192, progreso 44), sin cambios.
+  - Arranque sin errores en consola.
+
+### Notas — Mundo Combinación (2026-11-21)
+- Cinco lecciones que usan lo enseñado en los tres mundos, sin contenido ni arte nuevos (dibujos de las vocales, objetos de Números, figuras por código y los 8 dibujos de Figuras).
+- **Se abre al terminar Figuras.** La lección 5 se llama "El gran desafío de Moki" (Chibbi es el nombre antiguo).
+- **Pieza clave**: `ContentBank.resolve_for()` + `CombinationBank`. Cada actividad recibe el banco que entiende su generador, así que las 12 plantillas de Números y varias de Figuras se reutilizan tal cual. Lo nuevo es un generador (18 modos), la tarjeta `COLLECTION` y 19 plantillas.
+- Corregido durante el desarrollo:
+  - Los bancos de apoyo tenían el mismo nombre que los bancos de las lecciones 2 y 3; ahora son `combo_support_*`.
+  - Las figuras dentro de los conjuntos eran demasiado pequeñas para contarlas: ahora ocupan al menos el 80 % de su celda, y las comparaciones van siempre en filas.
+- **Pendiente / limitaciones**:
+  - Igual que en los otros mundos, por la alternancia de vistas algunas plantillas salen menos ("toca los dibujos que empiezan con…" ~20 %; en el gran desafío, "secuencias" y "esquinas" ~15 %).
+  - Emoji provisionales.
+  - Voz desactivada.
+  - Siguen sin borrar 5 archivos sin usar de Figuras (`shape_objects/{waffle,die,ice,cheese,lemon}.tres`), a la espera de autorización.
+- Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada):
+  - Motor: 512.791 comprobaciones.
+    - Cada plantilla recibe el banco correcto.
+    - Respuesta única.
+    - Conteos correctos (figuras pedidas en conjuntos y en dibujos, dibujos por vocal inicial) entre 1 y 10.
+    - Comparaciones sin empate y una sola figura válida al preguntar por esquinas.
+    - Cestas correctas, sin I ni 1 al clasificar letras y números.
+    - Pistas rellenas y la pista visual nunca retira la respuesta.
+    - Las lecciones 4 y 5 usan los tres mundos.
+    - 200 lecciones por nivel sin plantilla ni vista seguidas y todas las plantillas aparecen.
+    - Sesiones de niño que acierta y con dificultades.
+  - Progreso: 61 comprobaciones (bloqueo hasta Figuras, cadena 1→5, rejugar, el progreso de otros mundos no cambia, migración, persistencia entre dos procesos).
+  - Interfaz: 162 comprobaciones (mapa de mundos y de Combinación, las cinco lecciones con ratón y toque, y una lección forzada con las 8 dinámicas combinadas).
+  - Regresión sin cambios:
+    - Letras: motor 755.380, interfaz 112, progreso 37.
+    - Números: 665.245, 194, 44.
+    - Figuras: 8.349.167, 164, 39.
+  - Arranque sin errores.
 
 ## Fase 4: Integración y pulido
 - [ ] Dificultad adaptativa.

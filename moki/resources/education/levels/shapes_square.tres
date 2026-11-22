@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/shapes_square_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_pick.tres" id="t_sh_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_match.tres" id="t_sh_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_grid.tres" id="t_sh_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_odd.tres" id="t_sh_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_twins.tres" id="t_sh_twins"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_object.tres" id="t_sh_object"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_object_shape.tres" id="t_sh_object_shape"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_find_objects.tres" id="t_sh_find_objects"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_scene.tres" id="t_sh_scene"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_corners.tres" id="t_sh_corners"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_objects.tres" id="t_sh_sort_objects"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_shapes.tres" id="t_sh_sort_shapes"]
+
+[sub_resource type="Resource" id="Resource_shapes_square_1"]
+script = ExtResource("2_line")
+text = "¡Hola otra vez! Soy Moki. Ya conoces al círculo. Hoy conoceremos al cuadrado."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_shapes_square_2"]
+script = ExtResource("2_line")
+text = "El cuadrado tiene 4 lados igual de largos y 4 esquinas. ¡Cuenta sus esquinas: una, dos, tres, cuatro!"
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_square_3"]
+script = ExtResource("2_line")
+text = "Hay cuadrados en muchas cosas: en un waffle, en una ventana, en una caja de regalo y en un dado."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_shapes_square_4"]
+script = ExtResource("2_line")
+text = "Ojo: el rectángulo también tiene 4 esquinas, pero tiene 2 lados largos y 2 cortos. El cuadrado tiene todos sus lados iguales."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_shapes_square_5"]
+script = ExtResource("2_line")
+text = "También repasaremos el círculo. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_shapes_square_6"]
+script = ExtResource("2_line")
+text = "¡Genial! Ya conoces al cuadrado: 4 lados iguales y 4 esquinas. Cuando quieras, te espera el triángulo."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_square_7"]
+script = ExtResource("2_line")
+text = "¡Qué bien! El círculo y el cuadrado ya son tus amigos. ¿Vamos después con el triángulo?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_shapes_square_8"]
+script = ExtResource("2_line")
+text = "¡Bravo! Contaste muy bien las esquinas del cuadrado. ¡El triángulo te espera!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"shapes_square"
+title = "El cuadrado"
+objective = "Reconocer el cuadrado y sus 4 lados iguales y 4 esquinas, distinguirlo del círculo y del rectángulo, y encontrarlo en objetos y dibujos."
+concept_ids = Array[StringName]([&"shapes_square"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_shapes_square_1"), SubResource("Resource_shapes_square_2"), SubResource("Resource_shapes_square_3"), SubResource("Resource_shapes_square_4"), SubResource("Resource_shapes_square_5")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_shapes_square_6"), SubResource("Resource_shapes_square_7"), SubResource("Resource_shapes_square_8")])
+reinforce_lines = PackedStringArray("El cuadrado tiene 4 lados iguales.", "El cuadrado tiene 4 esquinas.", "Aunque cambie de color, sigue siendo un cuadrado.")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_sh_pick"), ExtResource("t_sh_match"), ExtResource("t_sh_grid"), ExtResource("t_sh_odd"), ExtResource("t_sh_twins"), ExtResource("t_sh_object"), ExtResource("t_sh_object_shape"), ExtResource("t_sh_find_objects"), ExtResource("t_sh_scene"), ExtResource("t_sh_corners"), ExtResource("t_sh_sort_objects"), ExtResource("t_sh_sort_shapes")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"shapes_triangle"])

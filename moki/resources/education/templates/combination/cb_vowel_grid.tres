@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 3
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_vowel_grid"
+title = "Busca la vocal"
+view_type = 1
+stage = 1
+instruction = "Busca todas las {letter} y tócalas una por una."
+hints = PackedStringArray("Toca cada {letter} que veas. ¡Puede haber varias, grandes y pequeñitas!", "Las otras vocales son distintas: fíjate solo en la {letter}.", "Si dices cada letra en voz alta, ¿cuáles suenan «{sound}»?", "Compara cada letra con la {letter} de aquí arriba. Quité algunas.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

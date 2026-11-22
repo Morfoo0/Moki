@@ -144,6 +144,47 @@ Independiente del cuidado de Moki: nada en `scripts/education/` usa `NeedsManage
   - `ActivityCard`: `setup(..., width)` para tarjetas apaisadas. `group_rects()` es estática y determinista, y deja una celda por objeto, sin solaparse. `ChoiceView`/`SortView` agrandan las tarjetas de grupo.
 - **Etapas elegidas por cómo construye `LessonBuilder`** (no repite vista seguida: las posiciones alternan CHOICE/SEARCH). "Toca y cuenta" (SEARCH) y "¿dónde hay más?" (CHOICE) están en ASSOCIATE: así la secuencia (CHOICE, CONTEXT) y la comparación salen con frecuencia (~50 % y ~35 % de las lecciones).
 
+### Mundo Figuras
+- `worlds/shapes.tres`: niveles `shapes_circle`, `shapes_square`, `shapes_triangle`, `shapes_rectangle` y `shapes_oval`, con `unlocked_after_level = &"numbers_9_10"` (mismo mecanismo que Números).
+- **`ShapeGeometry`** (`scripts/education/shape_geometry.gd`):
+  - `enum Shape { CIRCLE, SQUARE, TRIANGLE, RECTANGLE, OVAL }` y triángulos `EQUILATERAL`, `TALL`, `RIGHT`, `WIDE`.
+  - `points(card, rect)`: polígono exacto, girado y escalado de forma **uniforme** (nunca se deforma).
+  - `random_card()`: tamaño y color variados; giro desde la dificultad 3, con límites (`SQUARE_MAX_TILT` = 20°; rectángulo y óvalo, acostados o de pie con una inclinación suave; triángulo, cualquier giro).
+  - `corners()`: número de esquinas.
+- `CardData`: tipo `SHAPE` (`shape`, `shape_variant`, `shape_aspect`, `shape_rotation`, `shape_scale`; `area` para las partes de un dibujo) y `CardData.shape_card()`.
+- `ShapeObject extends WordEntry` (+ `shape`, `definite()` → "la pelota"). Los objetos están en `resources/education/content/shape_objects/`.
+- `ShapeBank extends ContentBank`:
+  - Campos: `shapes`, `review`, `review_chance` y `objects`.
+  - Constantes: nombres, plurales, características, adivinanzas, figura parecida y cómo distinguirla.
+  - Funciones: `pick_target()`, `distractor_shapes()` (la parecida al final con dificultad baja; primero con dificultad alta) y `fill_for()` (`{name}`, `{plural}`, `{fact}`, `{riddle}`, `{similar}`, `{object}`).
+- `ShapeScenes`: 8 dibujos compuestos en un lienzo de 720×360, definidos como datos (figura, rectángulo, giro, variante, color; en orden de dibujo).
+- **Generadores**:
+  - `ShapeGenerator`: `PICK`, `MATCH`, `GRID`, `ODD_ONE_OUT`, `TWINS`, `CORNERS` y `SCENE`.
+  - `ShapeObjectGenerator`: `PICK_OBJECT`, `OBJECT_SHAPE`, `FIND_OBJECTS`, `SORT_OBJECTS` y `SORT_SHAPES` (2–3 cestas; "?" = otras formas en la lección 1).
+- **Vista nueva `SCENE`** (`ActivityTemplate.ViewType`, al final del enum), con `ShapeSceneView`:
+  - Las partes son `ActivityCard` sin marco (`make_frameless()`), colocadas en el lienzo.
+  - `ActivityCard._has_point()` usa el polígono, así que se toca solo dentro de la figura y, si dos partes se superponen, gana la de encima.
+  - `ActivityInstance.finds_many()` hace que `LessonSession` y `LessonScreen` traten `SCENE` como `SEARCH`.
+- `ShapeDrawing` (`Control`): dibuja una tarjeta `SHAPE` (relleno, contorno y borde de acierto). Lo usan `ActivityCard` y `SortBin` (cestas con figura en el título y miniaturas).
+- **Plantillas compartidas** en `resources/education/templates/shapes/`. La lección 1 no tiene `sh_corners` (el círculo no tiene esquinas) ni `sh_twins`.
+
+### Mundo Combinación
+- `worlds/combination.tres`: niveles `combo_letters`, `combo_numbers`, `combo_shapes`, `combo_mixed` y `combo_challenge`, con `unlocked_after_level = &"shapes_oval"`.
+- **Un banco por actividad**: `ContentBank.resolve_for(template, rng)` devuelve por defecto el mismo banco (los demás mundos no cambian). `LessonSession` genera cada actividad con `level.content.resolve_for(template, rng)`.
+- **`CombinationBank extends ContentBank`** (`scripts/education/combination_bank.gd`):
+  - No copia contenido. Referencia los 5 bancos de vocales de Letras, un `NumberBank` (`content/combo_support_numbers.tres`: 1–10 con los objetos de Números) y un `ShapeBank` (`content/combo_support_shapes.tres`: las cinco figuras con sus objetos).
+  - `resolve_for()` da a las plantillas `num_*` el banco de números, a las `sh_*` el de figuras y a las `cb_*` el propio `CombinationBank`. Así las plantillas de Números y Figuras se reutilizan sin copiarlas.
+  - Utilidades: vocales, `bank_of()`, `lower_of()`, palabras con dibujo por vocal inicial y `max_count`.
+- **`CombinationGenerator`** (18 modos):
+  - vocales entre vocales: `VOWEL_PICK`, `VOWEL_SOUND`, `VOWEL_CASE`, `VOWEL_GRID`, `VOWEL_INITIAL`, `IMAGE_FOR_VOWEL`, `FIND_IMAGES`, `WORD_VOWEL`, `SORT_VOWELS`;
+  - figuras + números: `COUNT_SHAPES`, `COMPARE_SHAPES`, `TAP_N_SHAPES`, `SCENE_COUNT`, `CORNERS_SHAPE`, `SORT_ROUND`;
+  - letras + números: `VOWEL_COUNT`, `TAP_N_VOWEL`, `SORT_SYMBOLS` (`with_shapes` añade la cesta de figuras).
+- **Tarjeta `COLLECTION`** (`CardData.collection()`, con `items`): elementos distintos en una tarjeta, cada uno en su celda (`ActivityCard.group_rects()`), dibujados como su tipo (figura, imagen/emoji, letra/número).
+  - `ChoiceView` la muestra apaisada como enunciado y grande como opción.
+  - `SortBin` la usa como título de cesta con ejemplos ("A E O", "1 2 3"). Además, `SortBin` muestra miniaturas de letras y números.
+- `QuantityGenerator._sort_pair()`: con más de 2 números en el banco (Combinación), elige una pareja seguida al azar hasta 6. Con 2 números (Números) no cambia.
+- **Plantillas** en `templates/combination/` (19). Las lecciones 2, 3 y 5 incluyen además plantillas `num_*` y `sh_*` existentes.
+
 ### Añadir contenido
 - Nivel nuevo de letras: un `ContentBank` + un `LevelDefinition` con las mismas plantillas (o variantes) y añadirlo al `WorldDefinition`.
 - Otro tipo de conocimiento (números, figuras, cantidades, memoria…): nuevos generadores (y, si hace falta, nuevas vistas) reutilizando `LessonBuilder`, `LessonSession`, `HintLadder`, `MokiGuide` y `EducationProgress`.

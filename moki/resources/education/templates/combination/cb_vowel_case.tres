@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 2
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_vowel_case"
+title = "Grande y pequeñita"
+stage = 1
+instruction = "Esta es la {shown}. ¿Dónde está su pareja {pair}?"
+hints = PackedStringArray("Cada vocal tiene una forma grande y una pequeñita. Busca la pareja {pair} de la {shown}.", "La grande y la pequeñita suenan igual: «{sound}».", "Son como mamá y bebé: se llaman igual. ¿Cuál es su pareja?", "Quité algunas letras. ¿Cuál de las que quedan suena «{sound}»?")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

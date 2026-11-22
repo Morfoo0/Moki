@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 17
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_sort_symbols"
+title = "Letras y números"
+view_type = 2
+stage = 4
+instruction = "Pon cada tarjeta en su cesta: {kinds}."
+hints = PackedStringArray("Mira cada tarjeta: ¿es una letra o un número?", "Las letras sirven para formar palabras; los números, para contar.", "La A es una letra y el 2 es un número. ¿Y esta tarjeta?", "Mira los ejemplos de cada cesta y compara.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

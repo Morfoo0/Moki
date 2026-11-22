@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 1
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_vowel_sound"
+title = "¿Qué vocal suena así?"
+instruction = "Moki dice «{sound}». ¿Qué vocal suena así?"
+hints = PackedStringArray("Di «{sound}» tú también, despacito. ¿Qué vocal hace ese sonido?", "Fíjate en cómo se pone tu boca al decir «{sound}».", "Di las vocales en orden: a, e, i, o, u. ¿Cuál suena igual que «{sound}»?", "Quité algunas vocales. Di «{sound}» otra vez y mira las que quedan.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

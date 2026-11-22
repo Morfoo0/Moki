@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/combo_challenge_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_sound.tres" id="t_cb_vowel_sound"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_match.tres" id="t_num_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_pick.tres" id="t_sh_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_grid.tres" id="t_cb_vowel_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_twins.tres" id="t_sh_twins"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_initial.tres" id="t_cb_vowel_initial"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count.tres" id="t_num_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_count.tres" id="t_cb_vowel_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_count_shapes.tres" id="t_cb_count_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_scene_count.tres" id="t_cb_scene_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sequence.tres" id="t_num_sequence"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_corners_shape.tres" id="t_cb_corners_shape"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_word_vowel.tres" id="t_cb_word_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_symbols3.tres" id="t_cb_sort_symbols3"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_vowels.tres" id="t_cb_sort_vowels"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_sort_objects.tres" id="t_sh_sort_objects"]
+
+[sub_resource type="Resource" id="Resource_combo_challenge_1"]
+script = ExtResource("2_line")
+text = "¡Hola, gran explorador! Soy Moki y hoy empieza una aventura muy especial: ¡el gran desafío!"
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_challenge_2"]
+script = ExtResource("2_line")
+text = "Te espera un camino de retos. En cada parada usarás las letras, los números y las figuras que aprendiste."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_combo_challenge_3"]
+script = ExtResource("2_line")
+text = "No hay prisa y no pasa nada si te equivocas: los exploradores también piden ayuda."
+kind = 2
+
+[sub_resource type="Resource" id="Resource_combo_challenge_4"]
+script = ExtResource("2_line")
+text = "¿Listo? ¡Vamos a la primera parada! Si necesitas ayuda, toca el botón de ayuda."
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_challenge_5"]
+script = ExtResource("2_line")
+text = "¡Lo lograste! Completaste el gran desafío. Usaste las vocales, los números y las figuras. ¡Estoy muy orgulloso de ti!"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_challenge_6"]
+script = ExtResource("2_line")
+text = "¡Eres un gran explorador! Letras, números y figuras: ¡ya sabes muchísimo! Puedes volver a la aventura cuando quieras."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_combo_challenge_7"]
+script = ExtResource("2_line")
+text = "¡Bravo, bravísimo! Terminaste el camino de retos. ¡Todo lo que aprendiste te ayudó!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"combo_challenge"
+title = "El gran desafío de Moki"
+objective = "Integrar lo aprendido en los tres mundos (vocales, números del 1 al 10, cantidades y figuras) en un camino de retos de observación, asociación, conteo, clasificación y razonamiento."
+concept_ids = Array[StringName]([&"combo_challenge"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_combo_challenge_1"), SubResource("Resource_combo_challenge_2"), SubResource("Resource_combo_challenge_3"), SubResource("Resource_combo_challenge_4")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_combo_challenge_5"), SubResource("Resource_combo_challenge_6"), SubResource("Resource_combo_challenge_7")])
+reinforce_lines = PackedStringArray("¡Una parada más del camino!", "¡Qué gran explorador!", "¡Usaste todo lo que sabes!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_cb_vowel_sound"), ExtResource("t_num_match"), ExtResource("t_sh_pick"), ExtResource("t_cb_vowel_grid"), ExtResource("t_sh_twins"), ExtResource("t_cb_vowel_initial"), ExtResource("t_num_count"), ExtResource("t_cb_vowel_count"), ExtResource("t_cb_count_shapes"), ExtResource("t_cb_scene_count"), ExtResource("t_num_sequence"), ExtResource("t_cb_corners_shape"), ExtResource("t_cb_word_vowel"), ExtResource("t_cb_sort_symbols3"), ExtResource("t_cb_sort_vowels"), ExtResource("t_sh_sort_objects")])
+content = ExtResource("1_bank")

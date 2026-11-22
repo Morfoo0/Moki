@@ -2,10 +2,17 @@
 
 [ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_j60iq"]
 [ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_7fala"]
+[ext_resource type="Resource" path="res://resources/education/levels/shapes_circle.tres" id="3_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/shapes_square.tres" id="4_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/shapes_triangle.tres" id="5_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/shapes_rectangle.tres" id="6_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/shapes_oval.tres" id="7_lvl"]
 
 [resource]
 script = ExtResource("2_7fala")
 id = &"shapes"
 title = "Figuras"
 color = Color(0.24313726, 0.60784316, 0.30980393, 1)
+unlocked_after_level = &"numbers_9_10"
+levels = Array[ExtResource("1_j60iq")]([ExtResource("3_lvl"), ExtResource("4_lvl"), ExtResource("5_lvl"), ExtResource("6_lvl"), ExtResource("7_lvl")])
 upcoming_levels = PackedStringArray()

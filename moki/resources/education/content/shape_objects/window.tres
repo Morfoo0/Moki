@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShapeObject" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/shape_object.gd" id="1_obj"]
+[ext_resource type="Texture2D" path="res://assets/characters/room/wall/window.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_obj")
+word = "ventana"
+texture = ExtResource("2_tex")
+article = "una"
+shape = 1

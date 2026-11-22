@@ -74,7 +74,8 @@ func next_activity() -> void:
 		return
 	var slot: Dictionary = plan.slots[index]
 	var template: ActivityTemplate = slot["template"]
-	instance = template.generate(rng, adaptive.adjust(slot["difficulty"]), level.content, avoid_signatures)
+	var bank: ContentBank = level.content.resolve_for(template, rng)
+	instance = template.generate(rng, adaptive.adjust(slot["difficulty"]), bank, avoid_signatures)
 	avoid_signatures.append(instance.signature)
 	_signatures.append(instance.signature)
 	_ladder = HintLadder.new()
@@ -103,7 +104,7 @@ func answer(card_index: int) -> void:
 	var in_order: bool = not instance.ordered or (
 		_found.size() < instance.correct.size() and instance.correct[_found.size()] == card_index)
 	if instance.is_correct(card_index) and in_order:
-		if instance.view_type() == ActivityTemplate.ViewType.SEARCH:
+		if instance.finds_many():
 			_found.append(card_index)
 			if _found.size() < instance.needed():
 				var line: DialogueLine

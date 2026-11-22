@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+mode = 14
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_sort_round"
+title = "Redondas y con esquinas"
+view_type = 2
+stage = 4
+instruction = "Las figuras redondas van a una cesta y las que tienen esquinas, a la otra."
+hints = PackedStringArray("Pasa tu dedo por el borde de cada figura: ¿se detiene en alguna esquina?", "El círculo y el óvalo son redondos: no tienen esquinas.", "El triángulo, el cuadrado y el rectángulo tienen esquinas. ¿Cuántas cuentas?", "Mira las figuras de cada cesta y compara.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")

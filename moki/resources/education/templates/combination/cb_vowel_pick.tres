@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActivityTemplate" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="1_tpl"]
+[ext_resource type="Script" path="res://scripts/education/generators/combination_generator.gd" id="2_gen"]
+
+[sub_resource type="Resource" id="Resource_gen"]
+script = ExtResource("2_gen")
+
+[resource]
+script = ExtResource("1_tpl")
+id = &"cb_vowel_pick"
+title = "Toca la vocal"
+instruction = "Toca la {letter}."
+hints = PackedStringArray("Busca la vocal que suena «{sound}».", "Mira bien la forma de cada vocal: solo una es la {letter}.", "Di cada vocal en voz alta: a, e, i, o, u. ¿Cuál es la {letter}?", "Mira la {letter} de aquí arriba. Quité algunas vocales: busca una igual.")
+hints_spoken = PackedStringArray()
+generator = SubResource("Resource_gen")
