@@ -2,10 +2,17 @@
 
 [ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="1_v1njf"]
 [ext_resource type="Script" path="res://scripts/education/world_definition.gd" id="2_3fpxd"]
+[ext_resource type="Resource" path="res://resources/education/levels/review_vowels.tres" id="3_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/review_numbers.tres" id="4_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/review_shapes.tres" id="5_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/review_mixed.tres" id="6_lvl"]
+[ext_resource type="Resource" path="res://resources/education/levels/review_challenge.tres" id="7_lvl"]
 
 [resource]
 script = ExtResource("2_3fpxd")
 id = &"review"
 title = "Repaso"
 color = Color(0.8784314, 0.5882353, 0.105882354, 1)
+unlocked_after_level = &"combo_challenge"
+levels = Array[ExtResource("1_v1njf")]([ExtResource("3_lvl"), ExtResource("4_lvl"), ExtResource("5_lvl"), ExtResource("6_lvl"), ExtResource("7_lvl")])
 upcoming_levels = PackedStringArray()

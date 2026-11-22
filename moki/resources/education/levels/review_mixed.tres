@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/review_mixed_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_pick.tres" id="t_cb_vowel_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_name.tres" id="t_num_name"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_grid.tres" id="t_cb_vowel_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/shapes/sh_twins.tres" id="t_sh_twins"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_count.tres" id="t_cb_vowel_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_count_shapes.tres" id="t_cb_count_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_tap_n_vowel.tres" id="t_cb_tap_n_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_compare_shapes.tres" id="t_cb_compare_shapes"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_scene_count.tres" id="t_cb_scene_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_corners_shape.tres" id="t_cb_corners_shape"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_symbols.tres" id="t_cb_sort_symbols"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_round.tres" id="t_cb_sort_round"]
+
+[sub_resource type="Resource" id="Resource_review_mixed_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. Hoy los retos mezclan letras, números y figuras."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_review_mixed_2"]
+script = ExtResource("2_line")
+text = "Piensa paso a paso: primero busca lo que te pido y luego cuéntalo."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_review_mixed_3"]
+script = ExtResource("2_line")
+text = "¡Tú ya sabes mucho! Si necesitas ayuda, toca el botón de ayuda."
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_mixed_4"]
+script = ExtResource("2_line")
+text = "¡Increíble! Usaste letras, números y figuras a la vez. Cuando quieras, te espera el gran desafío."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_mixed_5"]
+script = ExtResource("2_line")
+text = "¡Qué bien piensas! ¿Vamos después al gran desafío de Moki?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_mixed_6"]
+script = ExtResource("2_line")
+text = "¡Bravo! Ya estás listo para la última aventura."
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"review_mixed"
+title = "Repaso combinado"
+objective = "Reforzar el uso de varios conocimientos en una misma actividad (contar figuras o dibujos de una vocal, tocar un número de letras, esquinas y figuras, distinguir letras de números), centrado en lo que más práctica necesita."
+concept_ids = Array[StringName]([&"review_mixed"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_review_mixed_1"), SubResource("Resource_review_mixed_2"), SubResource("Resource_review_mixed_3")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_review_mixed_4"), SubResource("Resource_review_mixed_5"), SubResource("Resource_review_mixed_6")])
+reinforce_lines = PackedStringArray("¡Usaste dos cosas que sabes a la vez!", "¡Pensaste paso a paso!", "¡Practicar te hace crecer!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_cb_vowel_pick"), ExtResource("t_num_name"), ExtResource("t_cb_vowel_grid"), ExtResource("t_sh_twins"), ExtResource("t_cb_vowel_count"), ExtResource("t_cb_count_shapes"), ExtResource("t_cb_tap_n_vowel"), ExtResource("t_cb_compare_shapes"), ExtResource("t_cb_scene_count"), ExtResource("t_cb_corners_shape"), ExtResource("t_cb_sort_symbols"), ExtResource("t_cb_sort_round")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"review_challenge"])

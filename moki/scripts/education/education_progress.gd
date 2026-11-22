@@ -20,6 +20,10 @@ const STAGE_WEIGHT: float = 0.3
 ## Dominio necesario y lecciones mínimas para considerar un concepto dominado.
 const MASTERY_THRESHOLD: float = 0.8
 const MASTERY_MIN_LESSONS: int = 2
+## Actividades mínimas de un concepto para sacar conclusiones (repaso).
+const MIN_EVIDENCE: int = 4
+## Necesidad que se asume sin datos suficientes: neutra (ni fácil ni difícil).
+const NEUTRAL_NEED: float = 0.5
 
 var catalog: EducationCatalog
 
@@ -97,6 +101,51 @@ func get_recent_signatures(level_id: StringName) -> PackedStringArray:
 	return PackedStringArray(_data["recent_activities"].get(String(level_id), []))
 
 
+## Cuánta práctica necesita un concepto (0 = la resuelve sola y con soltura,
+## 1 = le cuesta mucho), calculado SOLO con datos guardados. Con menos de
+## MIN_EVIDENCE actividades no se concluye nada: necesidad neutra.
+## Mira patrones (medias móviles, tasas por actividad, lecciones recientes),
+## nunca una respuesta aislada. Nunca se muestra al niño como nota.
+func concept_need(concept_id: StringName) -> Dictionary:
+	var concept: Dictionary = get_concept(concept_id)
+	var activities: int = int(concept.get("activities", 0))
+	var by_stage: Dictionary = concept.get("by_stage", {})
+	var discriminate: float = float(by_stage.get(str(ActivityTemplate.Stage.DISCRIMINATE), -1.0))
+	if activities < MIN_EVIDENCE:
+		return {"need": NEUTRAL_NEED, "sufficient": false, "activities": activities, "discriminate": discriminate}
+	# Dominio: solo las etapas practicadas (no practicar una etapa no es dificultad).
+	var practiced: float = 0.0
+	for stage_key: String in by_stage:
+		practiced += float(by_stage[stage_key])
+	practiced /= maxf(1.0, by_stage.size())
+	var hints_rate: float = clampf(float(concept.get("hints_used", 0)) / activities / 2.0, 0.0, 1.0)
+	var error_rate: float = clampf(float(concept.get("errors", 0)) / activities / 3.0, 0.0, 1.0)
+	var need: float = 0.45 * (1.0 - practiced) + 0.25 * hints_rate + 0.2 * error_rate + 0.1 * _recent_struggle(concept_id)
+	return {"need": clampf(need, 0.0, 1.0), "sufficient": true, "activities": activities, "discriminate": discriminate}
+
+
+## Pistas y saltos en las últimas lecciones del nivel al que pertenece el concepto (0-1).
+func _recent_struggle(concept_id: StringName) -> float:
+	if catalog == null:
+		return 0.0
+	for world: WorldDefinition in catalog.worlds:
+		for level: LevelDefinition in world.levels:
+			if level == null or not level.concept_ids.has(concept_id):
+				continue
+			var hints: int = 0
+			var skipped: int = 0
+			var count: int = 0
+			for lesson: Dictionary in get_lessons(level.id).slice(-3):
+				for result: Dictionary in lesson.get("results", []):
+					hints += int(result.get("hints", 0))
+					skipped += 1 if result.get("skipped", false) else 0
+					count += 1
+			if count == 0:
+				return 0.0
+			return clampf(float(hints) / count / 2.0 + float(skipped) / count, 0.0, 1.0)
+	return 0.0
+
+
 ## Información para LessonBuilder.
 func get_snapshot(level: LevelDefinition) -> Dictionary:
 	var lessons: Array = get_lessons(level.id)
@@ -119,7 +168,7 @@ func get_snapshot(level: LevelDefinition) -> Dictionary:
 		var by_stage: Dictionary = get_concept(concept_id).get("by_stage", {})
 		for stage_key: String in by_stage:
 			stage_scores[int(stage_key)] = float(by_stage[stage_key])
-	return {
+	var snapshot := {
 		"mastery": get_mastery(level),
 		"stage_scores": stage_scores,
 		"last_difficulty": int(_data["last_difficulty"].get(String(level.id), -1)),
@@ -128,6 +177,33 @@ func get_snapshot(level: LevelDefinition) -> Dictionary:
 		"recent_signatures": get_recent_signatures(level.id),
 		"struggle": struggle,
 	}
+	if level.content is ReviewBank:
+		_add_review_info(level, snapshot)
+	return snapshot
+
+
+## Repaso: necesidades de los conceptos de origen, prioridad de dinámicas y, si
+## aún no hay lecciones de Repaso, un dominio de partida basado en los conceptos
+## de origen con datos suficientes (no se empieza desde cero sin motivo).
+func _add_review_info(level: LevelDefinition, snapshot: Dictionary) -> void:
+	var bank := level.content as ReviewBank
+	var needs: Dictionary = {}
+	for concept_id: StringName in bank.source_concepts():
+		needs[concept_id] = concept_need(concept_id)
+	snapshot["needs"] = needs
+	snapshot["template_bonus"] = bank.template_bonus(level, needs)
+	snapshot["no_repeats"] = true  # repaso variado: no repetir una dinámica si hay otra
+	if get_lessons(level.id).is_empty():
+		var total: float = 0.0
+		var known: int = 0
+		for concept_id: StringName in needs:
+			if needs[concept_id]["sufficient"]:
+				total += 1.0 - float(needs[concept_id]["need"])
+				known += 1
+		if known > 0:
+			# Como mucho 0,84: la primera lección de repaso empieza en dificultad 4,
+			# nunca directamente en la máxima.
+			snapshot["mastery"] = minf(total / known, 0.84)
 
 
 # --- Registro ------------------------------------------------------------------
@@ -136,7 +212,13 @@ func get_snapshot(level: LevelDefinition) -> Dictionary:
 func record_activity(level: LevelDefinition, result: Dictionary) -> void:
 	var success: float = 1.0 if result.get("first_try", false) else (
 		0.0 if result.get("skipped", false) else (0.6 if int(result.get("hints", 0)) == 0 else 0.3))
-	for concept_id: StringName in level.concept_ids:
+	# Conceptos del nivel + los que practicó la actividad (Repaso: la vocal, el
+	# número o la figura de origen). En los demás mundos, solo los del nivel.
+	var concept_ids: Array[StringName] = level.concept_ids.duplicate()
+	for extra: StringName in result.get("concepts", []):
+		if not concept_ids.has(extra):
+			concept_ids.append(extra)
+	for concept_id: StringName in concept_ids:
 		var key := String(concept_id)
 		var concept: Dictionary = _data["concepts"].get(key, {
 			"mastery": 0.0, "by_stage": {}, "attempts": 0, "activities": 0,

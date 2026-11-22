@@ -45,7 +45,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 	var combo := bank as CombinationBank
 	var instance := ActivityInstance.new()
 	var correct_cards: Array[CardData] = []
-	var vowel: String = pick(Array(combo.vowels()), rng)
+	var vowel: String = combo.pick_vowel(rng)
 	var others: Array = _other_vowels(combo, vowel)
 	instance.fill_values = _vowel_fill(combo, vowel)
 	instance.model_card = CardData.letter(vowel, 0, 150)
@@ -144,7 +144,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 				instance.cards.append(card)
 				correct_cards.append(card)
 		Mode.COUNT_SHAPES:
-			var target: int = rng.randi_range(0, 4)
+			var target: int = combo.pick_shape(rng)
 			var amount: int = rng.randi_range(1, mini(combo.max_count, by_difficulty([3, 4, 5, 6, 8], difficulty)))
 			instance.fill_values = ShapeBank.fill_for(target)
 			instance.model_card = null
@@ -154,7 +154,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 			instance.prompt_card.wide = true
 			_number_choice(instance, correct_cards, amount, by_difficulty([2, 3, 3, 4, 4], difficulty), difficulty, bank, rng)
 		Mode.COMPARE_SHAPES:
-			var target: int = rng.randi_range(0, 4)
+			var target: int = combo.pick_shape(rng)
 			var less: bool = difficulty >= 4 and rng.randf() < 0.5
 			instance.fill_values = ShapeBank.fill_for(target)
 			instance.fill_values["more_less"] = "menos" if less else "más"
@@ -180,7 +180,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 				if amount == best:
 					correct_cards.append(card)
 		Mode.TAP_N_SHAPES:
-			var target: int = rng.randi_range(0, 4)
+			var target: int = combo.pick_shape(rng)
 			var cells: int = by_difficulty([6, 8, 9, 12, 12], difficulty)
 			var present: int = mini(by_difficulty([3, 4, 4, 5, 6], difficulty), cells - 2)
 			var amount: int = rng.randi_range(1, present - 1)
@@ -201,7 +201,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 			instance.signature = "TAP_N_SHAPES|%d|%d|%s" % [target, amount, signature_of("", instance.cards)]
 			return instance
 		Mode.SCENE_COUNT:
-			var target: int = rng.randi_range(0, 4)
+			var target: int = combo.pick_shape(rng)
 			var options: Array[int] = []
 			for index: int in ShapeScenes.scenes_with(target):
 				if _count_in_scene(index, target) >= 2:
@@ -242,7 +242,7 @@ func generate(rng: RandomNumberGenerator, difficulty: int, bank: ContentBank) ->
 			for v: String in combo.vowels():
 				if combo.words_starting_with(v, difficulty).size() >= 2:
 					candidates.append(v)
-			vowel = pick(candidates, rng)
+			vowel = combo.pick_vowel(rng, candidates)
 			others = _other_vowels(combo, vowel)
 			instance.fill_values = _vowel_fill(combo, vowel)
 			instance.model_card = null

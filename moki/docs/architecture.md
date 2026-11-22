@@ -185,6 +185,27 @@ Independiente del cuidado de Moki: nada en `scripts/education/` usa `NeedsManage
 - `QuantityGenerator._sort_pair()`: con más de 2 números en el banco (Combinación), elige una pareja seguida al azar hasta 6. Con 2 números (Números) no cambia.
 - **Plantillas** en `templates/combination/` (19). Las lecciones 2, 3 y 5 incluyen además plantillas `num_*` y `sh_*` existentes.
 
+### Mundo Repaso (repaso adaptativo)
+- `worlds/review.tres`: niveles `review_vowels`, `review_numbers`, `review_shapes`, `review_mixed` y `review_challenge`, con `unlocked_after_level = &"combo_challenge"`. **No hay plantillas nuevas**: los niveles referencian las plantillas `cb_*`, `num_*` y `sh_*` existentes.
+- **Datos que se usan** (los que ya se guardan): por concepto, `activities`, `errors`, `hints_used`, `skipped` y `by_stage` (media móvil), más los resultados de las últimas lecciones de su nivel. Los números se registran **por pareja** (`numbers_7_8`); no se inventan datos por número suelto.
+- **`EducationProgress.concept_need(id)`** devuelve `{need, sufficient, activities, discriminate}`.
+  - Con menos de `MIN_EVIDENCE` (4) actividades: `sufficient = false` y necesidad neutra 0,5.
+  - Si no: `need = 0,45·(1 − media de etapas practicadas) + 0,25·pistas/act/2 + 0,2·errores/act/3 + 0,1·dificultad reciente`, cada término limitado a [0, 1].
+- **Atribución de conceptos**:
+  - `ContentBank.concepts_for(instance)` devuelve `[]` por defecto. `LessonSession` guarda el resultado en `result["concepts"]` y `record_activity` actualiza esos conceptos además de los del nivel.
+  - `ReviewBank` devuelve el concepto practicado (`letter_e`, `numbers_7_8`, `shapes_square`), así que el repaso sigue construyendo el perfil.
+- **`ReviewBank extends CombinationBank`** (`scripts/education/review_bank.gd`, `focus` = vocales / números / figuras / mixto / todo):
+  - `prepare(needs)` (lo llama `LessonScreen`) pone los pesos de los objetivos a `MAINTENANCE` (0,15) + necesidad: vocales en `CombinationBank.vowel_weights`, números en `NumberBank.target_weights`, figuras en `ShapeBank.target_weights`.
+  - `template_bonus(level, needs)`: hasta +3 a la puntuación de las dinámicas de figuras parecidas (si la etapa *distinguir* de cuadrado/rectángulo/círculo/óvalo es baja), de contar y de vocal en contexto. A los retos de contexto y combinados, solo si ningún concepto necesita práctica.
+  - `extra_intro()`: la frase de Moki, solo con conceptos con datos suficientes.
+- **Ganchos genéricos** (por defecto no cambian nada en los demás mundos):
+  - `ContentBank.prepare()`, `extra_intro()`, `concepts_for()`;
+  - `CombinationBank.pick_vowel()` / `pick_shape()` / `weighted_pick()`: sin pesos, el mismo sorteo que antes, comprobado con la regresión de Combinación;
+  - `NumberBank` / `ShapeBank.target_weights`;
+  - `LessonBuilder`: suma `snapshot["template_bonus"]` y, con `snapshot["no_repeats"]`, prueba primero las plantillas aún no usadas en la lección.
+- `EducationProgress.get_snapshot()`, solo con un `ReviewBank`, añade `needs`, `template_bonus` y `no_repeats`. Sin lecciones previas de Repaso, usa como dominio de partida la media de los conceptos con datos (como mucho 0,84, así que empieza en dificultad ≤ 4).
+- Bancos de apoyo propios (sus pesos cambian al preparar cada lección): `content/review_support_numbers.tres` y `content/review_support_shapes.tres`.
+
 ### Añadir contenido
 - Nivel nuevo de letras: un `ContentBank` + un `LevelDefinition` con las mismas plantillas (o variantes) y añadirlo al `WorldDefinition`.
 - Otro tipo de conocimiento (números, figuras, cantidades, memoria…): nuevos generadores (y, si hace falta, nuevas vistas) reutilizando `LessonBuilder`, `LessonSession`, `HintLadder`, `MokiGuide` y `EducationProgress`.

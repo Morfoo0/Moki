@@ -19,7 +19,38 @@ extends ContentBank
 ## Cantidad máxima en los conteos de esta lección.
 @export_range(2, 10) var max_count: int = 6
 
+## Pesos opcionales para elegir la vocal o la figura de una actividad (los
+## usa Repaso). Vacíos = sorteo uniforme, igual que siempre.
+var vowel_weights: Dictionary = {}
+var shape_weights: Dictionary = {}
+
 var _words: Array[WordEntry] = []
+
+
+func pick_vowel(rng: RandomNumberGenerator, options: Array = []) -> String:
+	var pool: Array = options if not options.is_empty() else Array(vowels())
+	if vowel_weights.is_empty():
+		return ActivityGenerator.pick(pool, rng)
+	return weighted_pick(pool, vowel_weights, rng)
+
+
+func pick_shape(rng: RandomNumberGenerator) -> int:
+	if shape_weights.is_empty():
+		return rng.randi_range(0, 4)
+	return weighted_pick([0, 1, 2, 3, 4], shape_weights, rng)
+
+
+## Elige un elemento de "pool" con probabilidad proporcional a su peso (1 si no tiene).
+static func weighted_pick(pool: Array, weights: Dictionary, rng: RandomNumberGenerator) -> Variant:
+	var total: float = 0.0
+	for item: Variant in pool:
+		total += maxf(float(weights.get(item, 1.0)), 0.0)
+	var roll: float = rng.randf() * total
+	for item: Variant in pool:
+		roll -= maxf(float(weights.get(item, 1.0)), 0.0)
+		if roll <= 0.0:
+			return item
+	return pool.back()
 
 
 func resolve_for(template: ActivityTemplate, _rng: RandomNumberGenerator) -> ContentBank:

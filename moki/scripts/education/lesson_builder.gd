@@ -140,10 +140,22 @@ static func _ordered_candidates(pool: Array[ActivityTemplate], previous: Activit
 		if recent.has(template.id):
 			score -= 2.0
 		score += (1.0 - stage_scores.get(template.stage, 0.0)) * 3.0
+		# Prioridad por necesidad de práctica (solo Repaso; nunca mayor que la
+		# penalización por repetir, así la variedad se mantiene).
+		score += float(snapshot.get("template_bonus", {}).get(template.id, 0.0))
 		var key: float = pow(maxf(rng.randf(), 0.0001), 1.0 / maxf(score, 0.5))
 		keyed.append([key, template])
 	keyed.sort_custom(func(a: Array, b: Array) -> bool: return a[0] > b[0])
 	var result: Array[ActivityTemplate] = []
 	for pair: Array in keyed:
 		result.append(pair[1])
+	# Opción "no_repeats" (Repaso): primero las plantillas aún no usadas en la
+	# lección; una repetida solo si no hay otra válida (la búsqueda con vuelta
+	# atrás las prueba en este orden). Sin la opción, el orden de siempre.
+	if snapshot.get("no_repeats", false):
+		var fresh: Array[ActivityTemplate] = result.filter(func(t: ActivityTemplate) -> bool: return not chosen.has(t))
+		var repeated: Array[ActivityTemplate] = result.filter(func(t: ActivityTemplate) -> bool: return chosen.has(t))
+		result.clear()
+		result.append_array(fresh)
+		result.append_array(repeated)
 	return result

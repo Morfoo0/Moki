@@ -75,6 +75,23 @@ func resolve_for(_template: ActivityTemplate, _rng: RandomNumberGenerator) -> Co
 	return self
 
 
+## Antes de una lección: necesidades de práctica por concepto
+## (EducationProgress.concept_need). Por defecto no se usan (solo Repaso).
+func prepare(_needs: Dictionary) -> void:
+	pass
+
+
+## Frases de Moki que se añaden a la introducción (p. ej. qué se repasará hoy).
+func extra_intro() -> Array[DialogueLine]:
+	return []
+
+
+## Conceptos (de otros niveles) que practicó una actividad, para actualizar su
+## desempeño. Por defecto ninguno: solo cuentan los conceptos del nivel.
+func concepts_for(_instance: ActivityInstance) -> Array[StringName]:
+	return []
+
+
 func font_count() -> int:
 	return font_names.size() + 1
 

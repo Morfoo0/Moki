@@ -54,7 +54,13 @@ static func name_of(shape: int) -> String:
 	return NAMES[shape]
 
 
+## Pesos opcionales por figura (Repaso). Vacío = el reparto de siempre.
+var target_weights: Dictionary = {}
+
+
 func pick_target(rng: RandomNumberGenerator, _difficulty: int) -> int:
+	if not target_weights.is_empty():
+		return CombinationBank.weighted_pick(Array(shapes), target_weights, rng)
 	if not review.is_empty() and rng.randf() < review_chance:
 		return review[rng.randi_range(0, review.size() - 1)]
 	return shapes[rng.randi_range(0, shapes.size() - 1)]

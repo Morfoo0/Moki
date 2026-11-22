@@ -185,6 +185,8 @@ func _complete(skipped: bool) -> void:
 		"first_try": _errors == 0 and _ladder.hints_given == 0 and not skipped,
 		"skipped": skipped,
 		"signature": instance.signature,
+		# Conceptos de origen que se practicaron (Repaso); vacío en los demás mundos.
+		"concepts": level.content.concepts_for(instance),
 	}
 	results.append(result)
 	var action: AdaptiveDifficulty.Action = adaptive.record(result)

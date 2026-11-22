@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/review_numbers_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_match.tres" id="t_num_match"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_name.tres" id="t_num_name"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_grid.tres" id="t_num_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_odd.tres" id="t_num_odd"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count.tres" id="t_num_count"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_find_group.tres" id="t_num_find_group"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_count_tap.tres" id="t_num_count_tap"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_hidden.tres" id="t_num_hidden"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sequence.tres" id="t_num_sequence"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_compare.tres" id="t_num_compare"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_order.tres" id="t_num_order"]
+[ext_resource type="Resource" path="res://resources/education/templates/numbers/num_sort.tres" id="t_num_sort"]
+
+[sub_resource type="Resource" id="Resource_review_numbers_1"]
+script = ExtResource("2_line")
+text = "¡Hola otra vez! Soy Moki. Hoy repasaremos los números del 1 al 10."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_review_numbers_2"]
+script = ExtResource("2_line")
+text = "Contaremos cosas, compararemos grupos y completaremos filas de números."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_review_numbers_3"]
+script = ExtResource("2_line")
+text = "Cuenta despacito, tocando cada cosa con tu dedo. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_review_numbers_4"]
+script = ExtResource("2_line")
+text = "¡Genial! Repasaste los números del 1 al 10. Cuando quieras, te esperan las figuras."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_numbers_5"]
+script = ExtResource("2_line")
+text = "¡Qué bien cuentas! ¿Vamos después a repasar las figuras?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_numbers_6"]
+script = ExtResource("2_line")
+text = "¡Bravo! Los números siguen siendo tus amigos. ¡Las figuras te esperan!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"review_numbers"
+title = "Repaso de números"
+objective = "Reforzar los números del 1 al 10: reconocerlos, contar, relacionar número y cantidad, comparar, completar secuencias y ordenar, con más práctica para los números y el conteo que más la necesitan."
+concept_ids = Array[StringName]([&"review_numbers"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_review_numbers_1"), SubResource("Resource_review_numbers_2"), SubResource("Resource_review_numbers_3")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_review_numbers_4"), SubResource("Resource_review_numbers_5"), SubResource("Resource_review_numbers_6")])
+reinforce_lines = PackedStringArray("¡Contaste muy bien!", "¡Cada número dice cuántas cosas hay!", "¡Practicar te hace crecer!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_num_match"), ExtResource("t_num_name"), ExtResource("t_num_grid"), ExtResource("t_num_odd"), ExtResource("t_num_count"), ExtResource("t_num_find_group"), ExtResource("t_num_count_tap"), ExtResource("t_num_hidden"), ExtResource("t_num_sequence"), ExtResource("t_num_compare"), ExtResource("t_num_order"), ExtResource("t_num_sort")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"review_shapes"])

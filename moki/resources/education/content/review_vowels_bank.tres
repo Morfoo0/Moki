@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ReviewBank" format=3]
+
+[ext_resource type="Script" path="res://scripts/education/review_bank.gd" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/content_bank.gd" id="2_content"]
+[ext_resource type="Resource" path="res://resources/education/content/letters_a_bank.tres" id="3_vowel"]
+[ext_resource type="Resource" path="res://resources/education/content/letters_e_bank.tres" id="4_vowel"]
+[ext_resource type="Resource" path="res://resources/education/content/letters_i_bank.tres" id="5_vowel"]
+[ext_resource type="Resource" path="res://resources/education/content/letters_o_bank.tres" id="6_vowel"]
+[ext_resource type="Resource" path="res://resources/education/content/letters_u_bank.tres" id="7_vowel"]
+[ext_resource type="Resource" path="res://resources/education/content/review_support_numbers.tres" id="8_numbers"]
+[ext_resource type="Resource" path="res://resources/education/content/review_support_shapes.tres" id="9_shapes"]
+
+[resource]
+script = ExtResource("1_bank")
+target = ""
+target_lower = ""
+sound = ""
+vowel_banks = Array[ExtResource("2_content")]([ExtResource("3_vowel"), ExtResource("4_vowel"), ExtResource("5_vowel"), ExtResource("6_vowel"), ExtResource("7_vowel")])
+numbers = ExtResource("8_numbers")
+shapes = ExtResource("9_shapes")
+max_count = 6

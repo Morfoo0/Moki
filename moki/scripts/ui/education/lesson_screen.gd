@@ -47,7 +47,9 @@ func _ready() -> void:
 	_guide.set_help_enabled(false)
 
 	_rng.randomize()
-	var plan: LessonPlan = LessonBuilder.build(level, EducationProgress.get_snapshot(level), _rng)
+	var snapshot: Dictionary = EducationProgress.get_snapshot(level)
+	level.content.prepare(snapshot.get("needs", {}))  # Repaso: qué necesita más práctica
+	var plan: LessonPlan = LessonBuilder.build(level, snapshot, _rng)
 	session = LessonSession.new(level, plan, _rng, EducationProgress.get_recent_signatures(level.id))
 	session.activity_started.connect(_on_activity_started)
 	session.feedback.connect(_on_feedback)
@@ -59,7 +61,12 @@ func _ready() -> void:
 
 
 func _run_intro() -> void:
-	for line: DialogueLine in level.intro:
+	# Las frases extra del banco (p. ej. qué se repasa hoy) van tras el saludo.
+	var lines: Array[DialogueLine] = level.intro.duplicate()
+	var extra: Array[DialogueLine] = level.content.extra_intro()
+	for i in extra.size():
+		lines.insert(mini(1 + i, lines.size()), extra[i])
+	for line: DialogueLine in lines:
 		_guide.say(line)
 		await _wait_for_continue()
 		if not is_inside_tree():

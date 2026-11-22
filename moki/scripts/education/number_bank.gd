@@ -68,6 +68,10 @@ const MAX_SUPPORTED: int = 10
 ## Objetos para contar (WordEntry.word en plural: "manzanas").
 @export var objects: Array[WordEntry] = []
 
+## Pesos opcionales por número para pick_target() (los usa Repaso para dar más
+## práctica a lo que costó). Vacío = el reparto de siempre.
+var target_weights: Dictionary = {}
+
 
 static func name_of(value: int) -> String:
 	return NAMES[value] if value >= 0 and value < NAMES.size() else str(value)
@@ -76,6 +80,8 @@ static func name_of(value: int) -> String:
 ## El número que trabaja una actividad: los nuevos casi siempre; a veces uno
 ## de repaso. Con dificultad baja se prefiere el más pequeño de los nuevos.
 func pick_target(rng: RandomNumberGenerator, difficulty: int) -> int:
+	if not target_weights.is_empty():
+		return CombinationBank.weighted_pick(Array(numbers), target_weights, rng)
 	if not review.is_empty() and rng.randf() < review_chance:
 		return review[rng.randi_range(0, review.size() - 1)]
 	if difficulty <= 1 and numbers.size() > 1 and rng.randf() < 0.65:

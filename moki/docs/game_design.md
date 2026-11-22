@@ -151,3 +151,26 @@ Objetivo del mundo: usar lo aprendido en Letras, Números y Figuras en contextos
   - La lección 5 es una aventura: "un camino de retos" en el que no hay prisa y pedir ayuda está bien.
   - Pistas que ayudan a relacionar ("primero busca los triángulos y luego cuéntalos").
   - Felicita por todo lo aprendido en los tres mundos.
+
+## Mundo Repaso: reforzar a la medida de cada niño
+Objetivo del mundo: reforzar lo aprendido en todo Moki. Da más práctica a lo que costó, mantiene lo que ya domina y lo presenta en contextos distintos. **No es un examen**: no hay notas, ni etiquetas ("eres bueno / malo en…"), ni resultados visibles.
+
+- **Se abre al terminar Combinación.** Cinco lecciones en orden; las completadas se pueden repetir.
+
+| Lección | Qué repasa |
+|---|---|
+| 1 Repaso de vocales | forma, sonido, mayúscula y minúscula, vocal inicial de dibujos, vocal en palabras, cestas |
+| 2 Repaso de números | reconocer, contar, número ↔ cantidad, comparar, secuencias, ordenar (1–10) |
+| 3 Repaso de figuras | las cinco figuras en tamaños y giros, figuras parecidas, objetos, dibujos, cestas |
+| 4 Repaso combinado | contar figuras o dibujos de una vocal, tocar N letras, esquinas, letras / números |
+| 5 El gran desafío de Moki | una aventura final con un poco de todo, construida con las necesidades del niño |
+
+- **Cómo se adapta**: usa lo que el juego ya registra de cada vocal, cada pareja de números y cada figura (aciertos al primer intento, errores, pistas, saltos y la media por etapa).
+  - Más práctica en lo que costó (varias pistas, errores repetidos, poco dominio o dificultades recientes).
+  - **Mantenimiento**: lo dominado sigue apareciendo de vez en cuando, en contextos nuevos.
+  - **Si confunde figuras parecidas** (cuadrado/rectángulo, círculo/óvalo), hay más actividades de comparación. **Si cuesta contar**, más conjuntos para contar. **Si cuesta una vocal**, más actividades con esa vocal en dibujos y palabras.
+  - **Si va muy bien en todo**, hay más retos de contexto y combinados, y una dificultad inicial mayor (sin saltar al máximo).
+- **Sin datos suficientes** (menos de 4 actividades de un concepto): no se saca ninguna conclusión. Se juega con un poco de todo por igual y se va registrando.
+- **Patrones, no respuestas sueltas**: una respuesta aislada nunca cambia la valoración de un concepto con historial.
+- **Moki**: dice al empezar qué se practicará ("Hoy vamos a jugar otra vez con la E y los números 7 y 8: ¡practicar nos hace crecer!"; "¡Ya sabes muchísimo! Hoy te traigo retos en lugares nuevos"; "Hoy jugaremos con un poco de todo"). Mismas pistas progresivas y felicitaciones. La lección 5 celebra todo el recorrido por Moki.
+- **Las actividades del repaso también cuentan para el desempeño** de la vocal, el número o la figura que se practicó, así que el perfil del niño se sigue construyendo.

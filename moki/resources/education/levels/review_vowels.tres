@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="LevelDefinition" format=3]
+
+[ext_resource type="Resource" path="res://resources/education/content/review_vowels_bank.tres" id="1_bank"]
+[ext_resource type="Script" path="res://scripts/education/dialogue_line.gd" id="2_line"]
+[ext_resource type="Script" path="res://scripts/education/level_definition.gd" id="3_level"]
+[ext_resource type="Script" path="res://scripts/education/activity_template.gd" id="4_tpl"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_pick.tres" id="t_cb_vowel_pick"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_sound.tres" id="t_cb_vowel_sound"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_grid.tres" id="t_cb_vowel_grid"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_case.tres" id="t_cb_vowel_case"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_vowel_initial.tres" id="t_cb_vowel_initial"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_image_for_vowel.tres" id="t_cb_image_for_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_find_images.tres" id="t_cb_find_images"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_word_vowel.tres" id="t_cb_word_vowel"]
+[ext_resource type="Resource" path="res://resources/education/templates/combination/cb_sort_vowels.tres" id="t_cb_sort_vowels"]
+
+[sub_resource type="Resource" id="Resource_review_vowels_1"]
+script = ExtResource("2_line")
+text = "¡Hola! Soy Moki. ¡Bienvenido al mundo de Repaso! Aquí volvemos a jugar con lo que ya aprendiste."
+kind = 1
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_vowels_2"]
+script = ExtResource("2_line")
+text = "Hoy repasaremos las vocales: A, E, I, O, U. Las verás en dibujos, en palabras y escondidas."
+kind = 1
+
+[sub_resource type="Resource" id="Resource_review_vowels_3"]
+script = ExtResource("2_line")
+text = "Si algo cuesta, no pasa nada: practicar es la mejor forma de aprender. Si necesitas ayuda, toca el botón de ayuda."
+
+[sub_resource type="Resource" id="Resource_review_vowels_4"]
+script = ExtResource("2_line")
+text = "¡Muy bien! Repasaste las cinco vocales. Cuando quieras, te esperan los números."
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_vowels_5"]
+script = ExtResource("2_line")
+text = "¡Qué bien suenan tus vocales! ¿Vamos después a repasar los números?"
+kind = 5
+mood = 2
+
+[sub_resource type="Resource" id="Resource_review_vowels_6"]
+script = ExtResource("2_line")
+text = "¡Bravo! Las vocales siguen siendo tus amigas. ¡Los números te esperan!"
+kind = 5
+mood = 2
+
+[resource]
+script = ExtResource("3_level")
+id = &"review_vowels"
+title = "Repaso de vocales"
+objective = "Reforzar las cinco vocales (forma, sonido, mayúscula y minúscula, vocal inicial de dibujos, vocal dentro de palabras), con más práctica para las que más la necesitan y en contextos distintos."
+concept_ids = Array[StringName]([&"review_vowels"])
+intro = Array[ExtResource("2_line")]([SubResource("Resource_review_vowels_1"), SubResource("Resource_review_vowels_2"), SubResource("Resource_review_vowels_3")])
+outro = Array[ExtResource("2_line")]([SubResource("Resource_review_vowels_4"), SubResource("Resource_review_vowels_5"), SubResource("Resource_review_vowels_6")])
+reinforce_lines = PackedStringArray("¡Lo recordaste muy bien!", "¡Practicar te hace crecer!", "¡Cada vocal tiene su sonido!")
+templates = Array[ExtResource("4_tpl")]([ExtResource("t_cb_vowel_pick"), ExtResource("t_cb_vowel_sound"), ExtResource("t_cb_vowel_grid"), ExtResource("t_cb_vowel_case"), ExtResource("t_cb_vowel_initial"), ExtResource("t_cb_image_for_vowel"), ExtResource("t_cb_find_images"), ExtResource("t_cb_word_vowel"), ExtResource("t_cb_sort_vowels")])
+content = ExtResource("1_bank")
+unlocks = Array[StringName]([&"review_numbers"])

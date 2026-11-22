@@ -66,7 +66,7 @@
 - [x] Mundo Números completo: del 1 al 10 en cinco lecciones.
 - [x] Mundo Figuras completo: círculo, cuadrado, triángulo, rectángulo y óvalo.
 - [x] Mundo Combinación completo: cinco lecciones integradoras.
-- [ ] Mundo Repaso.
+- [x] Mundo Repaso completo: cinco lecciones con repaso adaptativo.
 
 ### Notas — Sistema educativo (2026-11-20)
 - Nivel = objetivo permanente; lección = sesión generada de 5–8 actividades, distinta cada vez (historial, firmas de contenido, puntuación ponderada, sin repetir plantilla ni vista seguidas).
@@ -132,7 +132,7 @@
   - figuras en dibujos y contar esquinas o lados;
   - clasificar objetos y figuras en 2 o 3 cestas.
 - **Objetos revisados con capturas.** Se descartaron waffle 🧇 (se ve como un rombo), dado 🎲 y cubo de hielo 🧊 (cubos en 3D, no cuadrados), queso 🧀 y limón 🍋 (formas irregulares). Se añadieron dibujos de la habitación que sí tienen su forma: ventana y caja (cuadrado), banderines (triángulo), cuadro (rectángulo) y alfombra (óvalo).
-- **Archivos sin usar** que se crearon durante este desarrollo y ya no se referencian: `resources/education/content/shape_objects/{waffle,die,ice,cheese,lemon}.tres`. No se han borrado (CLAUDE.md: no eliminar archivos sin autorización); se pueden borrar.
+- **Archivos sin usar** que se crearon durante este desarrollo y ya no se referencian: `resources/education/content/shape_objects/{waffle,die,ice,cheese,lemon}.tres`. Se borraron con autorización del usuario (2026-11-21).
 - Corregido en el dibujo del tren: la chimenea flotaba separada de la locomotora.
 - **Pendiente / limitaciones**:
   - Emoji provisionales para algunos objetos.
@@ -166,7 +166,7 @@
   - Igual que en los otros mundos, por la alternancia de vistas algunas plantillas salen menos ("toca los dibujos que empiezan con…" ~20 %; en el gran desafío, "secuencias" y "esquinas" ~15 %).
   - Emoji provisionales.
   - Voz desactivada.
-  - Siguen sin borrar 5 archivos sin usar de Figuras (`shape_objects/{waffle,die,ice,cheese,lemon}.tres`), a la espera de autorización.
+  - Los 5 archivos sin usar de Figuras (`shape_objects/{waffle,die,ice,cheese,lemon}.tres`) se borraron después, con autorización.
 - Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada):
   - Motor: 512.791 comprobaciones.
     - Cada plantilla recibe el banco correcto.
@@ -184,6 +184,39 @@
     - Letras: motor 755.380, interfaz 112, progreso 37.
     - Números: 665.245, 194, 44.
     - Figuras: 8.349.167, 164, 39.
+  - Arranque sin errores.
+
+### Notas — Mundo Repaso (2026-11-21)
+- Cinco lecciones de refuerzo sin plantillas ni contenido nuevos. Lo nuevo es el **repaso adaptativo**, que usa solo datos ya guardados:
+  - `concept_need`;
+  - pesos de los objetivos con mantenimiento (0,15);
+  - prioridad de dinámicas;
+  - atribución de cada actividad a su concepto real.
+- **Se abre al terminar Combinación.**
+- **Ajustes durante el desarrollo**:
+  - El "va muy bien → más retos" saltaba también con un niño que necesitaba refuerzo en pocos conceptos (por la media). Ahora solo si ningún concepto necesita práctica.
+  - La frase "con la E y el 7 y el 8" pasó a ser "con la E y los números 7 y 8".
+  - Un niño que domina todo empezaba en la dificultad máxima; ahora, como mucho en la 4.
+  - En lecciones con muchas plantillas se repetía una dinámica hasta 3 veces. Con `no_repeats` (solo Repaso), las lecciones con una plantilla repetida bajan a: vocales y números 0 %, gran desafío 2,5 %, figuras 9 %, combinado 11 % (antes ~55 %). Las que quedan las fuerza la regla de no repetir vista seguida.
+- **Pendiente / limitaciones**:
+  - Los números se priorizan por pareja (7–8), que es lo que registra el juego.
+  - Las "confusiones" de figuras se deducen de la etapa *distinguir* (no hay un registro explícito de confusiones).
+  - Emoji provisionales; voz desactivada.
+  - Los 5 archivos sin usar de Figuras (`shape_objects/{waffle,die,ice,cheese,lemon}.tres`) se borraron con autorización.
+- Pruebas (scripts fuera del proyecto; partida del usuario copiada y restaurada):
+  - **Adaptativo**: 217.895 comprobaciones con cuatro perfiles.
+    - **Sin historial**: reparto equilibrado (cada vocal / pareja / figura entre el 16 % y el 23 %), sin prioridades, frase neutra y dificultad 1.
+    - **Necesita refuerzo** (la E, el 7–8, cuadrado/rectángulo): la E sale el 51 %, el 7–8 el 52 % y cuadrado+rectángulo el 74 %. Lo dominado se mantiene (10–14 %), con prioridad a figuras parecidas y a contar, y Moki nombra la E y los números 7 y 8.
+    - **Domina**: todo se mantiene, con prioridad a los retos y dificultad inicial 4.
+    - **Mixto**: el orden sigue la necesidad (U > O > A; 9–10 > 3–4 > 1–2; óvalo > triángulo > cuadrado), y lo que no tiene datos queda neutro y no se nombra.
+    - Además: una actividad mala aislada no cambia un concepto con evidencia; con 3 actividades no se concluye nada; el repaso actualiza los conceptos de origen; y las sesiones completas terminan.
+  - **Progreso**: 91 comprobaciones (bloqueo hasta Combinación, cadena 1→5, rejugar, conceptos practicados, lecciones e historial de otros mundos intactos, migración, persistencia entre dos procesos).
+  - **Interfaz**: 183 comprobaciones (mapa de mundos y de Repaso, las cinco lecciones con ratón y toque, la frase personalizada de Moki, y una lección forzada con 8 dinámicas).
+  - **Regresión sin cambios**:
+    - Letras: 755.380 / 112 / 37.
+    - Números: 665.245 / 192 / 44.
+    - Figuras: 8.349.167 / 164 / 39.
+    - Combinación: 512.791 / 162 / 61. Que el motor dé exactamente el mismo número confirma que el sorteo sin pesos no cambió.
   - Arranque sin errores.
 
 ## Fase 4: Integración y pulido
